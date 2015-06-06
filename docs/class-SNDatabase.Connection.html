@@ -131,9 +131,11 @@ SNTools\Object
 		<b>Namespace:</b> <a href="namespace-SNDatabase.html">SNDatabase</a><br>
 		
 
+				<b>License:</b>
+				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-			<b>Located at</b> <a href="source-class-SNDatabase.Connection.html#30-170" title="Go to source code">Connection.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.Connection.html#30-171" title="Go to source code">Connection.php</a>
 		<br>
 	</div>
 
@@ -153,7 +155,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#62-69" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#63-70" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			<p>Connection constructor. Sets up default attributes</p>
@@ -183,7 +185,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_query">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#71-76" title="Go to source code">query</a>( <span>string <var>$statement</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#72-77" title="Go to source code">query</a>( <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
 			<p>Executes quick statement and returns a result set</p>
@@ -222,7 +224,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_handleError">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#78-99" title="Go to source code">handleError</a>( <span><code><a href="class-SNDatabase.DBException.html">SNDatabase\DBException</a></code> <var>$ex</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#79-100" title="Go to source code">handleError</a>( <span><code><a href="class-SNDatabase.DBException.html">SNDatabase\DBException</a></code> <var>$ex</var></span> )</code>
 
 		<div class="description short">
 			<p>Error handler, depends on error mode attribute</p>
@@ -261,7 +263,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_exec">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#101-109" title="Go to source code">exec</a>( <span>string <var>$statement</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#102-110" title="Go to source code">exec</a>( <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
 			<p>Quick execution of a statement, and returns number of affected rows</p>
@@ -300,7 +302,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_queryWithParam">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#111-118" title="Go to source code">queryWithParam</a>( <span>string <var>$statement</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#112-119" title="Go to source code">queryWithParam</a>( <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
 			<p>Creates a Parametered statement</p>
@@ -339,7 +341,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prepare">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#120-125" title="Go to source code">prepare</a>( <span>string <var>$statement</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#121-126" title="Go to source code">prepare</a>( <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
 			<p>Creates a Prepared statement</p>
@@ -378,7 +380,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_startTransaction">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#127-131" title="Go to source code">startTransaction</a>( )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#128-132" title="Go to source code">startTransaction</a>( )</code>
 
 		<div class="description short">
 			<p>Starts a transaction</p>
@@ -412,7 +414,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAttribute">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#133-140" title="Go to source code">setAttribute</a>( <span>integer <var>$attribute</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#134-141" title="Go to source code">setAttribute</a>( <span>integer <var>$attribute</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			<p>Sets connection attribute</p>
@@ -449,7 +451,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttribute">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#142-149" title="Go to source code">getAttribute</a>( <span>integer <var>$attribute</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#143-150" title="Go to source code">getAttribute</a>( <span>integer <var>$attribute</var></span> )</code>
 
 		<div class="description short">
 			<p>Reads connection attribute</p>
@@ -488,7 +490,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_quote">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#151-156" title="Go to source code">quote</a>( <span>string <var>$string</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#152-157" title="Go to source code">quote</a>( <span>string <var>$string</var></span> )</code>
 
 		<div class="description short">
 			<p>Quoting a string value (used by statements)</p>
@@ -527,7 +529,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_countLastAffectedRows">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#158-163" title="Go to source code">countLastAffectedRows</a>( )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#159-164" title="Go to source code">countLastAffectedRows</a>( )</code>
 
 		<div class="description short">
 			<p>Counts number of last affected rows. Used by some drivers, ineffective and overriden for others.</p>
@@ -565,7 +567,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastInsertId">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#165-169" title="Go to source code">lastInsertId</a>( )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#166-170" title="Go to source code">lastInsertId</a>( )</code>
 
 		<div class="description short">
 			<p>Fetches last inserted ID</p>
@@ -603,7 +605,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Connection.html#36" title="Go to source code"><b>ATTR_ERRMODE</b></a>
+				<a href="source-class-SNDatabase.Connection.html#37" title="Go to source code"><b>ATTR_ERRMODE</b></a>
 			</code>
 
 			<div class="description short">
@@ -627,7 +629,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Connection.html#37" title="Go to source code"><b>ATTR_DEFAULT_FETCH_MODE</b></a>
+				<a href="source-class-SNDatabase.Connection.html#38" title="Go to source code"><b>ATTR_DEFAULT_FETCH_MODE</b></a>
 			</code>
 
 			<div class="description short">
@@ -651,7 +653,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Connection.html#39-42" title="Go to source code"><b>ERRMODE_EXCEPTION</b></a>
+				<a href="source-class-SNDatabase.Connection.html#40-43" title="Go to source code"><b>ERRMODE_EXCEPTION</b></a>
 			</code>
 
 			<div class="description short">
@@ -675,7 +677,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Connection.html#43-46" title="Go to source code"><b>ERRMODE_ERROR</b></a>
+				<a href="source-class-SNDatabase.Connection.html#44-47" title="Go to source code"><b>ERRMODE_ERROR</b></a>
 			</code>
 
 			<div class="description short">
@@ -699,7 +701,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Connection.html#47-50" title="Go to source code"><b>ERRMODE_WARNING</b></a>
+				<a href="source-class-SNDatabase.Connection.html#48-51" title="Go to source code"><b>ERRMODE_WARNING</b></a>
 			</code>
 
 			<div class="description short">
@@ -723,7 +725,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Connection.html#51-54" title="Go to source code"><b>ERRMODE_NOTICE</b></a>
+				<a href="source-class-SNDatabase.Connection.html#52-55" title="Go to source code"><b>ERRMODE_NOTICE</b></a>
 			</code>
 
 			<div class="description short">
@@ -747,7 +749,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Connection.html#55-58" title="Go to source code"><b>ERRMODE_SILENT</b></a>
+				<a href="source-class-SNDatabase.Connection.html#56-59" title="Go to source code"><b>ERRMODE_SILENT</b></a>
 			</code>
 
 			<div class="description short">

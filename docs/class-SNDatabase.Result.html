@@ -135,11 +135,13 @@ SNTools\Object
 		<b>Namespace:</b> <a href="namespace-SNDatabase.html">SNDatabase</a><br>
 		
 
+				<b>License:</b>
+				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
 				<b>Todo:</b>
 				self::FETCH_NAMED : similar as self::FETCH_ASSOC + confict resolution<br>
-			<b>Located at</b> <a href="source-class-SNDatabase.Result.html#30-374" title="Go to source code">Result.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.Result.html#30-375" title="Go to source code">Result.php</a>
 		<br>
 	</div>
 
@@ -159,7 +161,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#107-114" title="Go to source code">__construct</a>( <span><code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#108-115" title="Go to source code">__construct</a>( <span><code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var></span> )</code>
 
 		<div class="description short">
 			<p>Constructor</p>
@@ -194,7 +196,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_doFetch">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#116-120" title="Go to source code">doFetch</a>( )</code>
+		<code><a href="source-class-SNDatabase.Result.html#117-121" title="Go to source code">doFetch</a>( )</code>
 
 		<div class="description short">
 			<p>Real fetch done by inner components</p>
@@ -228,7 +230,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFetchMode">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#122-131" title="Go to source code">setFetchMode</a>( <span>integer|<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#123-132" title="Go to source code">setFetchMode</a>( <span>integer|<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			<p>Changes default fetch mode for this result set</p>
@@ -267,7 +269,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fetch">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#133-150" title="Go to source code">fetch</a>( <span>integer|<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#134-151" title="Go to source code">fetch</a>( <span>integer|<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			<p>Fetches next row</p>
@@ -310,7 +312,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fetchAll">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#173-205" title="Go to source code">fetchAll</a>( <span>integer|<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#174-206" title="Go to source code">fetchAll</a>( <span>integer|<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			<p>Fetches all row, as a global array</p>
@@ -353,7 +355,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bindColumn">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#206-217" title="Go to source code">bindColumn</a>( <span>integer|string <var>$col</var></span>, <span>&amp;mixed <var>&amp; $param</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.ParameterTypes.html#PARAM_STR">SNDatabase\ParameterTypes::<b>PARAM_STR</b></a></code></span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#207-218" title="Go to source code">bindColumn</a>( <span>integer|string <var>$col</var></span>, <span>&amp;mixed <var>&amp; $param</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.ParameterTypes.html#PARAM_STR">SNDatabase\ParameterTypes::<b>PARAM_STR</b></a></code></span> )</code>
 
 		<div class="description short">
 			<p>Bind a column from the result to a parameter</p>
@@ -392,7 +394,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_doBindParams">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#219-259" title="Go to source code">doBindParams</a>( <span>array <var>$values</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#220-260" title="Go to source code">doBindParams</a>( <span>array <var>$values</var></span> )</code>
 
 		<div class="description short">
 			<p>Populates bound parameters with column values</p>
@@ -427,7 +429,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_numRows">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#261-266" title="Go to source code">numRows</a>( )</code>
+		<code><a href="source-class-SNDatabase.Result.html#262-267" title="Go to source code">numRows</a>( )</code>
 
 		<div class="description short">
 			<p>Returns number of found rows</p>
@@ -465,7 +467,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#268-275" title="Go to source code">__get</a>( <span> <var>$name</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#269-276" title="Go to source code">__get</a>( <span> <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -495,7 +497,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getIterator">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#277-279" title="Go to source code">getIterator</a>( )</code>
+		<code><a href="source-class-SNDatabase.Result.html#278-280" title="Go to source code">getIterator</a>( )</code>
 
 		<div class="description short">
 			
@@ -527,7 +529,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fetchColumn">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#364-373" title="Go to source code">fetchColumn</a>( <span>integer <var>$index</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#365-374" title="Go to source code">fetchColumn</a>( <span>integer <var>$index</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			<p>Fetches row, then returns element of row based on numerical index</p>
@@ -570,7 +572,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#38-41" title="Go to source code"><b>FETCH_ASSOC</b></a>
+				<a href="source-class-SNDatabase.Result.html#39-42" title="Go to source code"><b>FETCH_ASSOC</b></a>
 			</code>
 
 			<div class="description short">
@@ -594,7 +596,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#42-45" title="Go to source code"><b>FETCH_NUM</b></a>
+				<a href="source-class-SNDatabase.Result.html#43-46" title="Go to source code"><b>FETCH_NUM</b></a>
 			</code>
 
 			<div class="description short">
@@ -618,7 +620,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#46-49" title="Go to source code"><b>FETCH_BOTH</b></a>
+				<a href="source-class-SNDatabase.Result.html#47-50" title="Go to source code"><b>FETCH_BOTH</b></a>
 			</code>
 
 			<div class="description short">
@@ -642,7 +644,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#50-53" title="Go to source code"><b>FETCH_OBJ</b></a>
+				<a href="source-class-SNDatabase.Result.html#51-54" title="Go to source code"><b>FETCH_OBJ</b></a>
 			</code>
 
 			<div class="description short">
@@ -666,7 +668,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#54-57" title="Go to source code"><b>FETCH_CLASS</b></a>
+				<a href="source-class-SNDatabase.Result.html#55-58" title="Go to source code"><b>FETCH_CLASS</b></a>
 			</code>
 
 			<div class="description short">
@@ -690,7 +692,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#58-61" title="Go to source code"><b>FETCH_CLASSTYPE</b></a>
+				<a href="source-class-SNDatabase.Result.html#59-62" title="Go to source code"><b>FETCH_CLASSTYPE</b></a>
 			</code>
 
 			<div class="description short">
@@ -714,7 +716,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#62-65" title="Go to source code"><b>FETCH_PROPS_EARLY</b></a>
+				<a href="source-class-SNDatabase.Result.html#63-66" title="Go to source code"><b>FETCH_PROPS_EARLY</b></a>
 			</code>
 
 			<div class="description short">
@@ -738,7 +740,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#66-69" title="Go to source code"><b>FETCH_INTO</b></a>
+				<a href="source-class-SNDatabase.Result.html#67-70" title="Go to source code"><b>FETCH_INTO</b></a>
 			</code>
 
 			<div class="description short">
@@ -762,7 +764,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#70-73" title="Go to source code"><b>FETCH_BOUND</b></a>
+				<a href="source-class-SNDatabase.Result.html#71-74" title="Go to source code"><b>FETCH_BOUND</b></a>
 			</code>
 
 			<div class="description short">
@@ -786,7 +788,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#74-77" title="Go to source code"><b>FETCH_COLUMN</b></a>
+				<a href="source-class-SNDatabase.Result.html#75-78" title="Go to source code"><b>FETCH_COLUMN</b></a>
 			</code>
 
 			<div class="description short">
@@ -810,7 +812,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#78-81" title="Go to source code"><b>FETCHALL_KEY_PAIR</b></a>
+				<a href="source-class-SNDatabase.Result.html#79-82" title="Go to source code"><b>FETCHALL_KEY_PAIR</b></a>
 			</code>
 
 			<div class="description short">
@@ -834,7 +836,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#82-85" title="Go to source code"><b>FETCH_CALLBACK</b></a>
+				<a href="source-class-SNDatabase.Result.html#83-86" title="Go to source code"><b>FETCH_CALLBACK</b></a>
 			</code>
 
 			<div class="description short">
@@ -858,7 +860,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#86-89" title="Go to source code"><b>FETCHALL_UNIQUE</b></a>
+				<a href="source-class-SNDatabase.Result.html#87-90" title="Go to source code"><b>FETCHALL_UNIQUE</b></a>
 			</code>
 
 			<div class="description short">
@@ -882,7 +884,7 @@ SNTools\Object
 		<td class="attributes"><code>integer</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-SNDatabase.Result.html#90-93" title="Go to source code"><b>FETCHALL_GROUP</b></a>
+				<a href="source-class-SNDatabase.Result.html#91-94" title="Go to source code"><b>FETCHALL_GROUP</b></a>
 			</code>
 
 			<div class="description short">
@@ -934,7 +936,7 @@ SNTools\Object
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-SNDatabase.Result.html#34" title="Go to source code"><var>$numRows</var></a>
+				<a href="source-class-SNDatabase.Result.html#35" title="Go to source code"><var>$numRows</var></a>
 
 			<div class="description short">
 				<p>Number of found rows for SELECT statements</p>
