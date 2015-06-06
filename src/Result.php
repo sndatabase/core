@@ -32,7 +32,6 @@ use SNTools\Object;
  *
  * @author Darth Killer
  * @property-read int $numRows
- * @property-read int $affectedRows
  * @todo self::FETCH_NAMED : similar as self::FETCH_ASSOC + confict resolution
  */
 abstract class Result extends Object implements \IteratorAggregate, ParameterTypes {
@@ -252,15 +251,10 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
      * @return int
      */
     abstract protected function numRows();
-    /**
-     * @return int
-     */
-    abstract protected function affectedRows();
 
     public function __get($name) {
         switch ($name) {
             case 'numRows':
-            case 'affectedRows':
                 return $this->$name();
             default:
                 return parent::__get($name);

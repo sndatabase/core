@@ -49,6 +49,12 @@ class ParameteredStatement extends Statement {
      * @var Result
      */
     private $result = null;
+
+    /**
+     *
+     * @var int
+     */
+    private $affRows = 0;
     
     /**
      * 
@@ -90,10 +96,15 @@ class ParameteredStatement extends Statement {
     public function execute() {
         $this->doBind();
         $this->result = $this->connection->query($this->actualStatement);
+        $this->affRows = $this->connection->countLastAffectedRows();
         return true;
     }
 
     public function getResult() {
         return $this->result;
+    }
+
+    protected function getAffectedRows() {
+        return $this->affRows;
     }
 }

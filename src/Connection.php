@@ -122,4 +122,9 @@ abstract class Connection extends Object {
      * @return string
      */
     abstract public function quote($string);
+
+    /**
+     * @return int
+     */
+    abstract public function countLastAffectedRows();
 }

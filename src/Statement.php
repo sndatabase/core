@@ -32,6 +32,7 @@ use SNTools\Object;
  *
  * @author Darth Killer
  * @property-read Connection $connection
+ * @property-read int $affectedRows
  */
 abstract class Statement extends Object implements ParameterTypes {
     /**
@@ -52,6 +53,8 @@ abstract class Statement extends Object implements ParameterTypes {
         switch($name) {
             case 'connection':
                 return $this->cnx;
+            case 'affectedRows':
+                return $this->getAffectedRows();
             default:
                 return parent::__get($name);
         }
@@ -61,6 +64,11 @@ abstract class Statement extends Object implements ParameterTypes {
      * @var array
      */
     private $parameters = array();
+
+    /**
+     * @return int
+     */
+    abstract protected function getAffectedRows();
 
     /**
      *
