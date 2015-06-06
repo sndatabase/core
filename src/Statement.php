@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Darth Killer.
+ * Copyright 2015 Samy Naamani.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,21 +28,22 @@ namespace SNDatabase;
 use SNTools\Object;
 
 /**
- * Description of Statement
+ * Superclass for all statements, both prepared and parametered
  *
- * @author Darth Killer
- * @property-read Connection $connection
- * @property-read int $affectedRows
+ * @author Samy Naamani <samy@namani.net>
+ * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
+ * @property-read Connection $connection Parent connection
+ * @property-read int $affectedRows Number of rows affected by last INSERT, UPDATE or DELETE statement
  */
 abstract class Statement extends Object implements ParameterTypes {
     /**
-     *
+     * Parent connection
      * @var Connection
      */
     private $cnx;
     /**
-     *
-     * @param Connection $cnx
+     * Statement constructor
+     * @param Connection $cnx Parent connection
      */
     public function __construct(Connection $cnx) {
         parent::__construct();
@@ -60,21 +61,23 @@ abstract class Statement extends Object implements ParameterTypes {
         }
     }
     /**
-     *
+     * Parameters list
      * @var array
      */
     private $parameters = array();
 
     /**
+     * Returns number of rows affected by INSERT, UPDATE or DELETE.
+     * @see Statement::$affectedRows
      * @return int
      */
     abstract protected function getAffectedRows();
 
     /**
-     *
-     * @param string|int $tag
-     * @param &mixed $param
-     * @param int $type
+     * Binds parameter to statement
+     * @param string|int $tag Parameter marker in the statement. If marker is '?', use integer value here.
+     * @param &mixed $param Parameter to bind, as reference
+     * @param int $type Parameter type, defaults to string.
      * @return boolean
      */
     public function bindParam($tag, &$param, $type = self::PARAM_STR) {
@@ -87,10 +90,10 @@ abstract class Statement extends Object implements ParameterTypes {
     }
 
     /**
-     *
-     * @param string|int $tag
-     * @param mixed $value
-     * @param int $type
+     * Binds value to statement
+     * @param string|int $tag Parameter marker in the statement. If marker is '?', use integer value here.
+     * @param mixed $value Parameter to bind, as value
+     * @param int $type Parameter type, defaults to string.
      * @return boolean
      */
     public function bindValue($tag, $value, $type = self::PARAM_STR) {
@@ -98,30 +101,36 @@ abstract class Statement extends Object implements ParameterTypes {
     }
 
     /**
-     *
+     * Get all bound parameters, in order to bind them to inner components
+     * @see doBind()
      * @return array
      */
     final protected function getParameters() {
         return $this->parameters;
     }
 
+    /**
+     * Binds parameters to statement before execution
+     */
     abstract protected function doBind();
 
     /**
+     * Executes statement
      * @return boolean
      */
     abstract public function execute();
 
     /**
+     * Recover resultset. Null if never executed.
      * @return Result|null
      */
     abstract public function getResult();
 
     /**
-     *
-     * @param mixed $param
-     * @param int $type
-     * @return mixed Converted value ready to inject into query
+     * Converts bound parameter into value, according to type
+     * @param mixed $param Parameter to convert
+     * @param int $type Parameter type
+     * @return mixed Converted value ready to put into statement
      */
     protected function param2Value($param, $type) {
         if($type & self::PARAM_STR) {

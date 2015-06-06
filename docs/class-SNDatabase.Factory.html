@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class SNDatabase\Factory | SN Database Core</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-SNDatabase.html">
+						SNDatabase					</a>
+
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-SNDatabase.Connection.html">Connection</a></li>
+				<li class="active"><a href="class-SNDatabase.Factory.html">Factory</a></li>
+				<li><a href="class-SNDatabase.FetchMode.html">FetchMode</a></li>
+				<li><a href="class-SNDatabase.ParameteredStatement.html">ParameteredStatement</a></li>
+				<li><a href="class-SNDatabase.PreparedStatement.html">PreparedStatement</a></li>
+				<li><a href="class-SNDatabase.Result.html">Result</a></li>
+				<li><a href="class-SNDatabase.ResultIterator.html">ResultIterator</a></li>
+				<li><a href="class-SNDatabase.Statement.html">Statement</a></li>
+				<li><a href="class-SNDatabase.Transaction.html">Transaction</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-SNDatabase.ParameterTypes.html">ParameterTypes</a></li>
+			</ul>
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
+				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
+				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-SNDatabase.html" title="Summary of SNDatabase"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+				<li>
+					<a href="annotation-group-todo.html" title="List of elements with todo annotation">
+						<span>Todo</span>
+					</a>
+				</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Factory</h1>
+
+
+	<div class="description">
+	<p>Factory superclass
+This class provides access to real factories via its static method.
+Real factories are subclasses of this class</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+SNTools\Object
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>SNDatabase\Factory</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		<b>Abstract</b><br>
+		
+		<b>Namespace:</b> <a href="namespace-SNDatabase.html">SNDatabase</a><br>
+		
+
+				<b>Author:</b>
+				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
+				<b>See:</b>
+				<code><a href="class-SNDatabase.Factory.html#_getFactory">SNDatabase\Factory::getFactory()</a></code><br>
+			<b>Located at</b> <a href="source-class-SNDatabase.Factory.html#30-87" title="Go to source code">Factory.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="getFactory" id="_getFactory">
+
+		<td class="attributes"><code>
+			final public static
+
+			<code><a href="class-SNDatabase.Factory.html">SNDatabase\Factory</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFactory">#</a>
+		<code><a href="source-class-SNDatabase.Factory.html#51-65" title="Go to source code">getFactory</a>( <span>string <var>$dbtype</var></span> )</code>
+
+		<div class="description short">
+			<p>Factory creation.
+For instance, if database type asked for is "MySQL", then
+Factory is exception to be \SNDatabase\Impl\MySQLFactory</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Factory creation.
+For instance, if database type asked for is "MySQL", then
+Factory is exception to be \SNDatabase\Impl\MySQLFactory</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dbtype</var></dt>
+					<dd>Database type.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-SNDatabase.Factory.html">SNDatabase\Factory</a></code><br>New factory
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><a href="class-SNDatabase.DriverException.html">SNDatabase\DriverException</a></code>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setParameter" id="_setParameter">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setParameter">#</a>
+		<code><a href="source-class-SNDatabase.Factory.html#66-73" title="Go to source code">setParameter</a>( <span>string <var>$parameter</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			<p>Sets a parameter for connection creation</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Sets a parameter for connection creation</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parameter</var></dt>
+					<dd></dd>
+					<dt><var>$value</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getParameter" id="_getParameter">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getParameter">#</a>
+		<code><a href="source-class-SNDatabase.Factory.html#74-81" title="Go to source code">getParameter</a>( <span>string <var>$parameter</var></span> )</code>
+
+		<div class="description short">
+			<p>Gather a parameter for connection creation</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Gather a parameter for connection creation</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parameter</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed|null<br>Null if not found
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getConnection" id="_getConnection">
+
+		<td class="attributes"><code>
+			abstract public 
+
+			<code><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getConnection">#</a>
+		<code><a href="source-class-SNDatabase.Factory.html#82-86" title="Go to source code">getConnection</a>( )</code>
+
+		<div class="description short">
+			<p>Creates connection</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Creates connection</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		SN Database Core API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

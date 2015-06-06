@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class SNDatabase\ParameteredStatement | SN Database Core</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-SNDatabase.html">
+						SNDatabase					</a>
+
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-SNDatabase.Connection.html">Connection</a></li>
+				<li><a href="class-SNDatabase.Factory.html">Factory</a></li>
+				<li><a href="class-SNDatabase.FetchMode.html">FetchMode</a></li>
+				<li class="active"><a href="class-SNDatabase.ParameteredStatement.html">ParameteredStatement</a></li>
+				<li><a href="class-SNDatabase.PreparedStatement.html">PreparedStatement</a></li>
+				<li><a href="class-SNDatabase.Result.html">Result</a></li>
+				<li><a href="class-SNDatabase.ResultIterator.html">ResultIterator</a></li>
+				<li><a href="class-SNDatabase.Statement.html">Statement</a></li>
+				<li><a href="class-SNDatabase.Transaction.html">Transaction</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-SNDatabase.ParameterTypes.html">ParameterTypes</a></li>
+			</ul>
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
+				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
+				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-SNDatabase.html" title="Summary of SNDatabase"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+				<li>
+					<a href="annotation-group-todo.html" title="List of elements with todo annotation">
+						<span>Todo</span>
+					</a>
+				</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class ParameteredStatement</h1>
+
+
+	<div class="description">
+	<p>Class specialized on parametered statements.
+Unlike prepared statements, parametered ones only call the database on execution, and are not compile on database's end.</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+SNTools\Object
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-SNDatabase.Statement.html"><span>SNDatabase\Statement</span></a>
+			
+			 implements 
+				<a href="class-SNDatabase.ParameterTypes.html"><span>SNDatabase\ParameterTypes</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>SNDatabase\ParameteredStatement</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-SNDatabase.html">SNDatabase</a><br>
+		
+
+				<b>Author:</b>
+				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
+			<b>Located at</b> <a href="source-class-SNDatabase.ParameteredStatement.html#29-111" title="Go to source code">ParameteredStatement.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-SNDatabase.ParameteredStatement.html#60-68" title="Go to source code">__construct</a>( <span><code><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></code> <var>$cnx</var></span>, <span>string <var>$statement</var></span> )</code>
+
+		<div class="description short">
+			<p>Constructor</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Constructor</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cnx</var></dt>
+					<dd>Parent connection</dd>
+					<dt><var>$statement</var></dt>
+					<dd>Initial statement</dd>
+				</dl></div>
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-SNDatabase.Statement.html#___construct">SNDatabase\Statement::__construct()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="param2Value" id="_param2Value">
+
+		<td class="attributes"><code>
+			 protected 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_param2Value">#</a>
+		<code><a href="source-class-SNDatabase.ParameteredStatement.html#70-73" title="Go to source code">param2Value</a>( <span>mixed <var>$param</var></span>, <span>integer <var>$type</var></span> )</code>
+
+		<div class="description short">
+			<p>Converts bound parameter into value, according to type</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Converts bound parameter into value, according to type</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$param</var></dt>
+					<dd>Parameter to convert</dd>
+					<dt><var>$type</var></dt>
+					<dd>Parameter type</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed<br>Converted value ready to put into statement
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-SNDatabase.Statement.html#_param2Value">SNDatabase\Statement::param2Value()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="doBind" id="_doBind">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_doBind">#</a>
+		<code><a href="source-class-SNDatabase.ParameteredStatement.html#75-95" title="Go to source code">doBind</a>( )</code>
+
+		<div class="description short">
+			<p>Binds parameters to statement before execution</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Binds parameters to statement before execution</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="execute" id="_execute">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_execute">#</a>
+		<code><a href="source-class-SNDatabase.ParameteredStatement.html#97-102" title="Go to source code">execute</a>( )</code>
+
+		<div class="description short">
+			<p>Executes statement</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Executes statement</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getResult" id="_getResult">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-SNDatabase.Result.html">SNDatabase\Result</a></code>|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getResult">#</a>
+		<code><a href="source-class-SNDatabase.ParameteredStatement.html#104-106" title="Go to source code">getResult</a>( )</code>
+
+		<div class="description short">
+			<p>Recover resultset. Null if never executed.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Recover resultset. Null if never executed.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-SNDatabase.Result.html">SNDatabase\Result</a></code>|null
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAffectedRows" id="_getAffectedRows">
+
+		<td class="attributes"><code>
+			 protected 
+
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAffectedRows">#</a>
+		<code><a href="source-class-SNDatabase.ParameteredStatement.html#108-110" title="Go to source code">getAffectedRows</a>( )</code>
+
+		<div class="description short">
+			<p>Returns number of rows affected by INSERT, UPDATE or DELETE.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns number of rows affected by INSERT, UPDATE or DELETE.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					integer
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						Statement::$affectedRows<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-SNDatabase.Statement.html#methods">SNDatabase\Statement</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-SNDatabase.Statement.html#___get">__get()</a>, 
+			<a href="class-SNDatabase.Statement.html#_bindParam">bindParam()</a>, 
+			<a href="class-SNDatabase.Statement.html#_bindValue">bindValue()</a>, 
+			<a href="class-SNDatabase.Statement.html#_getParameters">getParameters()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+	<table class="summary inherited">
+	<caption>Constants inherited from <a href="class-SNDatabase.ParameterTypes.html#constants">SNDatabase\ParameterTypes</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-SNDatabase.ParameterTypes.html#PARAM_BOOL"><b>PARAM_BOOL</b></a>, 
+			<a href="class-SNDatabase.ParameterTypes.html#PARAM_DATE"><b>PARAM_DATE</b></a>, 
+			<a href="class-SNDatabase.ParameterTypes.html#PARAM_DATETIME"><b>PARAM_DATETIME</b></a>, 
+			<a href="class-SNDatabase.ParameterTypes.html#PARAM_FLOAT"><b>PARAM_FLOAT</b></a>, 
+			<a href="class-SNDatabase.ParameterTypes.html#PARAM_INT"><b>PARAM_INT</b></a>, 
+			<a href="class-SNDatabase.ParameterTypes.html#PARAM_LOB"><b>PARAM_LOB</b></a>, 
+			<a href="class-SNDatabase.ParameterTypes.html#PARAM_NULL"><b>PARAM_NULL</b></a>, 
+			<a href="class-SNDatabase.ParameterTypes.html#PARAM_STR"><b>PARAM_STR</b></a>, 
+			<a href="class-SNDatabase.ParameterTypes.html#PARAM_TIME"><b>PARAM_TIME</b></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+	<table class="summary inherited">
+	<caption>Magic properties inherited from <a href="class-SNDatabase.Statement.html#properties">SNDatabase\Statement</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-SNDatabase.Statement.html#m$affectedRows"><var>$affectedRows</var></a>, 
+			<a href="class-SNDatabase.Statement.html#m$connection"><var>$connection</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+</div>
+
+	<div id="footer">
+		SN Database Core API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

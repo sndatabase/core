@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Darth Killer.
+ * Copyright 2015 Samy Naamani.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,9 +27,12 @@
 namespace SNDatabase;
 
 /**
- * Description of PreparedStatement
+ * Superclass for Prepared statements
+ * This abstract class allows differenciation with Paparemered statement
  *
- * @author Darth Killer
+ * @author Samy Naamani <samy@namani.net>
+ * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
+ * @todo Ultimately, is this class useful ?
  */
 abstract class PreparedStatement extends Statement {
     

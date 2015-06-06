@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Darth Killer.
+ * Copyright 2015 Samy Naamani.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +27,9 @@
 namespace SNDatabase;
 
 /**
- * Description of ConnectionFailedException
+ * Error while attempting to establish connection with database
  *
- * @author Darth Killer
+ * @author Samy Naamani <samy@namani.net>
+ * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
  */
-class ConnectionFailedException extends DBException {
-    //put your code here
-}
+class ConnectionFailedException extends DBException {}

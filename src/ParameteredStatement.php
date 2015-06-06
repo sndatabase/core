@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Darth Killer.
+ * Copyright 2015 Samy Naamani.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,39 +27,41 @@
 namespace SNDatabase;
 
 /**
- * Description of ParameteredStatement
+ * Class specialized on parametered statements.
+ * Unlike prepared statements, parametered ones only call the database on execution, and are not compile on database's end.
  *
- * @author Darth Killer
+ * @author Samy Naamani <samy@namani.net>
+ * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
  */
 class ParameteredStatement extends Statement {
     /**
-     *
+     * Input statement
      * @var string
      */
     private $statement;
     
     /**
-     *
+     * Statement being compiled during execution
      * @var string
      */
     private $actualStatement = '';
 
     /**
-     *
+     * Result set
      * @var Result
      */
     private $result = null;
 
     /**
-     *
+     * Number of affected rows
      * @var int
      */
     private $affRows = 0;
     
     /**
-     * 
-     * @param Connection $cnx
-     * @param string $statement
+     * Constructor
+     * @param Connection $cnx Parent connection
+     * @param string $statement Initial statement
      */
     public function __construct(Connection $cnx, $statement) {
         parent::__construct($cnx);

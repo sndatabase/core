@@ -14,11 +14,14 @@ The easiest way to download the core tools is through Composer. Simply add the f
 
 # Usage
 
-coming soon
+Cannot be used on its own, you need to download a driver that uses it, or create your own.
 
-# Creating your own databse type plugin
+# Creating your own databse driver
 
-coming soon
+You can create your own database driver. The driver will automatically be looked for by the Factory class if you respect a few specitics :
+* Factory subclass must be in \SNDatabase\Impl namespace
+* Factory subclass must have a name like "FooFactory" for the "Foo" driver
+* Other classes that must be extended : Connection (for connection link), PreparedStatement (for prepared statements), Result (for result sets) and Transaction (for transaction handling)
 
 # API Reference
 

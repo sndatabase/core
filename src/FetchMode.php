@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Darth Killer.
+ * Copyright 2015 Samy Naamani.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,13 +28,15 @@ namespace SNDatabase;
 use SNTools\Object;
 
 /**
- * Description of FetchMode
+ * Fetch Mode descriptior
  *
- * @author Darth Killer
- * @property-read string|null $classname
- * @property-read array $ctor_args
- * @property-read object|null $obj
- * @property-read int|null $col
+ * @author Samy Naamani <samy@namani.net>
+ * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
+ * @property-read string|null $classname For FETCH_CLASS  mode : class name to use
+ * @property-read array $ctor_args For FETCH_CLASS mode : constructor arguments
+ * @property-read object|null $obj For FETCH_INTO mode : object to fetch data into
+ * @property-read int|null $col For FETCH_COLUMN mode : numeric index to fetch
+ * @property-read callable|null $callback for FETCH_CALLBACK mode : callable to use
  */
 class FetchMode extends Object {
     private $_mode;
@@ -44,6 +46,12 @@ class FetchMode extends Object {
     private $_col = null;
     private $_callback = null;
 
+    /**
+     * Fetch mode constructor
+     * @param int $mode Actual fetch mode : combinaison of Result::FETCH_* constants
+     * @param mixed $param For some modes, additionnal parameter
+     * @param array $ctor_args For FETCH_CLASS mode : constructor arguments
+     */
     public function __construct($mode, &$param = null, array $ctor_args = array()) {
         parent::__construct();
         $this->_mode = $mode;
@@ -73,6 +81,11 @@ class FetchMode extends Object {
         }
     }
 
+    /**
+     * Checks if flag mode is within fetch mode
+     * @param int $mode Flag mode to check for
+     * @return boolean
+     */
     public function hasMode($mode) {
         return $mode == ($this->_mode & $mode);
     }

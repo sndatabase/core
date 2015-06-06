@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Darth Killer.
+ * Copyright 2015 Samy Naamani.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,16 +28,19 @@ namespace SNDatabase;
 use SNTools\Object;
 
 /**
- * Description of Transaction
+ * Superclass for transactions
  *
- * @author Darth Killer
+ * @author Samy Naamani <samy@namani.net>
+ * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
  */
 abstract class Transaction extends Object {
     /**
+     * Commit changes
      * @return boolean
      */
     abstract public function commit();
     /**
+     * Rollback changes
      * @return boolean
      */
     abstract public function rollBack();

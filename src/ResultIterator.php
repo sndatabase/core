@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Darth Killer.
+ * Copyright 2015 Samy Naamani.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,19 +28,28 @@ namespace SNDatabase;
 use SNTools\Object;
 
 /**
- * Description of ResultIterator
+ * Iterator for result sets
  *
- * @author Darth Killer
+ * @author Samy Naamani <samy@namani.net>
+ * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
  */
 class ResultIterator extends Object implements \Iterator {
     /**
-     *
+     * Result set
      * @var Result
      */
     private $result;
 
+    /**
+     * Last fetched element
+     * @var mixed
+     */
     private $lastFetched = null;
 
+    /**
+     * Constructor
+     * @param Result $result Result set to iterate on
+     */
     public function __construct(Result $result) {
         parent::__construct();
         $this->result = $result;

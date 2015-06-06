@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Darth Killer.
+ * Copyright 2015 Samy Naamani.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,20 +28,33 @@ namespace SNDatabase;
 use SNTools\Object;
 
 /**
- * Description of Factory
+ * Factory superclass
+ * This class provides access to real factories via its static method.
+ * Real factories are subclasses of this class
+ * @see Factory::getFactory
  *
- * @author Darth Killer
+ * @author Samy Naamani <samy@namani.net>
+ * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
  */
 abstract class Factory extends Object {
     /**
-     *
+     * Factory parameters
      * @var array
      */
     private $parameters = array();
+    
     /**
-     *
-     * @param string $dbtype
-     * @return self
+     * Private constructor, public creation is forbidden
+     */
+    private function __construct() {
+        parent::__construct();
+    }
+    /**
+     * Factory creation.
+     * For instance, if database type asked for is "MySQL", then
+     * Factory is exception to be \SNDatabase\Impl\MySQLFactory
+     * @param string $dbtype Database type.
+     * @return self New factory
      * @throws DriverException
      */
     final public static function getFactory($dbtype) {
@@ -52,17 +65,23 @@ abstract class Factory extends Object {
         } else throw new DriverException("Driver $dbtype not found");
     }
     /**
-     *
+     * Sets a parameter for connection creation
      * @param string $parameter
      * @param mixed $value
      */
     public function setParameter($parameter, $value) {
         $this->parameters[$parameter] = $value;
     }
+    /**
+     * Gather a parameter for connection creation
+     * @param string $parameter
+     * @return mixed|null Null if not found
+     */
     public function getParameter($parameter) {
         return isset($this->parameters[$parameter]) ? $this->parameters[$parameter] : null;
     }
     /**
+     * Creates connection
      * @return Connection
      */
     abstract public function getConnection();

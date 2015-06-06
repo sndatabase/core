@@ -1,5 +1,5 @@
 {
-    "name": "sndb/core",
+    "name": "sndatabase/core",
     "description": "Core of the SN Database api",
     "type": "library",
     "keywords": ["database", "abstraction"],

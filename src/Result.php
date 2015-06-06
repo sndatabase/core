@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Darth Killer.
+ * Copyright 2015 Samy Naamani.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,11 @@ namespace SNDatabase;
 use SNTools\Object;
 
 /**
- * Description of Result
+ * Superclass for result sets
  *
- * @author Darth Killer
- * @property-read int $numRows
+ * @author Samy Naamani <samy@namani.net>
+ * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
+ * @property-read int $numRows Number of found rows for SELECT statements
  * @todo self::FETCH_NAMED : similar as self::FETCH_ASSOC + confict resolution
  */
 abstract class Result extends Object implements \IteratorAggregate, ParameterTypes {
@@ -93,21 +94,20 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
     const FETCHALL_GROUP = 0x1000;
 
     /**
-     *
+     * Bound parameters to populate upon fetch
      * @var array
      */
     private $parameters = array();
 
     /**
-     *
+     * Default fetch mode for the result set
      * @var FetchMode
      */
     private $fetchMode;
 
     /**
-     * @param int $mode
-     * @param mixed $param
-     * @param array $ctor_args
+     * Constructor
+     * @param FetchMode $mode Default fetch mode for the result set
      */
     public function __construct(FetchMode $mode) {
         parent::__construct();
@@ -115,15 +115,16 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
     }
 
     /**
-     * @return array|boolean
+     * Real fetch done by inner components
+     * @return array|boolean Associative array, or false if nothing to fetch
      */
     abstract protected function doFetch();
 
     /**
-     * @param int|FetchMode $mode
-     * @param mixed $param
-     * @param array $ctor_args
-     * @return boolean
+     * Changes default fetch mode for this result set
+     * @param int|FetchMode $mode New mode. Either a proper FetchMode, or a FETCH_* flag combinaison
+     * @param mixed $param For some fetch modes, complementary parameter. See examples
+     * @param array $ctor_args For FETCH_CLASS only, array of constructor arguments.
      */
     public function setFetchMode($mode, $param = null, array $ctor_args = array()) {
         if(!($mode instanceof FetchMode)) $mode = new FetchMode($mode, $param, $ctor_args);
@@ -131,10 +132,11 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
     }
 
     /**
-     * @param int|FetchMode $mode
-     * @param mixed $param
-     * @param array $ctor_args
-     * @return mixed
+     * Fetches next row
+     * @param int|FetchMode $mode New mode, if needed. Either a proper FetchMode, or a FETCH_* flag combinaison
+     * @param mixed $param For some fetch modes, complementary parameter. See examples
+     * @param array $ctor_args For FETCH_CLASS only, array of constructor arguments.
+     * @return mixed Fetched row
      */
     public function fetch($mode = null, $param = null, array $ctor_args = array()) {
         if(is_null($mode)) $mode = $this->fetchMode;
@@ -148,6 +150,12 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
         return $this->doFetchFromRow($row, $mode);
     }
 
+    /**
+     * Converts row (as an array) into fetched row (as intended result from fetch())
+     * @param array $row Row to convert
+     * @param FetchMode $mode Fetch mode
+     * @return mixed Converted row
+     */
     private function doFetchFromRow(array $row, FetchMode $mode) {
         if($mode->hasMode(self::FETCH_BOTH)) return $this->fetchBoth ($row);
         if($mode->hasMode(self::FETCH_ASSOC)) return $row;
@@ -164,10 +172,11 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
     }
 
     /**
-     * @param int|FetchMode $mode
-     * @param mixed $param
-     * @param array $ctor_args
-     * @return array
+     * Fetches all row, as a global array
+     * @param int|FetchMode $mode New mode, if needed. Either a proper FetchMode, or a FETCH_* flag combinaison
+     * @param mixed $param For some fetch modes, complementary parameter. See examples
+     * @param array $ctor_args For FETCH_CLASS only, array of constructor arguments.
+     * @return array List of all rows found
      */
     public function fetchAll($mode = null, $param = null, array $ctor_args = array()) {
         $result = array();
@@ -196,11 +205,10 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
         return $result;
     }
     /**
-     *
-     * @param int|string $col
-     * @param &mixed $param
-     * @param int $type
-     * @return boolean
+     * Bind a column from the result to a parameter
+     * @param int|string $col Column to bind
+     * @param &mixed $param Parameter to bind
+     * @param int $type Parameter type
      */
     public function bindColumn($col, &$param, $type = self::PARAM_STR) {
         if(!is_int($col) and ctype_digit($tag)) $tag = intval($tag);
@@ -209,6 +217,10 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
         $this->parameters[$col]['param'] =& $param;
     }
 
+    /**
+     * Populates bound parameters with column values
+     * @param array $values
+     */
     protected function doBindParams(array $values) {
         foreach($values as $key => $value) {
             if(isset($this->parameters[$key])) {
@@ -248,6 +260,8 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
     }
 
     /**
+     * Returns number of found rows
+     * @see Result::$numRows
      * @return int
      */
     abstract protected function numRows();
@@ -265,18 +279,41 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
         return new ResultIterator($this);
     }
 
+    /**
+     * Converts a row into a numeric-indexed array
+     * @param array $row
+     * @return array
+     */
     final private function fetchNum(array $row) {
         return array_values($row);
     }
 
+    /**
+     * Merges row (as associative array) and its numeric-indexed conversion
+     * @param array $row
+     * @return array
+     */
     final private function fetchBoth(array $row) {
         return array_merge($this->fetchAssoc($row), $this->fetchNum($row));
     }
 
+    /**
+     * Converts row into object
+     * @param array $row
+     * @return object
+     */
     final private function fetchObj(array $row) {
         return (object)$row;
     }
 
+    /**
+     * Converts row into objet of a specific class
+     * @param array $row Row to convert
+     * @param string $classname Class name
+     * @param boolean $props_early If constructeur must be called before or after populating properties
+     * @param array $ctor_args Constructor arguments
+     * @return object
+     */
     final private function fetchClass(array $row, $classname, $props_early = false, array $ctor_args = array()) {
         $refl = new \ReflectionClass($classname);
         $obj = $props_early ? $refl->newInstanceWithoutConstructor() : $refl->newInstanceArgs($ctor_args);
@@ -288,11 +325,22 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
         return $obj;
     }
 
+    /**
+     * Converts row into object, using (and extracting) first value as class name
+     * @param array $row Row to convert
+     * @param boolean $props_early If constructeur must be called before or after populating properties
+     * @return object
+     */
     final private function fetchClasstype(array $row, $props_early = false) {
         $classname = array_shift($row);
         return $this->doFetchClass($row, $classname, $props_early);
     }
 
+    /**
+     * Fetches row into existing object
+     * @param array $row Row to fetch
+     * @param type $obj Object to fetch into
+     */
     final private function fetchInto(array $row, &$obj) {
         $reflObj = new \ReflectionObject($obj);
         foreach($$row as $key => $val) {
@@ -304,11 +352,22 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
         }
     }
 
+    /**
+     * Inner component : gets an element of a row based on numerical index
+     * @param array $row Row to read
+     * @param type $index Numerical index
+     * @return mixed|null Null if invalid index
+     */
     final private function doFetchColumn(array $row, $index) {
         return isset($row[$index]) ? $row[$index] : null;
     }
 
-    final public function fetchColumn($index) {
+    /**
+     * Fetches row, then returns element of row based on numerical index
+     * @param int $index Numerical index to use
+     * @return boolean|mixed|null Found element. Null if invalid index. False if nothing to fetch.
+     */
+    final public function fetchColumn($index = 0) {
         $row = $this->fetch(self::FETCH_NUM);
         if($row === false) return false;
         return $this->doFetchColumn($row, $index);
