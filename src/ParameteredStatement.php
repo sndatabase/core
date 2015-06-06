@@ -31,6 +31,69 @@ namespace SNDatabase;
  *
  * @author Darth Killer
  */
-abstract class ParameteredStatement extends Statement {
-    //put your code here
+class ParameteredStatement extends Statement {
+    /**
+     *
+     * @var string
+     */
+    private $statement;
+    
+    /**
+     *
+     * @var string
+     */
+    private $actualStatement = '';
+
+    /**
+     *
+     * @var Result
+     */
+    private $result = null;
+    
+    /**
+     * 
+     * @param Connection $cnx
+     * @param string $statement
+     */
+    public function __construct(Connection $cnx, $statement) {
+        parent::__construct($cnx);
+        $this->statement = $statement;
+    }
+
+    protected function param2Value($param, $type) {
+        $value = parent::param2Value($param, $type);
+        return ($type & self::PARAM_STR) ? $this->connection->quote($value) : $value;
+    }
+
+    protected function doBind() {
+        $this->actualStatement = $this->statement;
+        $params = $this->getParameters();
+        foreach($params as $tag => $param) {
+            if(is_int($tag)) continue;
+            $value = $this->param2Value($param['param'], $param['type']);
+            $this->actualStatement = str_replace($tag, $value, $this->actualStatement);
+            unset($params[$tag]);
+        }
+        ksort($params, SORT_NUMERIC | SORT_ASC);
+        foreach($params as $param) {
+            $pos = strpos($this->actualStatement, '?');
+            if($pos === false) break;
+            $value = $this->param2Value($param['param'], $param['type']);
+            $this->actualStatement = implode('', array(
+                substr($this->actualStatement, 0, $pos),
+                $value,
+                substr($this->actualStatement, $pos + 1)
+            ));
+        }
+    }
+
+    public function execute() {
+        $this->doBind();
+        $this->result = $this->connection->query($this->actualStatement);
+        return true;
+    }
+
+    public function getResult() {
+        return $this->result;
+    }
 }

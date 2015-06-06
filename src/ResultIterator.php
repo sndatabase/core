@@ -28,42 +28,41 @@ namespace SNDatabase;
 use SNTools\Object;
 
 /**
- * Description of Factory
+ * Description of ResultIterator
  *
  * @author Darth Killer
  */
-abstract class Factory extends Object {
+class ResultIterator extends Object implements \Iterator {
     /**
      *
-     * @var array
+     * @var Result
      */
-    private $parameters = array();
-    /**
-     *
-     * @param string $dbtype
-     * @return self
-     * @throws DriverException
-     */
-    final public static function getFactory($dbtype) {
+    private $result;
+
+    private $lastFetched = null;
+
+    public function __construct(Result $result) {
         parent::__construct();
-        $class = sprintf('%s\\Impl\\%sFactory', __NAMESPACE__, $dbtype);
-        if(class_exists($class) and is_subclass_of($class, self)) {
-            return new $class();
-        } else throw new DriverException("Driver $dbtype not found");
+        $this->result = $result;
     }
-    /**
-     *
-     * @param string $parameter
-     * @param mixed $value
-     */
-    public function setParameter($parameter, $value) {
-        $this->parameters[$parameter] = $value;
+
+    public function current() {
+        return $this->lastFetched;
     }
-    public function getParameter($parameter) {
-        return isset($this->parameters[$parameter]) ? $this->parameters[$parameter] : null;
+
+    public function key() {
+        return null;
     }
-    /**
-     * @return Connection
-     */
-    abstract public function getConnection();
+
+    public function next() {
+        $this->lastFetched = $this->result->fetch();
+    }
+
+    public function rewind() {
+        $this->next();
+    }
+
+    public function valid() {
+        return false !== $this->lastFetched;
+    }
 }

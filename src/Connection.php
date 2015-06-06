@@ -33,33 +33,65 @@ use SNTools\Object;
  * @author Darth Killer
  */
 abstract class Connection extends Object {
+    const ATTR_ERRMODE = 0;
+    const ATTR_DEFAULT_FETCH_MODE = 1;
+
+    const ERRMODE_EXCEPTION = 100;
+    const ERRMODE_ERROR = 101;
+    const ERRMODE_WARNING = 102;
+    const ERRMODE_NOTICE = 104;
+    const ERRMODE_SILENT = 105;
+
+    private $attributes = array();
+    public function __construct() {
+        parent::__construct();
+        $this->setAttribute (self::ATTR_DEFAULT_FETCH_MODE, Result::FETCH_ASSOC);
+        $this->setAttribute(self::ATTR_ERRMODE, self::ERRMODE_EXCEPTION);
+    }
     /**
      * @param string $statement
-     * @return Result
+     * @return Result|boolean
      */
-    public function query($statement) {
-        $stmt = $this->queryWithParam($statement);
-        $stmt->execute();
-        return $stmt->getResult();
+    abstract public function query($statement);
+
+    public function handleError(DBException $ex) {
+        if($this->getAttribute(self::ATTR_ERRMODE) == self::ERRMODE_EXCEPTION) throw $ex;
+        elseif($this->getAttribute(self::ATTR_ERRMODE) != self::ERRMODE_SILENT) {
+            switch($this->getAttribute(self::ATTR_ERRMODE)) {
+                case self::ERRMODE_ERROR:
+                    $level = E_USER_ERROR;
+                    break;
+                case self::ERRMODE_WARNING:
+                    $level = E_USER_WARNING;
+                    break;
+                case self::ERRMODE_NOTICE:
+                    $level = E_USER_NOTICE;
+                    break;
+            }
+            trigger_error($ex->getMessage(), $level);
+        }
     }
 
     /**
      * @param string $statement
-     * @return int
+     * @return int|boolean
      */
     public function exec($statement) {
-        return $this->query($statement)->affectedRows;
+        $stmt = $this->query($statement);
+        return ($stmt instanceof Result) ? $stmt->affectedRows : false;
     }
 
     /**
      * @param string $statement
      * @return ParameteredStatement
      */
-    abstract public function queryWithParam($statement);
+    public function queryWithParam($statement) {
+        return new ParameteredStatement($this, $statement);
+    }
 
     /**
      * @param string $statement
-     * @return PreparedStatement
+     * @return PreparedStatement|boolean
      */
     abstract public function prepare($statement);
 
@@ -69,9 +101,25 @@ abstract class Connection extends Object {
     abstract public function startTransaction();
 
     /**
-     * @param string|int $attribute
+     * @param int $attribute
      * @param mixed $value
-     * @return boolean
      */
-    abstract public function setAttribute($attribute, $value);
+    public function setAttribute($attribute, $value) {
+        $this->attributes[$attribute] = $value;
+    }
+
+    /**
+     *
+     * @param int $attribute
+     * @return mixed
+     */
+    public function getAttribute($attribute) {
+        return isset($this->attributes[$attribute]) ? $this->attributes[$attribute] : null;
+    }
+
+    /**
+     * @param string $string
+     * @return string
+     */
+    abstract public function quote($string);
 }

@@ -81,9 +81,9 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
      */
     const FETCHALL_KEY_PAIR = 0x200;
     /**
-     * Fetches all rows as results of a specified callable
+     * Fetches returns what given callback returns
      */
-    const FETCHALL_CALLBACK = 0x400;
+    const FETCH_CALLBACK = 0x400;
     /**
      * Add this flag to fetch all rows, shifting first column to be used as key in the all-rows array
      */
@@ -100,28 +100,102 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
     private $parameters = array();
 
     /**
+     *
+     * @var FetchMode
+     */
+    private $fetchMode;
+
+    /**
      * @param int $mode
+     * @param mixed $param
+     * @param array $ctor_args
+     */
+    public function __construct(FetchMode $mode) {
+        parent::__construct();
+        $this->setFetchMode($mode);
+    }
+
+    /**
+     * @return array|boolean
+     */
+    abstract protected function doFetch();
+
+    /**
+     * @param int|FetchMode $mode
      * @param mixed $param
      * @param array $ctor_args
      * @return boolean
      */
-    abstract public function setFetchMode($mode, $param = null, array $ctor_args = array());
+    public function setFetchMode($mode, $param = null, array $ctor_args = array()) {
+        if(!($mode instanceof FetchMode)) $mode = new FetchMode($mode, $param, $ctor_args);
+        $this->fetchMode = $mode;
+    }
 
     /**
-     * @param int $mode
+     * @param int|FetchMode $mode
      * @param mixed $param
      * @param array $ctor_args
      * @return mixed
      */
-    abstract public function fetch($mode, $param = null, array $ctor_args = array());
+    public function fetch($mode = null, $param = null, array $ctor_args = array()) {
+        if(is_null($mode)) $mode = $this->fetchMode;
+        elseif(!($mode instanceof FetchMode)) $mode = new FetchMode ($mode, $param, $ctor_args);
+        $row = $this->doFetch();
+        if($row === false) return false;
+        /* @var $row array */
+        $this->doBindParams($row);
+        if($mode->hasMode(self::FETCH_INTO)) return $this->fetchInto ($row, $mode->obj);
+        if($mode->hasMode(self::FETCH_BOUND)) return is_array($row);
+        return $this->doFetchFromRow($row, $mode);
+    }
+
+    private function doFetchFromRow(array $row, FetchMode $mode) {
+        if($mode->hasMode(self::FETCH_BOTH)) return $this->fetchBoth ($row);
+        if($mode->hasMode(self::FETCH_ASSOC)) return $row;
+        if($mode->hasMode(self::FETCH_NUM)) return $this->fetchNum($row);
+        if($mode->hasMode(self::FETCH_CLASS)) {
+            if($mode->hasMode(self::FETCH_OBJ)) return $this->fetchObj ($row);
+            if($mode->hasMode(self::FETCH_CLASSTYPE)) return $this->fetchClasstype ($row, $mode->hasMode (self::FETCH_PROPS_EARLY));
+            return $this->fetchClass($row, $mode->classname, $mode->hasMode(self::FETCH_PROPS_EARLY), $mode->ctor_args);
+        }
+        if($mode->hasMode(self::FETCH_COLUMN)) return $this->doFetchColumn ($row, $mode->col);
+        if($mode->hasMode(self::FETCH_CALLBACK)) return $mode->callback($row);
+        return false;
+
+    }
 
     /**
-     * @param int $mode
+     * @param int|FetchMode $mode
      * @param mixed $param
      * @param array $ctor_args
-     * @return array|boolean
+     * @return array
      */
-    abstract public function fetchAll($mode, $param = null, array $ctor_args = array());
+    public function fetchAll($mode = null, $param = null, array $ctor_args = array()) {
+        $result = array();
+        if(is_null($mode)) $mode = $this->fetchMode;
+        elseif(!($mode instanceof FetchMode)) $mode = new FetchMode ($mode, $param, $ctor_args);
+        while(false !== ($row = $this->doFetch())) {
+            /* @var $row array */
+            if($mode->hasMode(self::FETCHALL_KEY_PAIR)) {
+                $result[$this->doFetchColumn ($row, 0)] = $this->doFetchColumn ($row, 1);
+                continue;
+            }
+            if($mode->hasMode(self::FETCHALL_UNIQUE)) {
+                $result[array_shift($row)] = $this->doFetchFromRow($row, $mode);
+                continue;
+            }
+            if($mode->hasMode(self::FETCHALL_GROUP)) {
+                $key = array_shift($row);
+                if(isset($result[$key])) {
+                    if(!is_array($result[$key])) $result[$key] = array($result[$key]);
+                    $result[$key][] = $this->doFetchFromRow($row, $mode);
+                } else $result[$key] = $this->doFetchFromRow ($row, $mode);
+            }
+            if(false !== ($v = $this->doFetchFromRow($row, $mode)))
+                $result[] = $v;
+        }
+        return $result;
+    }
     /**
      *
      * @param int|string $col
@@ -191,5 +265,58 @@ abstract class Result extends Object implements \IteratorAggregate, ParameterTyp
             default:
                 return parent::__get($name);
         }
+    }
+
+    public function getIterator() {
+        return new ResultIterator($this);
+    }
+
+    final private function fetchNum(array $row) {
+        return array_values($row);
+    }
+
+    final private function fetchBoth(array $row) {
+        return array_merge($this->fetchAssoc($row), $this->fetchNum($row));
+    }
+
+    final private function fetchObj(array $row) {
+        return (object)$row;
+    }
+
+    final private function fetchClass(array $row, $classname, $props_early = false, array $ctor_args = array()) {
+        $refl = new \ReflectionClass($classname);
+        $obj = $props_early ? $refl->newInstanceWithoutConstructor() : $refl->newInstanceArgs($ctor_args);
+        $this->doFetchInto($row, $obj);
+        if($props_early) {
+            $reflObj = new \ReflectionObject($obj);
+            $reflObj->getConstructor()->invokeArgs($obj, $ctor_args);
+        }
+        return $obj;
+    }
+
+    final private function fetchClasstype(array $row, $props_early = false) {
+        $classname = array_shift($row);
+        return $this->doFetchClass($row, $classname, $props_early);
+    }
+
+    final private function fetchInto(array $row, &$obj) {
+        $reflObj = new \ReflectionObject($obj);
+        foreach($$row as $key => $val) {
+            if($reflObj->hasProperty($key)) {
+                $reflProp = $reflObj->getProperty($key);
+                $reflProp->setValue($obj, $val);
+            }
+            else $obj->$key = $val;
+        }
+    }
+
+    final private function doFetchColumn(array $row, $index) {
+        return isset($row[$index]) ? $row[$index] : null;
+    }
+
+    final public function fetchColumn($index) {
+        $row = $this->fetch(self::FETCH_NUM);
+        if($row === false) return false;
+        return $this->doFetchColumn($row, $index);
     }
 }

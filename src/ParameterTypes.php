@@ -39,5 +39,5 @@ interface ParameterTypes {
     const PARAM_DATETIME = 0xd; // self::PARAM_DATE | self::PARAM_TIME
     const PARAM_INT = 0x10;
     const PARAM_BOOL = 0x30; // self::PARAM_INT | 0x20
-    const PARAM_LOB = 0x40;
+    const PARAM_LOB = 0x41; // self::PARAM_STR | 0x40
 }

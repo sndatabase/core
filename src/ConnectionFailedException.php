@@ -25,45 +25,12 @@
  */
 
 namespace SNDatabase;
-use SNTools\Object;
 
 /**
- * Description of Factory
+ * Description of ConnectionFailedException
  *
  * @author Darth Killer
  */
-abstract class Factory extends Object {
-    /**
-     *
-     * @var array
-     */
-    private $parameters = array();
-    /**
-     *
-     * @param string $dbtype
-     * @return self
-     * @throws DriverException
-     */
-    final public static function getFactory($dbtype) {
-        parent::__construct();
-        $class = sprintf('%s\\Impl\\%sFactory', __NAMESPACE__, $dbtype);
-        if(class_exists($class) and is_subclass_of($class, self)) {
-            return new $class();
-        } else throw new DriverException("Driver $dbtype not found");
-    }
-    /**
-     *
-     * @param string $parameter
-     * @param mixed $value
-     */
-    public function setParameter($parameter, $value) {
-        $this->parameters[$parameter] = $value;
-    }
-    public function getParameter($parameter) {
-        return isset($this->parameters[$parameter]) ? $this->parameters[$parameter] : null;
-    }
-    /**
-     * @return Connection
-     */
-    abstract public function getConnection();
+class ConnectionFailedException extends DBException {
+    //put your code here
 }
