@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex">
 
-	<title>File ParameteredStatement.php | SN Database Core</title>
+	<title>File ParameterizedStatement.php | SN Database Core</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -36,7 +36,7 @@
 				<li><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></li>
 				<li><a href="class-SNDatabase.Factory.html">SNDatabase\Factory</a></li>
 				<li><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></li>
-				<li><a href="class-SNDatabase.ParameteredStatement.html">SNDatabase\ParameteredStatement</a></li>
+				<li><a href="class-SNDatabase.ParameterizedStatement.html">SNDatabase\ParameterizedStatement</a></li>
 				<li><a href="class-SNDatabase.PreparedStatement.html">SNDatabase\PreparedStatement</a></li>
 				<li><a href="class-SNDatabase.Result.html">SNDatabase\Result</a></li>
 				<li><a href="class-SNDatabase.ResultIterator.html">SNDatabase\ResultIterator</a></li>
@@ -125,13 +125,13 @@
 </span><span id="27" class="l"><a href="#27"> 27: </a><span class="php-keyword1">namespace</span> SNDatabase;
 </span><span id="28" class="l"><a href="#28"> 28: </a>
 </span><span id="29" class="l"><a href="#29"> 29: </a><span class="php-comment">/**
-</span></span><span id="30" class="l"><a href="#30"> 30: </a><span class="php-comment"> * Class specialized on parametered statements.
-</span></span><span id="31" class="l"><a href="#31"> 31: </a><span class="php-comment"> * Unlike prepared statements, parametered ones only call the database on execution, and are not compile on database's end.
+</span></span><span id="30" class="l"><a href="#30"> 30: </a><span class="php-comment"> * Class specialized on parameterized statements.
+</span></span><span id="31" class="l"><a href="#31"> 31: </a><span class="php-comment"> * Unlike prepared statements, parameterized ones only call the database on execution, and are not compile on database's end.
 </span></span><span id="32" class="l"><a href="#32"> 32: </a><span class="php-comment"> *
 </span></span><span id="33" class="l"><a href="#33"> 33: </a><span class="php-comment"> * @author Samy Naamani &lt;samy@namani.net&gt;
 </span></span><span id="34" class="l"><a href="#34"> 34: </a><span class="php-comment"> * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
 </span></span><span id="35" class="l"><a href="#35"> 35: </a><span class="php-comment"> */</span>
-</span><span id="36" class="l"><a href="#36"> 36: </a><span class="php-keyword1">class</span> ParameteredStatement <span class="php-keyword1">extends</span> Statement {
+</span><span id="36" class="l"><a href="#36"> 36: </a><span class="php-keyword1">class</span> ParameterizedStatement <span class="php-keyword1">extends</span> Statement {
 </span><span id="37" class="l"><a href="#37"> 37: </a>    <span class="php-comment">/**
 </span></span><span id="38" class="l"><a href="#38"> 38: </a><span class="php-comment">     * Input statement
 </span></span><span id="39" class="l"><a href="#39"> 39: </a><span class="php-comment">     * @var string
@@ -216,6 +216,6 @@
 </div>
 </div>
 <script src="resources/combined.js?1f06b9f1aa7a39071817afe59cfb473c2bf25998"></script>
-<script src="elementlist.js?4b0ff3a039c99445d5e05709184c33ceac2692d8"></script>
+<script src="elementlist.js?1ae163d21ff80a4cdcc04c2ff20fe6f421945d22"></script>
 </body>
 </html>

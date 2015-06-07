@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class SNDatabase\ParameteredStatement | SN Database Core</title>
+	<title>Class SNDatabase\ParameterizedStatement | SN Database Core</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -35,7 +35,7 @@
 				<li><a href="class-SNDatabase.Connection.html">Connection</a></li>
 				<li><a href="class-SNDatabase.Factory.html">Factory</a></li>
 				<li><a href="class-SNDatabase.FetchMode.html">FetchMode</a></li>
-				<li class="active"><a href="class-SNDatabase.ParameteredStatement.html">ParameteredStatement</a></li>
+				<li class="active"><a href="class-SNDatabase.ParameterizedStatement.html">ParameterizedStatement</a></li>
 				<li><a href="class-SNDatabase.PreparedStatement.html">PreparedStatement</a></li>
 				<li><a href="class-SNDatabase.Result.html">Result</a></li>
 				<li><a href="class-SNDatabase.ResultIterator.html">ResultIterator</a></li>
@@ -97,12 +97,12 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class ParameteredStatement</h1>
+	<h1>Class ParameterizedStatement</h1>
 
 
 	<div class="description">
-	<p>Class specialized on parametered statements.
-Unlike prepared statements, parametered ones only call the database on execution, and are not compile on database's end.</p>
+	<p>Class specialized on parameterized statements.
+Unlike prepared statements, parameterized ones only call the database on execution, and are not compile on database's end.</p>
 	</div>
 
 	<dl class="tree">
@@ -122,7 +122,7 @@ SNTools\Object
 		</dd>
 		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>SNDatabase\ParameteredStatement</span></b>			
+<b><span>SNDatabase\ParameterizedStatement</span></b>			
 			
 			
 		</dd>
@@ -145,7 +145,7 @@ SNTools\Object
 				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-			<b>Located at</b> <a href="source-class-SNDatabase.ParameteredStatement.html#29-112" title="Go to source code">ParameteredStatement.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.ParameterizedStatement.html#29-112" title="Go to source code">ParameterizedStatement.php</a>
 		<br>
 	</div>
 
@@ -165,7 +165,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-SNDatabase.ParameteredStatement.html#61-69" title="Go to source code">__construct</a>( <span><code><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></code> <var>$cnx</var></span>, <span>string <var>$statement</var></span> )</code>
+		<code><a href="source-class-SNDatabase.ParameterizedStatement.html#61-69" title="Go to source code">__construct</a>( <span><code><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></code> <var>$cnx</var></span>, <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
 			<p>Constructor</p>
@@ -204,7 +204,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_param2Value">#</a>
-		<code><a href="source-class-SNDatabase.ParameteredStatement.html#71-74" title="Go to source code">param2Value</a>( <span>mixed <var>$param</var></span>, <span>integer <var>$type</var></span> )</code>
+		<code><a href="source-class-SNDatabase.ParameterizedStatement.html#71-74" title="Go to source code">param2Value</a>( <span>mixed <var>$param</var></span>, <span>integer <var>$type</var></span> )</code>
 
 		<div class="description short">
 			<p>Converts bound parameter into value, according to type</p>
@@ -247,7 +247,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_doBind">#</a>
-		<code><a href="source-class-SNDatabase.ParameteredStatement.html#76-96" title="Go to source code">doBind</a>( )</code>
+		<code><a href="source-class-SNDatabase.ParameterizedStatement.html#76-96" title="Go to source code">doBind</a>( )</code>
 
 		<div class="description short">
 			<p>Binds parameters to statement before execution</p>
@@ -277,7 +277,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_execute">#</a>
-		<code><a href="source-class-SNDatabase.ParameteredStatement.html#98-103" title="Go to source code">execute</a>( )</code>
+		<code><a href="source-class-SNDatabase.ParameterizedStatement.html#98-103" title="Go to source code">execute</a>( )</code>
 
 		<div class="description short">
 			<p>Executes statement</p>
@@ -311,7 +311,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getResult">#</a>
-		<code><a href="source-class-SNDatabase.ParameteredStatement.html#105-107" title="Go to source code">getResult</a>( )</code>
+		<code><a href="source-class-SNDatabase.ParameterizedStatement.html#105-107" title="Go to source code">getResult</a>( )</code>
 
 		<div class="description short">
 			<p>Recover resultset. Null if never executed.</p>
@@ -345,7 +345,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAffectedRows">#</a>
-		<code><a href="source-class-SNDatabase.ParameteredStatement.html#109-111" title="Go to source code">getAffectedRows</a>( )</code>
+		<code><a href="source-class-SNDatabase.ParameterizedStatement.html#109-111" title="Go to source code">getAffectedRows</a>( )</code>
 
 		<div class="description short">
 			<p>Returns number of rows affected by INSERT, UPDATE or DELETE.</p>

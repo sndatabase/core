@@ -27,13 +27,13 @@
 namespace SNDatabase;
 
 /**
- * Class specialized on parametered statements.
- * Unlike prepared statements, parametered ones only call the database on execution, and are not compile on database's end.
+ * Class specialized on parameterized statements.
+ * Unlike prepared statements, parameterized ones only call the database on execution, and are not compile on database's end.
  *
  * @author Samy Naamani <samy@namani.net>
  * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
  */
-class ParameteredStatement extends Statement {
+class ParameterizedStatement extends Statement {
     /**
      * Input statement
      * @var string

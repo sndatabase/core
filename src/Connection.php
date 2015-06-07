@@ -110,12 +110,12 @@ abstract class Connection extends Object {
     }
 
     /**
-     * Creates a Parametered statement
+     * Creates a Parameterized statement
      * @param string $statement Initial statement
-     * @return ParameteredStatement Statement, ready to be parametered
+     * @return ParameterizedStatement Statement, ready to be parametered
      */
     public function queryWithParam($statement) {
-        return new ParameteredStatement($this, $statement);
+        return new ParameterizedStatement($this, $statement);
     }
 
     /**
