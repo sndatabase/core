@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class SNDatabase\Transaction | SN Database Core</title>
+	<title>Class SNDatabase\InvalidParameterNumberException | SN Database Core</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -40,7 +40,7 @@
 				<li><a href="class-SNDatabase.Result.html">Result</a></li>
 				<li><a href="class-SNDatabase.ResultIterator.html">ResultIterator</a></li>
 				<li><a href="class-SNDatabase.Statement.html">Statement</a></li>
-				<li class="active"><a href="class-SNDatabase.Transaction.html">Transaction</a></li>
+				<li><a href="class-SNDatabase.Transaction.html">Transaction</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
@@ -54,7 +54,7 @@
 				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
 				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
 				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
-				<li><a href="class-SNDatabase.InvalidParameterNumberException.html">InvalidParameterNumberException</a></li>
+				<li class="active"><a href="class-SNDatabase.InvalidParameterNumberException.html">InvalidParameterNumberException</a></li>
 			</ul>
 
 
@@ -98,22 +98,28 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Transaction</h1>
+	<h1>Class InvalidParameterNumberException</h1>
 
 
 	<div class="description">
-	<p>Superclass for transactions</p>
+	<p>Description of InvalidParameterNumberException</p>
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-SNTools\Object
+Exception
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-<b><span>SNDatabase\Transaction</span></b>			
+RuntimeException
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>SNDatabase\InvalidParameterNumberException</span></b>			
 			
 			
 		</dd>
@@ -127,16 +133,14 @@ SNTools\Object
 
 
 	<div class="info">
-		<b>Abstract</b><br>
+		
 		
 		<b>Namespace:</b> <a href="namespace-SNDatabase.html">SNDatabase</a><br>
 		
 
-				<b>License:</b>
-				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
-				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-			<b>Located at</b> <a href="source-class-SNDatabase.Transaction.html#30-47" title="Go to source code">Transaction.php</a>
+				Darth Killer<br>
+			<b>Located at</b> <a href="source-class-SNDatabase.InvalidParameterNumberException.html#29-38" title="Go to source code">InvalidParameterNumberException.php</a>
 		<br>
 	</div>
 
@@ -144,73 +148,53 @@ SNTools\Object
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="commit" id="_commit">
+	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
-			abstract public 
+			 public 
 
-			boolean
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_commit">#</a>
-		<code><a href="source-class-SNDatabase.Transaction.html#37-41" title="Go to source code">commit</a>( )</code>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-SNDatabase.InvalidParameterNumberException.html#35-37" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
-			<p>Commit changes</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Commit changes</p>
+			
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
 
 
 
+				<h4>Overrides</h4>
+				<div class="list"><code>Exception::__construct()</code></div>
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="rollBack" id="_rollBack">
+	</table>
 
-		<td class="attributes"><code>
-			abstract public 
-
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_rollBack">#</a>
-		<code><a href="source-class-SNDatabase.Transaction.html#42-46" title="Go to source code">rollBack</a>( )</code>
-
-		<div class="description short">
-			<p>Rollback changes</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Rollback changes</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
-
-
-
-
-		</div>
-		</div></td>
+	<table class="summary inherited">
+	<caption>Methods inherited from Exception</caption>
+	<tr>
+		<td><code>
+__toString(), 
+getCode(), 
+getFile(), 
+getLine(), 
+getMessage(), 
+getPrevious(), 
+getTrace(), 
+getTraceAsString()
+		</code></td>
 	</tr>
 	</table>
 
@@ -225,7 +209,17 @@ SNTools\Object
 
 
 
-
+	<table class="summary inherited">
+	<caption>Properties inherited from Exception</caption>
+	<tr>
+		<td><code>
+<var>$code</var>, 
+<var>$file</var>, 
+<var>$line</var>, 
+<var>$message</var>
+		</code></td>
+	</tr>
+	</table>
 
 
 

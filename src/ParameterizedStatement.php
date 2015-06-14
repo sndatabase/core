@@ -35,6 +35,16 @@ namespace SNDatabase;
  */
 class ParameterizedStatement extends Statement {
     /**
+     *
+     * @var \PHPSQLParser
+     */
+    private static $parser;
+    /**
+     *
+     * @var \PHPSQLCreator
+     */
+    private static $creator;
+    /**
      * Input statement
      * @var string
      */
@@ -57,6 +67,15 @@ class ParameterizedStatement extends Statement {
      * @var int
      */
     private $affRows = 0;
+
+    protected static function __constructStatic() {
+        if(parent::__constructStatic()) {
+            return true;
+        } else {
+            self::$parser = new \PHPSQLParser();
+            self::$creator = new \PHPSQLCreator();
+        }
+    }
     
     /**
      * Constructor
@@ -73,26 +92,44 @@ class ParameterizedStatement extends Statement {
         return ($type & self::PARAM_STR) ? $this->connection->quote($value) : $value;
     }
 
+    private function walk(&$elem, &$index, array &$params) {
+        if(is_array($elem)) {
+            if(array_key_exists('expr_type', $elem)) {
+                if($elem['expr_type'] == 'colref') {
+                    if($elem['base_expr'] == '?') {
+                        if(empty($params)) throw new InvalidParameterNumberException;
+                        if(isset($params[++$index])) {
+                            $param = $params[$index];
+                            $elem = array(
+                                'expr_type' => 'const',
+                                'base_expr' => $this->param2Value($param['param'], $param['type'])
+                            );
+                            unset($params[$index]);
+                        } else throw new InvalidParameterNumberException;
+                    }
+                    elseif(preg_match('#^:[a-z][a-z0-9]*$#i', $elem['base_expr'])) {
+                        if(empty($params)) throw new InvalidParameterNumberException;
+                        $tag = $elem['base_expr'];
+                        if(isset($params[$tag])) {
+                            $param = $params[$tag];
+                            $elem = array(
+                                'expr_type' => 'const',
+                                'base_expr' => $this->param2Value($param['param'], $param['type'])
+                            );
+                            unset($params[$tag]);
+                        } else throw new InvalidParameterNumberException;
+                    }
+                }
+            } else $this->walk($elem);
+        }
+    }
+
     protected function doBind() {
-        $this->actualStatement = $this->statement;
+        $parsed = self::$parser->parse($this->statement);
+        $index = 0;
         $params = $this->getParameters();
-        foreach($params as $tag => $param) {
-            if(is_int($tag)) continue;
-            $value = $this->param2Value($param['param'], $param['type']);
-            $this->actualStatement = str_replace($tag, $value, $this->actualStatement);
-            unset($params[$tag]);
-        }
-        ksort($params, SORT_NUMERIC | SORT_ASC);
-        foreach($params as $param) {
-            $pos = strpos($this->actualStatement, '?');
-            if($pos === false) break;
-            $value = $this->param2Value($param['param'], $param['type']);
-            $this->actualStatement = implode('', array(
-                substr($this->actualStatement, 0, $pos),
-                $value,
-                substr($this->actualStatement, $pos + 1)
-            ));
-        }
+        $this->walk($parsed, $index, $params);
+        $this->actualStatement = self::$creator->create($parsed);
     }
 
     public function execute() {
