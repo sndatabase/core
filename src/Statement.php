@@ -133,41 +133,6 @@ abstract class Statement extends Object implements ParameterTypes {
      * @return mixed Converted value ready to put into statement
      */
     protected function param2Value($param, $type) {
-        if($type & self::PARAM_STR) {
-            if($type == self::PARAM_FLOAT) $value = floatval($param);
-            elseif($type & self::PARAM_DATETIME) {
-                switch($type) {
-                    case self::PARAM_DATE:
-                        $format = 'Y-m-d';
-                        break;
-                    case self::PARAM_TIME:
-                        $format = 'H:i:s';
-                        break;
-                    default:
-                        $format = 'Y-m-d H:i:s';
-                }
-                if(interface_exists('\\DateTimeInterface') 
-                        and $param instanceof \DateTimeInterface
-                        or $param instanceof \DateTime)
-                    $value = $param->format($format);
-                elseif(is_string($param)) {
-                    $temp = new \DateTime($param);
-                    $value = $temp->format($format);
-                }
-                elseif(is_int($param)) $value = date($format, $param);
-                else $value = 0;
-            }
-            elseif($type == self::PARAM_LOB) {
-                rewind($param);
-                $value = '';
-                while(!feof($param)) $value .= fgets ($param);
-            }
-            return $value;
-        }
-        elseif($type & self::PARAM_INT) {
-            if($type == self::PARAM_BOOL) return $param ? 1 : 0;
-            else return intval($param);
-        }
-        elseif($type == self::PARAM_NULL) return 'NULL';
+        return $this->connection->quote($param, $type);
     }
 }

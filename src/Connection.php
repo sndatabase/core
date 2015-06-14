@@ -150,11 +150,58 @@ abstract class Connection extends Object {
     }
 
     /**
-     * Quoting a string value (used by statements)
-     * @param string $string String to quote
+     * String protection against SQL injection.
+     * Driver-specific.
+     * @param string $string
      * @return string
      */
-    abstract public function quote($string);
+    abstract protected function stringQuote($string);
+
+    /**
+     * Quotes value, according to type
+     * @param mixed $value Value to quote
+     * @param int $type Parameter type
+     * @return string Quoted value
+     */
+    public function quote($value, $type = ParameterType::STR) {
+        if($type & self::PARAM_STR) {
+            if($type == self::PARAM_FLOAT) $value = floatval($value);
+            elseif($type & self::PARAM_DATETIME) {
+                switch($type) {
+                    case self::PARAM_DATE:
+                        $format = 'Y-m-d';
+                        break;
+                    case self::PARAM_TIME:
+                        $format = 'H:i:s';
+                        break;
+                    default:
+                        $format = 'Y-m-d H:i:s';
+                }
+                if(interface_exists('\\DateTimeInterface')
+                        and $value instanceof \DateTimeInterface
+                        or $value instanceof \DateTime)
+                    $value = $value->format($format);
+                elseif(is_string($value)) {
+                    $temp = new \DateTime($value);
+                    $value = $temp->format($format);
+                }
+                elseif(is_int($value)) $value = date($format, $value);
+                else $value = 0;
+            }
+            elseif($type == self::PARAM_LOB) {
+                rewind($value);
+                $value = '';
+                while(!feof($value)) $value .= fgets ($value);
+            }
+            else $value = $this->stringQuote ($value);
+            return "'$value'";
+        }
+        elseif($type & self::PARAM_INT) {
+            if($type == self::PARAM_BOOL) return $value ? 1 : 0;
+            else return intval($value);
+        }
+        elseif($type == self::PARAM_NULL) return 'NULL';
+    }
 
     /**
      * Counts number of last affected rows. Used by some drivers, ineffective and overriden for others.
