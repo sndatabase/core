@@ -146,14 +146,101 @@ SNTools\Object
 				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-				<b>Todo:</b>
-				Ultimately, is this class useful ?<br>
-			<b>Located at</b> <a href="source-class-SNDatabase.PreparedStatement.html#29-39" title="Go to source code">PreparedStatement.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.PreparedStatement.html#29-63" title="Go to source code">PreparedStatement.php</a>
 		<br>
 	</div>
 
 
 
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="bindParam" id="_bindParam">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bindParam">#</a>
+		<code><a href="source-class-SNDatabase.PreparedStatement.html#44-58" title="Go to source code">bindParam</a>( <span>string|integer <var>$tag</var></span>, <span>&amp;mixed <var>&amp; $param</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.ParameterTypes.html#PARAM_STR">SNDatabase\ParameterTypes::<b>PARAM_STR</b></a></code></span> )</code>
+
+		<div class="description short">
+			<p>Binds parameter to statement</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Binds parameter to statement</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tag</var></dt>
+					<dd>Parameter marker in the statement. If marker is '?', use integer value here.</dd>
+					<dt><var>$param</var></dt>
+					<dd>Parameter to bind, as reference</dd>
+					<dt><var>$type</var></dt>
+					<dd>Parameter type, defaults to string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bindValue" id="_bindValue">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bindValue">#</a>
+		<code><a href="source-class-SNDatabase.PreparedStatement.html#60-62" title="Go to source code">bindValue</a>( <span>string|integer <var>$tag</var></span>, <span>mixed <var>$value</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.ParameterTypes.html#PARAM_STR">SNDatabase\ParameterTypes::<b>PARAM_STR</b></a></code></span> )</code>
+
+		<div class="description short">
+			<p>Binds value to statement</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Binds value to statement</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tag</var></dt>
+					<dd>Parameter marker in the statement. If marker is '?', use integer value here.</dd>
+					<dt><var>$value</var></dt>
+					<dd>Parameter to bind, as value</dd>
+					<dt><var>$type</var></dt>
+					<dd>Parameter type, defaults to string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
 
 	<table class="summary inherited">
 	<caption>Methods inherited from <a href="class-SNDatabase.Statement.html#methods">SNDatabase\Statement</a></caption>
@@ -161,8 +248,6 @@ SNTools\Object
 		<td><code>
 			<a href="class-SNDatabase.Statement.html#___construct">__construct()</a>, 
 			<a href="class-SNDatabase.Statement.html#___get">__get()</a>, 
-			<a href="class-SNDatabase.Statement.html#_bindParam">bindParam()</a>, 
-			<a href="class-SNDatabase.Statement.html#_bindValue">bindValue()</a>, 
 			<a href="class-SNDatabase.Statement.html#_doBind">doBind()</a>, 
 			<a href="class-SNDatabase.Statement.html#_execute">execute()</a>, 
 			<a href="class-SNDatabase.Statement.html#_getAffectedRows">getAffectedRows()</a>, 

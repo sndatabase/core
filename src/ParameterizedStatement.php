@@ -87,6 +87,15 @@ class ParameterizedStatement extends Statement {
         $this->statement = $statement;
     }
 
+    public function bindValue($tag, $value, $type = self::PARAM_STR) {
+        if(!is_int($tag) and ctype_digit($tag)) $tag = intval($tag);
+        elseif(is_string($tag)) {
+            if(':' != substr($tag, 0, 1)) $tag = ":$tag";
+        } else return false;
+        $this->parameters[$tag] = array('param' => $value, 'type' => $type);
+        return true;
+    }
+
     protected function param2Value($param, $type) {
         $value = parent::param2Value($param, $type);
         return ($type & self::PARAM_STR) ? $this->connection->quote($value) : $value;

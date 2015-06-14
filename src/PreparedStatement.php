@@ -32,8 +32,32 @@ namespace SNDatabase;
  *
  * @author Samy Naamani <samy@namani.net>
  * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
- * @todo Ultimately, is this class useful ?
  */
 abstract class PreparedStatement extends Statement {
+    /**
+     * Parameters list
+     * @var array
+     */
+    private $parameters = array();
     
+
+    /**
+     * Binds parameter to statement
+     * @param string|int $tag Parameter marker in the statement. If marker is '?', use integer value here.
+     * @param &mixed $param Parameter to bind, as reference
+     * @param int $type Parameter type, defaults to string.
+     * @return boolean
+     */
+    public function bindParam($tag, &$param, $type = self::PARAM_STR) {
+        if(!is_int($tag) and ctype_digit($tag)) $tag = intval($tag);
+        elseif(is_string($tag)) {
+            if(':' != substr($tag, 0, 1)) $tag = ":$tag";
+        } else return false;
+        $this->parameters[$tag] = array('param' => &$param, 'type' => $type);
+        return true;
+    }
+
+    public function bindValue($tag, $value, $type = self::PARAM_STR) {
+        return $this->bindParam($tag, $value, $type);
+    }
 }

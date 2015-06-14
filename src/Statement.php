@@ -60,11 +60,6 @@ abstract class Statement extends Object implements ParameterTypes {
                 return parent::__get($name);
         }
     }
-    /**
-     * Parameters list
-     * @var array
-     */
-    private $parameters = array();
 
     /**
      * Returns number of rows affected by INSERT, UPDATE or DELETE.
@@ -74,31 +69,13 @@ abstract class Statement extends Object implements ParameterTypes {
     abstract protected function getAffectedRows();
 
     /**
-     * Binds parameter to statement
-     * @param string|int $tag Parameter marker in the statement. If marker is '?', use integer value here.
-     * @param &mixed $param Parameter to bind, as reference
-     * @param int $type Parameter type, defaults to string.
-     * @return boolean
-     */
-    public function bindParam($tag, &$param, $type = self::PARAM_STR) {
-        if(!is_int($tag) and ctype_digit($tag)) $tag = intval($tag);
-        elseif(is_string($tag)) {
-            if(':' != substr($tag, 0, 1)) $tag = ":$tag";
-        } else return false;
-        $this->parameters[$tag] = array('param' => &$param, 'type' => $type);
-        return true;
-    }
-
-    /**
      * Binds value to statement
      * @param string|int $tag Parameter marker in the statement. If marker is '?', use integer value here.
      * @param mixed $value Parameter to bind, as value
      * @param int $type Parameter type, defaults to string.
      * @return boolean
      */
-    public function bindValue($tag, $value, $type = self::PARAM_STR) {
-        return $this->bindParam($tag, $value, $type);
-    }
+    abstract public function bindValue($tag, $value, $type = self::PARAM_STR);
 
     /**
      * Get all bound parameters, in order to bind them to inner components
