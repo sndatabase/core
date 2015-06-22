@@ -136,6 +136,7 @@ class ParameterizedStatement extends Statement {
     /**
      * Binds parameters into statement to create a new statement ready to execute
      * @return string final statement
+     * @throws InvalidParameterNumberException
      */
     protected function doBind() {
         $parsed = self::$parser->parse($this->statement);

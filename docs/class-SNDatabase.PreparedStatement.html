@@ -52,6 +52,7 @@
 				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
 				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
 				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
+				<li><a href="class-SNDatabase.InvalidParameterNumberException.html">InvalidParameterNumberException</a></li>
 			</ul>
 
 
@@ -143,7 +144,7 @@ SNTools\Object
 				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-			<b>Located at</b> <a href="source-class-SNDatabase.PreparedStatement.html#29-90" title="Go to source code">PreparedStatement.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.PreparedStatement.html#29-91" title="Go to source code">PreparedStatement.php</a>
 		<br>
 	</div>
 
@@ -281,7 +282,7 @@ Each parameter is itself an array of 2 elements : 'param' => parameter value, an
 
 		<td class="name"><div>
 		<a class="anchor" href="#_doBind">#</a>
-		<code><a href="source-class-SNDatabase.PreparedStatement.html#76-79" title="Go to source code">doBind</a>( )</code>
+		<code><a href="source-class-SNDatabase.PreparedStatement.html#76-80" title="Go to source code">doBind</a>( )</code>
 
 		<div class="description short">
 			<p>Driver-specific parameter rebinding. Called upon execution.</p>
@@ -293,6 +294,10 @@ Each parameter is itself an array of 2 elements : 'param' => parameter value, an
 
 
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><a href="class-SNDatabase.InvalidParameterNumberException.html">SNDatabase\InvalidParameterNumberException</a></code>
+				</div>
 
 
 
@@ -311,7 +316,7 @@ Each parameter is itself an array of 2 elements : 'param' => parameter value, an
 
 		<td class="name"><div>
 		<a class="anchor" href="#_doExecute">#</a>
-		<code><a href="source-class-SNDatabase.PreparedStatement.html#80-84" title="Go to source code">doExecute</a>( )</code>
+		<code><a href="source-class-SNDatabase.PreparedStatement.html#81-85" title="Go to source code">doExecute</a>( )</code>
 
 		<div class="description short">
 			<p>Driver-specific execution, called upon execution and after parameter rebinding</p>
@@ -345,7 +350,7 @@ Each parameter is itself an array of 2 elements : 'param' => parameter value, an
 
 		<td class="name"><div>
 		<a class="anchor" href="#_execute">#</a>
-		<code><a href="source-class-SNDatabase.PreparedStatement.html#85-88" title="Go to source code">execute</a>( )</code>
+		<code><a href="source-class-SNDatabase.PreparedStatement.html#86-89" title="Go to source code">execute</a>( )</code>
 
 		<div class="description short">
 			<p>Executes statement</p>
@@ -361,6 +366,11 @@ Each parameter is itself an array of 2 elements : 'param' => parameter value, an
 					boolean<br>Execution success
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					<code><a href="class-SNDatabase.DBException.html">SNDatabase\DBException</a></code><br>
+					<code><a href="class-SNDatabase.InvalidParameterNumberException.html">SNDatabase\InvalidParameterNumberException</a></code>
+				</div>
 
 
 

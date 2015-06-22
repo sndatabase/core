@@ -70,6 +70,8 @@ abstract class Statement extends Object implements ParameterTypes {
     /**
      * Executes statement
      * @return boolean Execution success
+     * @throws DBException
+     * @throws InvalidParameterNumberException
      */
     abstract public function execute();
     /**

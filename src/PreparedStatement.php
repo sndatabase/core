@@ -75,6 +75,7 @@ abstract class PreparedStatement extends Statement {
 
     /**
      * Driver-specific parameter rebinding. Called upon execution.
+     * @throws InvalidParameterNumberException
      */
     abstract protected function doBind();
     /**

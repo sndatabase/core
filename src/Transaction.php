@@ -55,6 +55,7 @@ abstract class Transaction extends Object {
      * Transaction constructor
      * @param Connection $cnx Parent connection
      * @param string|null $name Transaction name. Null if none.
+     * @throws DBException
      */
     public function __construct(Connection $cnx, $name = null) {
         parent::__construct();
@@ -76,24 +77,28 @@ abstract class Transaction extends Object {
      * Starts transaction (driver-dependant implementation).
      * Called by constructor.
      * @param string|null $name Transaction name. Null if none.
+     * @throws DBException
      */
     abstract protected function doStart($name = null);
     /**
      * Commit changes (driver-dependant implementation).
      * @param string|null $name Transaction name. Null if none.
      * @return boolean Commit success
+     * @throws DBException
      */
     abstract protected function doCommit($name = null);
     /**
      * Rolls back changes (driver-dependant implementation).
      * @param string|null $name Transaction name. Null if none.
      * @return boolean Rollback success
+     * @throws DBException
      */
     abstract protected function doRollBack($name = null);
 
     /**
      * Commit changes
      * @return boolean Commit success
+     * @throws DBException
      */
     public function commit() {
         return $this->inTransaction ? $this->doCommit($this->name) : false;
@@ -102,6 +107,7 @@ abstract class Transaction extends Object {
     /**
      * Rolls back changes
      * @return boolean Rollback success
+     * @throws DBException
      */
     public function rollBack() {
         return $this->inTransaction ? $this->doRollBack($this->name) : false;
