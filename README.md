@@ -6,11 +6,7 @@ This particular package brings the Core portion of the api : each database type 
 
 # Download
 
-The easiest way to download the core tools is through Composer. Simply add the following to your composer requirements, where "~1.0" can be replaced by any version you need :
-
-```
-"sndb/core": "~1.0"
-```
+This package is a requirement for actual drivers, and will be downloaded automatically by Composer upon requiring a driver.
 
 # Usage
 
