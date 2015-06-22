@@ -32,6 +32,7 @@ use SNTools\Object;
  * Superclass for all connections
  *
  * @author Samy Naamani <samy@namani.net>
+ * @property-read string $connectionString Connection String
  * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
  */
 abstract class Connection extends Object {
@@ -41,6 +42,37 @@ abstract class Connection extends Object {
      * @var FetchMode
      */
     private $defaultFetchMode;
+
+    /**
+     * Connection string (real attribute)
+     * @var string
+     */
+    private $cnxString;
+
+    /**
+     * Connection constructor
+     * @param string $connectionString Connection string
+     */
+    public function __construct($connectionString) {
+        parent::__construct();
+        $this->cnxString = $connectionString;
+        $this->connect();
+    }
+
+    public function __get($name) {
+        switch($name) {
+            case 'connectionString':
+                return $this->cnxString;
+            default:
+                return parent::__get($name);
+        }
+    }
+
+    /**
+     * Establish connection, using connection string.
+     * Driver-dependant
+     */
+    abstract public function connect();
 
     /**
      * Public getter for default fetch mode

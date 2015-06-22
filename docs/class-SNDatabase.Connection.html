@@ -127,7 +127,7 @@ SNTools\Object
 				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-			<b>Located at</b> <a href="source-class-SNDatabase.Connection.html#31-206" title="Go to source code">Connection.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.Connection.html#31-238" title="Go to source code">Connection.php</a>
 		<br>
 	</div>
 
@@ -135,6 +135,103 @@ SNTools\Object
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-SNDatabase.Connection.html#52-60" title="Go to source code">__construct</a>( <span>string <var>$connectionString</var></span> )</code>
+
+		<div class="description short">
+			<p>Connection constructor</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Connection constructor</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$connectionString</var></dt>
+					<dd>Connection string</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__get" id="___get">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___get">#</a>
+		<code><a href="source-class-SNDatabase.Connection.html#62-69" title="Go to source code">__get</a>( <span> <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="connect" id="_connect">
+
+		<td class="attributes"><code>
+			abstract public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_connect">#</a>
+		<code><a href="source-class-SNDatabase.Connection.html#71-75" title="Go to source code">connect</a>( )</code>
+
+		<div class="description short">
+			<p>Establish connection, using connection string.
+Driver-dependant</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Establish connection, using connection string.
+Driver-dependant</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="getDefaultFetchMode" id="_getDefaultFetchMode">
 
 		<td class="attributes"><code>
@@ -147,7 +244,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDefaultFetchMode">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#45-51" title="Go to source code">getDefaultFetchMode</a>( )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#77-83" title="Go to source code">getDefaultFetchMode</a>( )</code>
 
 		<div class="description short">
 			<p>Public getter for default fetch mode</p>
@@ -181,7 +278,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDefaultFetchMode">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#53-59" title="Go to source code">setDefaultFetchMode</a>( <span><code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$defaultFetchMode</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#85-91" title="Go to source code">setDefaultFetchMode</a>( <span><code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$defaultFetchMode</var></span> )</code>
 
 		<div class="description short">
 			<p>Non-public setter for default fetch mode</p>
@@ -216,7 +313,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_startTransaction">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#62-67" title="Go to source code">startTransaction</a>( <span>string|null <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#94-99" title="Go to source code">startTransaction</a>( <span>string|null <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Starts a new transaction</p>
@@ -255,7 +352,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prepare">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#69-74" title="Go to source code">prepare</a>( <span>string <var>$statement</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#101-106" title="Go to source code">prepare</a>( <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
 			<p>Creates a prepared statement</p>
@@ -294,7 +391,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_perform">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#76-83" title="Go to source code">perform</a>( <span>string <var>$statement</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#108-115" title="Go to source code">perform</a>( <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
 			<p>Creates a statement with parameters</p>
@@ -333,7 +430,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_query">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#85-90" title="Go to source code">query</a>( <span>string <var>$statement</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#117-122" title="Go to source code">query</a>( <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
 			<p>Executes a simple query and returns its result set</p>
@@ -372,7 +469,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_exec">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#92-99" title="Go to source code">exec</a>( <span>string <var>$statement</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#124-131" title="Go to source code">exec</a>( <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
 			<p>Executes a write-only statement and returns how many rows it affected.</p>
@@ -411,7 +508,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_countLastAffectedRows">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#101-105" title="Go to source code">countLastAffectedRows</a>( )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#133-137" title="Go to source code">countLastAffectedRows</a>( )</code>
 
 		<div class="description short">
 			<p>Number of rows affected by last statement</p>
@@ -445,7 +542,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastInsertId">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#107-111" title="Go to source code">lastInsertId</a>( )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#139-143" title="Go to source code">lastInsertId</a>( )</code>
 
 		<div class="description short">
 			<p>Last inserted ID</p>
@@ -479,7 +576,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_escapeString">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#113-119" title="Go to source code">escapeString</a>( <span>string <var>$string</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#145-151" title="Go to source code">escapeString</a>( <span>string <var>$string</var></span> )</code>
 
 		<div class="description short">
 			<p>For text and string values to quote, protects against injection.
@@ -520,7 +617,7 @@ Driver-dependant.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_quote">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#121-176" title="Go to source code">quote</a>( <span>mixed <var>$value</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.DB.html#PARAM_AUTO">SNDatabase\DB::<b>PARAM_AUTO</b></a></code></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#153-208" title="Go to source code">quote</a>( <span>mixed <var>$value</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.DB.html#PARAM_AUTO">SNDatabase\DB::<b>PARAM_AUTO</b></a></code></span> )</code>
 
 		<div class="description short">
 			<p>Quote parameter according to type, to protect against injections</p>
@@ -557,7 +654,7 @@ Driver-dependant.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_quotedType">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#178-204" title="Go to source code">quotedType</a>( <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#210-236" title="Go to source code">quotedType</a>( <span> <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -591,6 +688,28 @@ Driver-dependant.</p>
 
 
 
+	<table class="summary properties" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="connectionString" id="m$connectionString">
+		<td class="attributes"><code>
+			public  read-only
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-SNDatabase.Connection.html#35" title="Go to source code"><var>$connectionString</var></a>
+
+			<div class="description short">
+				<p>Connection String</p>
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+	</tr>
+	</table>
 
 
 
