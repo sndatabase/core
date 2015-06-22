@@ -128,35 +128,7 @@ abstract class Connection extends Object {
             return sprintf('(%s)', implode(', ', array_map(function($v) use($this, $type) {
                                 return $this->quote($v, $type);
                             }, $value)));
-        if ($type == DB::PARAM_AUTO) {
-            switch (gettype($value)) {
-                case 'NULL':
-                    $type = DB::PARAM_NULL;
-                    break;
-                case 'boolean':
-                    $type = DB::PARAM_BOOL;
-                    break;
-                case 'integer':
-                    $type = DB::PARAM_INT;
-                    break;
-                case 'double':
-                    $type = DB::PARAM_FLOAT;
-                    break;
-                case 'string':
-                    $type = DB::PARAM_STR;
-                    break;
-                case 'object':
-                    if (interface_exists('\\DateTimeInterface') and $value instanceof \DateTimeInterface or $value instanceof \DateTime)
-                        $type = DB::PARAM_DATETIME;
-                    elseif ($value instanceof \DateInterval)
-                        $type = DB::PARAM_INTERVAL;
-                    else
-                        throw new \RuntimeException('Parameter type not recognized');
-                    break;
-                default:
-                    throw new \RuntimeException('Parameter type not recognized');
-            }
-        }
+        $type = ($type == DB::PARAM_AUTO) ? $this->quotedType($value) : $type;
         switch ($type) {
             case DB::PARAM_STR:
                 $value = $this->escapeString($value);
@@ -185,14 +157,6 @@ abstract class Connection extends Object {
                     $value = $dt->format($format);
                 }
                 break;
-            case DB::PARAM_INTERVAL:
-                if ($value instanceof \DateInterval)
-                    $value = $value->format('%y YEAR %m MONTH %d DAY %h HOUR %i MINUTE %s SECOND');
-                elseif (is_int($value))
-                    $value = "$value SECOND";
-                else
-                    throw new \UnexpectedValueException('Invalid interval value');
-                break;
             case DB::PARAM_INT:
                 $value = intval($value);
                 break;
@@ -209,6 +173,34 @@ abstract class Connection extends Object {
                 throw new \UnexpectedValueException('Invalid parameter value');
         }
         return ($type & DB::PARAM_STR) ? "'$value'" : $value;
+    }
+
+    public function quotedType($value) {
+        switch (gettype($value)) {
+            case 'NULL':
+                $type = DB::PARAM_NULL;
+                break;
+            case 'boolean':
+                $type = DB::PARAM_BOOL;
+                break;
+            case 'integer':
+                $type = DB::PARAM_INT;
+                break;
+            case 'double':
+                $type = DB::PARAM_FLOAT;
+                break;
+            case 'string':
+                $type = DB::PARAM_STR;
+                break;
+            case 'object':
+                if (interface_exists('\\DateTimeInterface') and $value instanceof \DateTimeInterface or $value instanceof \DateTime)
+                    $type = DB::PARAM_DATETIME;
+                else
+                    throw new \RuntimeException('Parameter type not recognized');
+                break;
+            default:
+                throw new \RuntimeException('Parameter type not recognized');
+        }
     }
 
 }

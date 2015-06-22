@@ -49,7 +49,6 @@ final class DB {
     const PARAM_DATE = 0x3; // 0x2 | PARAM_STR
     const PARAM_TIME = 0x5; // 0x4 | PARAM_STR
     const PARAM_DATETIME = 0x7; // PARAM_DATE | PARAM_TIME
-    const PARAM_INTERVAL = 0x8;
     const PARAM_INT = 0x10;
     const PARAM_BOOL = 0x20;
     const PARAM_FLOAT = 0x40;
