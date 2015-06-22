@@ -35,14 +35,7 @@ namespace SNDatabase;
  */
 final class DB {
     const ATTR_CHARSET = 'charset';
-    const ATTR_ERRMODE = 'errmode';
     const ATTR_DEFAULT_FETCH_MODE = 'fetchmode';
-
-    const ERRMODE_EXCEPTION = 1;
-    const ERRMODE_FATAL_ERROR = 2;
-    const ERRMODE_WARNING = 3;
-    const ERRMODE_NOTICE = 4;
-    const ERRMODE_SILENT = 5;
 
     const PARAM_AUTO = 0x0;
     const PARAM_STR = 0x1;
@@ -102,12 +95,11 @@ final class DB {
      * Get a factory for the requested driver
      * @param string $driver Driver name. Case insensitive.
      * @return Factory Matching factory.
-     * @throws \UnexpectedValueException
-     * @todo Create "driver not found" exception type
+     * @throws DriverException
      */
     final private static function getFactory($driver) {
         $key = array_search(strtolower($driver), array_map('strtolower', array_keys(self::$factories)));
-        if($key === false) throw new \UnexpectedValueException('Driver not found');
+        if($key === false) throw new DriverException('Driver not found');
         $factories = array_values(self::$factories);
         return $factories[$key];
     }
@@ -116,10 +108,8 @@ final class DB {
      * Get connection from connection string
      * @param string $cnxString Connection string
      * @return Connection Connection instance
-     * @throws \UnexpectedValueException
-     * @throws \RuntimeException
-     * @todo Create "driver not found" exception type
-     * @todo Change exception list
+     * @throws ConnectionFailedException
+     * @throws DriverException
      */
     final public static function getConnection($cnxString) {
         $factory = self::getFactory(parse_url($cnxString, PHP_URL_SCHEME));
@@ -130,8 +120,7 @@ final class DB {
      * Requests for a connection string builder
      * @param string $driver Driver name
      * @return ConnectionString
-     * @throws \UnexpectedValueException
-     * @todo Create "driver not found" exception type
+     * @throws DriverException
      */
     final public static function getConnectionStringBuilder($driver) {
         $factory = self::getFactory($driver);

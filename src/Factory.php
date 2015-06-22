@@ -63,8 +63,7 @@ abstract class Factory extends Object {
      * Get connection from connection string
      * @param string $cnxString Connection string
      * @return Connection Connection instance
-     * @throws \RuntimeException
-     * @todo Change exception list
+     * @throws ConnectionFailedException
      */
     abstract public function getConnection($cnxString);
 }

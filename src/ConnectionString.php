@@ -119,15 +119,6 @@ final class ConnectionString extends Object {
     }
 
     /**
-     * Sets error handling mode, as attribute
-     * @param int $errmode Constant DB::ERRMODE_*
-     */
-    public function setErrmode($errmode) {
-        if(in_array($errmode, array(DB::ERRMODE_EXCEPTION, DB::ERRMODE_FATAL_ERROR, DB::ERRMODE_WARNING, DB::ERRMODE_NOTICE, DB::ERRMODE_SILENT)))
-            $this->attributes[DB::ATTR_ERRMODE] = $errmode;
-    }
-
-    /**
      * Sets charset to use, as attribute
      * @param string $charset Charset to use
      */

@@ -48,14 +48,24 @@ abstract class Connection extends Object {
      * @var string
      */
     private $cnxString;
+    
+    /**
+     * Attribute list
+     * @var array
+     */
+    private $attributes = array();
 
     /**
      * Connection constructor
      * @param string $connectionString Connection string
+     * @throws ConnectionFailedException
      */
     public function __construct($connectionString) {
         parent::__construct();
         $this->cnxString = $connectionString;
+        $query = parse_url($this->connectionString, PHP_URL_QUERY);
+        if(!empty($query)) parse_str ($query, $this->attributes);
+        $this->defaultFetchMode = is_null($a = $this->getAttribute(DB::ATTR_DEFAULT_FETCH_MODE)) ? new FetchMode(DB::FETCH_ASSOC) : unserialize($a);
         $this->connect();
     }
 
@@ -69,8 +79,27 @@ abstract class Connection extends Object {
     }
 
     /**
+     * Gets attribute value
+     * @param string $attr Attribute name
+     * @return mixed Attribute value
+     */
+    public function getAttribute($attr) {
+        return isset($this->attributes[$attr]) ? $this->attributes[$attr] : null;
+    }
+
+    /**
+     * Sets attribute value
+     * @param string $attr Attribute name
+     * @param mixed $value Attribute value
+     */
+    public function setAttribute($attr, $value) {
+        $this->attributes[$attr] = $value;
+    }
+
+    /**
      * Establish connection, using connection string.
      * Driver-dependant
+     * @throws ConnectionFailedException
      */
     abstract public function connect();
 
@@ -95,6 +124,7 @@ abstract class Connection extends Object {
      * Starts a new transaction
      * @param string|null $name Transaction name. Null if none.
      * @return Transaction Transaction object
+     * @throws DBException
      */
     abstract public function startTransaction($name = null);
 
@@ -102,6 +132,7 @@ abstract class Connection extends Object {
      * Creates a prepared statement
      * @param string $statement Statement
      * @return PreparedStatement
+     * @throws DBException
      */
     abstract public function prepare($statement);
 
@@ -118,6 +149,7 @@ abstract class Connection extends Object {
      * Executes a simple query and returns its result set
      * @param string $statement Statement
      * @return Result
+     * @throws DBException
      */
     abstract public function query($statement);
 
@@ -125,6 +157,7 @@ abstract class Connection extends Object {
      * Executes a write-only statement and returns how many rows it affected.
      * @param string $statement Statement
      * @return int Number of affected rows
+     * @throws DBException
      */
     public function exec($statement) {
         return $this->query($statement) ? $this->countLastAffectedRows() : false;
@@ -133,12 +166,14 @@ abstract class Connection extends Object {
     /**
      * Number of rows affected by last statement
      * @return int
+     * @throws DBException
      */
     abstract public function countLastAffectedRows();
 
     /**
      * Last inserted ID
      * @return int
+     * @throws DBException
      */
     abstract public function lastInsertId();
 

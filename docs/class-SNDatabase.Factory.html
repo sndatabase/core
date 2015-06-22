@@ -47,6 +47,12 @@
 
 
 
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
+				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
+				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
+			</ul>
 
 
 		</div>
@@ -128,7 +134,7 @@ SNTools\Object
 				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-			<b>Located at</b> <a href="source-class-SNDatabase.Factory.html#29-70" title="Go to source code">Factory.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.Factory.html#29-69" title="Go to source code">Factory.php</a>
 		<br>
 	</div>
 
@@ -215,7 +221,7 @@ For instance, subclass can call this method from its static constructor override
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getConnection">#</a>
-		<code><a href="source-class-SNDatabase.Factory.html#62-69" title="Go to source code">getConnection</a>( <span>string <var>$cnxString</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Factory.html#62-68" title="Go to source code">getConnection</a>( <span>string <var>$cnxString</var></span> )</code>
 
 		<div class="description short">
 			<p>Get connection from connection string</p>
@@ -238,13 +244,9 @@ For instance, subclass can call this method from its static constructor override
 
 				<h4>Throws</h4>
 				<div class="list">
-					RuntimeException
+					<code><a href="class-SNDatabase.ConnectionFailedException.html">SNDatabase\ConnectionFailedException</a></code>
 				</div>
 
-				<h4>Todo</h4>
-				<div class="list">
-						Change exception list<br>
-				</div>
 
 
 		</div>
