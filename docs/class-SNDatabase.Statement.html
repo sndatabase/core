@@ -33,6 +33,8 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-SNDatabase.Connection.html">Connection</a></li>
+				<li><a href="class-SNDatabase.ConnectionString.html">ConnectionString</a></li>
+				<li><a href="class-SNDatabase.DB.html">DB</a></li>
 				<li><a href="class-SNDatabase.Factory.html">Factory</a></li>
 				<li><a href="class-SNDatabase.FetchMode.html">FetchMode</a></li>
 				<li><a href="class-SNDatabase.ParameterizedStatement.html">ParameterizedStatement</a></li>
@@ -43,19 +45,8 @@
 				<li><a href="class-SNDatabase.Transaction.html">Transaction</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ParameterTypes.html">ParameterTypes</a></li>
-			</ul>
 
 
-			<h3>Exceptions</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
-				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
-				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
-				<li><a href="class-SNDatabase.InvalidParameterNumberException.html">InvalidParameterNumberException</a></li>
-			</ul>
 
 
 		</div>
@@ -115,7 +106,7 @@ SNTools\Object
 			<img src="resources/inherit.png" alt="Extended by">
 <b><span>SNDatabase\Statement</span></b>			
 			 implements 
-				<a href="class-SNDatabase.ParameterTypes.html"><span>SNDatabase\ParameterTypes</span></a>
+<span>SNDatabase\ParameterTypes</span>
 			
 			
 		</dd>
@@ -143,7 +134,7 @@ SNTools\Object
 				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-			<b>Located at</b> <a href="source-class-SNDatabase.Statement.html#30-115" title="Go to source code">Statement.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.Statement.html#29-85" title="Go to source code">Statement.php</a>
 		<br>
 	</div>
 
@@ -163,7 +154,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-SNDatabase.Statement.html#44-51" title="Go to source code">__construct</a>( <span><code><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></code> <var>$cnx</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Statement.html#43-50" title="Go to source code">__construct</a>( <span><code><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></code> <var>$cnx</var></span> )</code>
 
 		<div class="description short">
 			<p>Statement constructor</p>
@@ -198,7 +189,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-SNDatabase.Statement.html#53-62" title="Go to source code">__get</a>( <span> <var>$name</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Statement.html#52-61" title="Go to source code">__get</a>( <span> <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -211,44 +202,6 @@ SNTools\Object
 
 
 
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getAffectedRows" id="_getAffectedRows">
-
-		<td class="attributes"><code>
-			abstract protected 
-
-			integer
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getAffectedRows">#</a>
-		<code><a href="source-class-SNDatabase.Statement.html#64-69" title="Go to source code">getAffectedRows</a>( )</code>
-
-		<div class="description short">
-			<p>Returns number of rows affected by INSERT, UPDATE or DELETE.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns number of rows affected by INSERT, UPDATE or DELETE.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					integer
-				</div>
-
-
-				<h4>See</h4>
-				<div class="list">
-						Statement::$affectedRows<br>
-				</div>
 
 
 		</div>
@@ -259,104 +212,32 @@ SNTools\Object
 		<td class="attributes"><code>
 			abstract public 
 
-			boolean
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bindValue">#</a>
-		<code><a href="source-class-SNDatabase.Statement.html#71-78" title="Go to source code">bindValue</a>( <span>string|integer <var>$tag</var></span>, <span>mixed <var>$value</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.ParameterTypes.html#PARAM_STR">SNDatabase\ParameterTypes::<b>PARAM_STR</b></a></code></span> )</code>
+		<code><a href="source-class-SNDatabase.Statement.html#63-69" title="Go to source code">bindValue</a>( <span>integer|string <var>$tag</var></span>, <span>mixed <var>$value</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.DB.html#PARAM_AUTO">SNDatabase\DB::<b>PARAM_AUTO</b></a></code></span> )</code>
 
 		<div class="description short">
-			<p>Binds value to statement</p>
+			<p>Binds value to statement, according to type and tag</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Binds value to statement</p>
+			<p>Binds value to statement, according to type and tag</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$tag</var></dt>
-					<dd>Parameter marker in the statement. If marker is '?', use integer value here.</dd>
+					<dd>Value tag. Integer for '?' marks, otherwise marked label started by ':'</dd>
 					<dt><var>$value</var></dt>
-					<dd>Parameter to bind, as value</dd>
+					<dd>Value to bind</dd>
 					<dt><var>$type</var></dt>
-					<dd>Parameter type, defaults to string.</dd>
+					<dd>Type to use to bind the value. Constant DB::PARAM_*. Defaults to DB::PARAM_AUTO, which automatically checks the type of the value</dd>
 				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getParameters" id="_getParameters">
-
-		<td class="attributes"><code>
-			final protected 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getParameters">#</a>
-		<code><a href="source-class-SNDatabase.Statement.html#80-87" title="Go to source code">getParameters</a>( )</code>
-
-		<div class="description short">
-			<p>Get all bound parameters, in order to bind them to inner components</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Get all bound parameters, in order to bind them to inner components</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
-
-
-				<h4>See</h4>
-				<div class="list">
-						<code><a href="class-SNDatabase.Statement.html#_doBind">SNDatabase\Statement::doBind()</a></code><br>
-				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="doBind" id="_doBind">
-
-		<td class="attributes"><code>
-			abstract protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_doBind">#</a>
-		<code><a href="source-class-SNDatabase.Statement.html#89-92" title="Go to source code">doBind</a>( )</code>
-
-		<div class="description short">
-			<p>Binds parameters to statement before execution</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Binds parameters to statement before execution</p>
-
-
 
 
 
@@ -377,7 +258,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_execute">#</a>
-		<code><a href="source-class-SNDatabase.Statement.html#94-98" title="Go to source code">execute</a>( )</code>
+		<code><a href="source-class-SNDatabase.Statement.html#70-74" title="Go to source code">execute</a>( )</code>
 
 		<div class="description short">
 			<p>Executes statement</p>
@@ -390,7 +271,7 @@ SNTools\Object
 
 				<h4>Returns</h4>
 				<div class="list">
-					boolean
+					boolean<br>Execution success
 				</div>
 
 
@@ -399,7 +280,7 @@ SNTools\Object
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getResult" id="_getResult">
+	<tr data-order="getResultset" id="_getResultset">
 
 		<td class="attributes"><code>
 			abstract public 
@@ -410,21 +291,21 @@ SNTools\Object
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getResult">#</a>
-		<code><a href="source-class-SNDatabase.Statement.html#100-104" title="Go to source code">getResult</a>( )</code>
+		<a class="anchor" href="#_getResultset">#</a>
+		<code><a href="source-class-SNDatabase.Statement.html#75-79" title="Go to source code">getResultset</a>( )</code>
 
 		<div class="description short">
-			<p>Recover resultset. Null if never executed.</p>
+			<p>Get result set after execution</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Recover resultset. Null if never executed.</p>
+			<p>Get result set after execution</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-SNDatabase.Result.html">SNDatabase\Result</a></code>|null
+					<code><a href="class-SNDatabase.Result.html">SNDatabase\Result</a></code>|null<br>Result set. Null if N/A
 				</div>
 
 
@@ -433,39 +314,32 @@ SNTools\Object
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="param2Value" id="_param2Value">
+	<tr data-order="getAffectedRows" id="_getAffectedRows">
 
 		<td class="attributes"><code>
-			 protected 
+			abstract protected 
 
-			mixed
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_param2Value">#</a>
-		<code><a href="source-class-SNDatabase.Statement.html#106-114" title="Go to source code">param2Value</a>( <span>mixed <var>$param</var></span>, <span>integer <var>$type</var></span> )</code>
+		<a class="anchor" href="#_getAffectedRows">#</a>
+		<code><a href="source-class-SNDatabase.Statement.html#80-84" title="Go to source code">getAffectedRows</a>( )</code>
 
 		<div class="description short">
-			<p>Converts bound parameter into value, according to type</p>
+			<p>Number of rows affected by last INSERT, UPDATE or DELETE statement</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Converts bound parameter into value, according to type</p>
+			<p>Number of rows affected by last INSERT, UPDATE or DELETE statement</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$param</var></dt>
-					<dd>Parameter to convert</dd>
-					<dt><var>$type</var></dt>
-					<dd>Parameter type</dd>
-				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					mixed<br>Converted value ready to put into statement
+					integer<br>Number of rows
 				</div>
 
 
@@ -484,22 +358,6 @@ SNTools\Object
 
 
 
-	<table class="summary inherited">
-	<caption>Constants inherited from <a href="class-SNDatabase.ParameterTypes.html#constants">SNDatabase\ParameterTypes</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_BOOL"><b>PARAM_BOOL</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_DATE"><b>PARAM_DATE</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_DATETIME"><b>PARAM_DATETIME</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_FLOAT"><b>PARAM_FLOAT</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_INT"><b>PARAM_INT</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_LOB"><b>PARAM_LOB</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_NULL"><b>PARAM_NULL</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_STR"><b>PARAM_STR</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_TIME"><b>PARAM_TIME</b></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 
@@ -515,7 +373,7 @@ SNTools\Object
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-SNDatabase.Statement.html#35" title="Go to source code"><var>$connection</var></a>
+				<a href="source-class-SNDatabase.Statement.html#34" title="Go to source code"><var>$connection</var></a>
 
 			<div class="description short">
 				<p>Parent connection</p>
@@ -534,7 +392,7 @@ SNTools\Object
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-SNDatabase.Statement.html#36" title="Go to source code"><var>$affectedRows</var></a>
+				<a href="source-class-SNDatabase.Statement.html#35" title="Go to source code"><var>$affectedRows</var></a>
 
 			<div class="description short">
 				<p>Number of rows affected by last INSERT, UPDATE or DELETE statement</p>

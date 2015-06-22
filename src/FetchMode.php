@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Samy Naamani.
+ * Copyright 2015 Samy Naamani <samy@namani.net>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@
  */
 
 namespace SNDatabase;
+
 use SNTools\Object;
 
 /**
@@ -38,7 +39,8 @@ use SNTools\Object;
  * @property-read int|null $col For FETCH_COLUMN mode : numeric index to fetch
  * @property-read callable|null $callback for FETCH_CALLBACK mode : callable to use
  */
-class FetchMode extends Object {
+class FetchMode extends Object{
+
     private $_mode;
     private $_classname = null;
     private $_ctor_args = array();
@@ -55,19 +57,21 @@ class FetchMode extends Object {
     public function __construct($mode, &$param = null, array $ctor_args = array()) {
         parent::__construct();
         $this->_mode = $mode;
-        if($this->hasMode(Result::FETCH_CLASS)
-                and !$this->hasMode(Result::FETCH_CLASSTYPE)
-                and !$this->hasMode(Result::FETCH_OBJ)) {
+        if ($this->hasMode(DB::FETCH_CLASS)
+                and ! $this->hasMode(DB::FETCH_CLASSTYPE)
+                and ! $this->hasMode(DB::FETCH_OBJ)) {
             $this->_classname = $param;
             $this->_ctor_args = $ctor_args;
-        }
-        elseif($this->hasMode(Result::FETCH_INTO)) $this->_obj =& $param;
-        elseif($this->hasMode(Result::FETCH_COLUMN)) $this->_col = $param;
-        elseif($this->hasMode(Result::FETCH_CALLBACK)) $this->_callback = $param;
+        } elseif ($this->hasMode(DB::FETCH_INTO))
+            $this->_obj = & $param;
+        elseif ($this->hasMode(DB::FETCH_COLUMN))
+            $this->_col = $param;
+        elseif ($this->hasMode(DB::FETCH_CALLBACK))
+            $this->_callback = $param;
     }
 
     public function __get($name) {
-        switch($name) {
+        switch ($name) {
             case 'classname':
             case 'col':
             case 'ctor_args':
@@ -88,5 +92,12 @@ class FetchMode extends Object {
      */
     public function hasMode($mode) {
         return $mode == ($this->_mode & $mode);
+    }
+
+    public function __sleep() {
+        $refl = new \ReflectionObject($this);
+        $props = $refl->getProperties();
+        /* @var $props \ReflectionProperty[] */
+        return array_map(function(\ReflectionProperty $prop) { return $prop->getName(); }, $props);
     }
 }

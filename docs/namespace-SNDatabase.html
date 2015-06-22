@@ -33,6 +33,8 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-SNDatabase.Connection.html">Connection</a></li>
+				<li><a href="class-SNDatabase.ConnectionString.html">ConnectionString</a></li>
+				<li><a href="class-SNDatabase.DB.html">DB</a></li>
 				<li><a href="class-SNDatabase.Factory.html">Factory</a></li>
 				<li><a href="class-SNDatabase.FetchMode.html">FetchMode</a></li>
 				<li><a href="class-SNDatabase.ParameterizedStatement.html">ParameterizedStatement</a></li>
@@ -43,19 +45,8 @@
 				<li><a href="class-SNDatabase.Transaction.html">Transaction</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ParameterTypes.html">ParameterTypes</a></li>
-			</ul>
 
 
-			<h3>Exceptions</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
-				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
-				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
-				<li><a href="class-SNDatabase.InvalidParameterNumberException.html">InvalidParameterNumberException</a></li>
-			</ul>
 
 
 		</div>
@@ -108,10 +99,18 @@
 	<td>Superclass for all connections</td>
 </tr>
 <tr>
+	<td class="name"><a href="class-SNDatabase.ConnectionString.html">ConnectionString</a></td>
+	<td>Connection string builder</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-SNDatabase.DB.html">DB</a></td>
+	<td><p>Main Database class.
+Houses constants, and grants access to driver factories</p></td>
+</tr>
+<tr>
 	<td class="name"><a href="class-SNDatabase.Factory.html">Factory</a></td>
 	<td><p>Factory superclass
-This class provides access to real factories via its static method.
-Real factories are subclasses of this class</p></td>
+Driver factories assist into building database connections</p></td>
 </tr>
 <tr>
 	<td class="name"><a href="class-SNDatabase.FetchMode.html">FetchMode</a></td>
@@ -145,36 +144,8 @@ This abstract class allows differenciation with Paparemered statement</p></td>
 </tr>
 </table>
 
-<table class="summary" id="interfaces">
-<caption>Interfaces summary</caption>
-<tr>
-	<td class="name"><a href="class-SNDatabase.ParameterTypes.html">ParameterTypes</a></td>
-	<td><p>Parameters type interface
-Declares parameter types as constants for both Statement and Result classes.
-As this version of the api is meant to be compatible PHP 5.3, a trait was not an option.</p></td>
-</tr>
-</table>
 
 
-<table class="summary" id="exceptions">
-<caption>Exceptions summary</caption>
-<tr>
-	<td class="name"><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></td>
-	<td>Error while attempting to establish connection with database</td>
-</tr>
-<tr>
-	<td class="name"><a href="class-SNDatabase.DBException.html">DBException</a></td>
-	<td>General database error</td>
-</tr>
-<tr>
-	<td class="name"><a href="class-SNDatabase.DriverException.html">DriverException</a></td>
-	<td>Error while checking avilability of driver</td>
-</tr>
-<tr>
-	<td class="name"><a href="class-SNDatabase.InvalidParameterNumberException.html">InvalidParameterNumberException</a></td>
-	<td>Invalid parameter number in parameterized statement</td>
-</tr>
-</table>
 
 
 </div>
@@ -185,6 +156,6 @@ As this version of the api is meant to be compatible PHP 5.3, a trait was not an
 </div>
 </div>
 <script src="resources/combined.js?1f06b9f1aa7a39071817afe59cfb473c2bf25998"></script>
-<script src="elementlist.js?b0321b0188d9ea54237cbfd0538ae08b82f50d46"></script>
+<script src="elementlist.js?0ef2e9d15814c3f0df70087b2041331239f707a3"></script>
 </body>
 </html>

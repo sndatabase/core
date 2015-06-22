@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Samy Naamani.
+ * Copyright 2015 Samy Naamani <samy@namani.net>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,17 +31,83 @@ use SNTools\Object;
  * Superclass for transactions
  *
  * @author Samy Naamani <samy@namani.net>
+ * @property-read Connection $connection Parent connection
+ * @property-read boolean $inTransaction Checks that a transaction is in progress
  * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
  */
 abstract class Transaction extends Object {
     /**
-     * Commit changes
-     * @return boolean
+     * Parent connection (real attribute)
+     * @var Connection
      */
-    abstract public function commit();
+    private $cnx;
     /**
-     * Rollback changes
-     * @return boolean
+     * Checks that a transaction is in progress (real attribute)
+     * @var boolean
      */
-    abstract public function rollBack();
+    private $in = false;
+    /**
+     * Transaction name. Null if none. (real attribute)
+     * @var string|null
+     */
+    private $name;
+    /**
+     * Transaction constructor
+     * @param Connection $cnx Parent connection
+     * @param string|null $name Transaction name. Null if none.
+     */
+    public function __construct(Connection $cnx, $name = null) {
+        parent::__construct();
+        $this->cnx = $cnx;
+        $this->name = $name;
+        $this->doStart($this->name);
+    }
+    public function __get($name) {
+        switch($name) {
+            case 'connection':
+                return $this->cnx;
+            case 'inTransaction':
+                return $this->in;
+            default:
+                return parent::__get($name);
+        }
+    }
+    /**
+     * Starts transaction (driver-dependant implementation).
+     * Called by constructor.
+     * @param string|null $name Transaction name. Null if none.
+     */
+    abstract protected function doStart($name = null);
+    /**
+     * Commit changes (driver-dependant implementation).
+     * @param string|null $name Transaction name. Null if none.
+     * @return boolean Commit success
+     */
+    abstract protected function doCommit($name = null);
+    /**
+     * Rolls back changes (driver-dependant implementation).
+     * @param string|null $name Transaction name. Null if none.
+     * @return boolean Rollback success
+     */
+    abstract protected function doRollBack($name = null);
+
+    /**
+     * Commit changes
+     * @return boolean Commit success
+     */
+    public function commit() {
+        return $this->inTransaction ? $this->doCommit($this->name) : false;
+    }
+
+    /**
+     * Rolls back changes
+     * @return boolean Rollback success
+     */
+    public function rollBack() {
+        return $this->inTransaction ? $this->doRollBack($this->name) : false;
+    }
+
+    public function __destruct() {
+        $this->rollBack();
+    }
 }

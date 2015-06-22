@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Samy Naamani.
+ * Copyright 2015 Samy Naamani <samy@namani.net>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,7 @@ class ResultIterator extends Object implements \Iterator {
     public function __construct(Result $result) {
         parent::__construct();
         $this->result = $result;
-    }
+}
 
     public function current() {
         return $this->lastFetched;
@@ -68,6 +68,7 @@ class ResultIterator extends Object implements \Iterator {
     }
 
     public function rewind() {
+        $this->result->setCursorMode(DB::CURSOR_FIRST);
         $this->next();
     }
 

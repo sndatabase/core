@@ -34,6 +34,8 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></li>
+				<li><a href="class-SNDatabase.ConnectionString.html">SNDatabase\ConnectionString</a></li>
+				<li><a href="class-SNDatabase.DB.html">SNDatabase\DB</a></li>
 				<li><a href="class-SNDatabase.Factory.html">SNDatabase\Factory</a></li>
 				<li><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></li>
 				<li><a href="class-SNDatabase.ParameterizedStatement.html">SNDatabase\ParameterizedStatement</a></li>
@@ -44,19 +46,8 @@
 				<li><a href="class-SNDatabase.Transaction.html">SNDatabase\Transaction</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ParameterTypes.html">SNDatabase\ParameterTypes</a></li>
-			</ul>
 
 
-			<h3>Exceptions</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ConnectionFailedException.html">SNDatabase\ConnectionFailedException</a></li>
-				<li><a href="class-SNDatabase.DBException.html">SNDatabase\DBException</a></li>
-				<li><a href="class-SNDatabase.DriverException.html">SNDatabase\DriverException</a></li>
-				<li><a href="class-SNDatabase.InvalidParameterNumberException.html">SNDatabase\InvalidParameterNumberException</a></li>
-			</ul>
 
 
 		</div>
@@ -102,7 +93,7 @@
 </span><span id="3" class="l"><a href="#3"> 3: </a><span class="php-comment">/*
 </span></span><span id="4" class="l"><a href="#4"> 4: </a><span class="php-comment"> * The MIT License
 </span></span><span id="5" class="l"><a href="#5"> 5: </a><span class="php-comment"> *
-</span></span><span id="6" class="l"><a href="#6"> 6: </a><span class="php-comment"> * Copyright 2015 Samy Naamani.
+</span></span><span id="6" class="l"><a href="#6"> 6: </a><span class="php-comment"> * Copyright 2015 Samy Naamani &lt;samy@namani.net&gt;.
 </span></span><span id="7" class="l"><a href="#7"> 7: </a><span class="php-comment"> *
 </span></span><span id="8" class="l"><a href="#8"> 8: </a><span class="php-comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy
 </span></span><span id="9" class="l"><a href="#9"> 9: </a><span class="php-comment"> * of this software and associated documentation files (the &quot;Software&quot;), to deal
@@ -152,7 +143,7 @@
 </span><span id="53" class="l"><a href="#53">53: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(Result <span class="php-var">$result</span>) {
 </span><span id="54" class="l"><a href="#54">54: </a>        parent::__construct();
 </span><span id="55" class="l"><a href="#55">55: </a>        <span class="php-var">$this</span>-&gt;result = <span class="php-var">$result</span>;
-</span><span id="56" class="l"><a href="#56">56: </a>    }
+</span><span id="56" class="l"><a href="#56">56: </a>}
 </span><span id="57" class="l"><a href="#57">57: </a>
 </span><span id="58" class="l"><a href="#58">58: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <span class="php-keyword2">current</span>() {
 </span><span id="59" class="l"><a href="#59">59: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;lastFetched;
@@ -167,14 +158,15 @@
 </span><span id="68" class="l"><a href="#68">68: </a>    }
 </span><span id="69" class="l"><a href="#69">69: </a>
 </span><span id="70" class="l"><a href="#70">70: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <span class="php-keyword2">rewind</span>() {
-</span><span id="71" class="l"><a href="#71">71: </a>        <span class="php-var">$this</span>-&gt;<span class="php-keyword2">next</span>();
-</span><span id="72" class="l"><a href="#72">72: </a>    }
-</span><span id="73" class="l"><a href="#73">73: </a>
-</span><span id="74" class="l"><a href="#74">74: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> valid() {
-</span><span id="75" class="l"><a href="#75">75: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">false</span> !== <span class="php-var">$this</span>-&gt;lastFetched;
-</span><span id="76" class="l"><a href="#76">76: </a>    }
-</span><span id="77" class="l"><a href="#77">77: </a>}
-</span><span id="78" class="l"><a href="#78">78: </a></span></code></pre>
+</span><span id="71" class="l"><a href="#71">71: </a>        <span class="php-var">$this</span>-&gt;result-&gt;setCursorMode(DB::CURSOR_FIRST);
+</span><span id="72" class="l"><a href="#72">72: </a>        <span class="php-var">$this</span>-&gt;<span class="php-keyword2">next</span>();
+</span><span id="73" class="l"><a href="#73">73: </a>    }
+</span><span id="74" class="l"><a href="#74">74: </a>
+</span><span id="75" class="l"><a href="#75">75: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> valid() {
+</span><span id="76" class="l"><a href="#76">76: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">false</span> !== <span class="php-var">$this</span>-&gt;lastFetched;
+</span><span id="77" class="l"><a href="#77">77: </a>    }
+</span><span id="78" class="l"><a href="#78">78: </a>}
+</span><span id="79" class="l"><a href="#79">79: </a></span></code></pre>
 
 	<div id="footer">
 		SN Database Core API documentation generated by <a href="http://apigen.org">ApiGen</a>
@@ -182,6 +174,6 @@
 </div>
 </div>
 <script src="resources/combined.js?1f06b9f1aa7a39071817afe59cfb473c2bf25998"></script>
-<script src="elementlist.js?b0321b0188d9ea54237cbfd0538ae08b82f50d46"></script>
+<script src="elementlist.js?0ef2e9d15814c3f0df70087b2041331239f707a3"></script>
 </body>
 </html>

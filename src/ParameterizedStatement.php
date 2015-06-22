@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Samy Naamani.
+ * Copyright 2015 Samy Naamani <samy@namani.net>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,31 +34,28 @@ namespace SNDatabase;
  * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
  */
 class ParameterizedStatement extends Statement {
+
     /**
-     *
+     * Statement parser
      * @var \PHPSQLParser
      */
     private static $parser;
+
     /**
-     *
+     * Statement builder
      * @var \PHPSQLCreator
      */
     private static $creator;
+
     /**
      * Input statement
      * @var string
      */
     private $statement;
-    
-    /**
-     * Statement being compiled during execution
-     * @var string
-     */
-    private $actualStatement = '';
 
     /**
      * Result set
-     * @var Result
+     * @var Result|null
      */
     private $result = null;
 
@@ -69,14 +66,14 @@ class ParameterizedStatement extends Statement {
     private $affRows = 0;
 
     protected static function __constructStatic() {
-        if(parent::__constructStatic()) {
+        if (parent::__constructStatic()) {
             return true;
         } else {
             self::$parser = new \PHPSQLParser();
             self::$creator = new \PHPSQLCreator();
         }
     }
-    
+
     /**
      * Constructor
      * @param Connection $cnx Parent connection
@@ -87,72 +84,85 @@ class ParameterizedStatement extends Statement {
         $this->statement = $statement;
     }
 
-    public function bindValue($tag, $value, $type = self::PARAM_STR) {
-        if(!is_int($tag) and ctype_digit($tag)) $tag = intval($tag);
-        elseif(is_string($tag)) {
-            if(':' != substr($tag, 0, 1)) $tag = ":$tag";
-        } else return false;
+    public function bindValue($tag, $value, $type = DB::PARAM_AUTO) {
+        if (!is_int($tag) and ctype_digit($tag))
+            $tag = intval($tag);
+        elseif (is_string($tag)) {
+            if (':' != substr($tag, 0, 1))
+                $tag = ":$tag";
+        } else
+            return false;
         $this->parameters[$tag] = array('param' => $value, 'type' => $type);
         return true;
     }
 
-    protected function param2Value($param, $type) {
-        $value = parent::param2Value($param, $type);
-        return ($type & self::PARAM_STR) ? $this->connection->quote($value) : $value;
-    }
-
     private function walk(&$elem, &$index, array &$params) {
-        if(is_array($elem)) {
-            if(array_key_exists('expr_type', $elem)) {
-                if($elem['expr_type'] == 'colref') {
-                    if($elem['base_expr'] == '?') {
-                        if(empty($params)) throw new InvalidParameterNumberException;
-                        if(isset($params[++$index])) {
+        if (is_array($elem)) {
+            if (array_key_exists('expr_type', $elem)) {
+                if ($elem['expr_type'] == 'colref') {
+                    if ($elem['base_expr'] == '?') {
+                        if (empty($params))
+                            throw new InvalidParameterNumberException;
+                        if (isset($params[++$index])) {
                             $param = $params[$index];
                             $elem = array(
                                 'expr_type' => 'const',
-                                'base_expr' => $this->param2Value($param['param'], $param['type'])
+                                'base_expr' => $this->connection->quote($param['param'], $param['type'])
                             );
                             unset($params[$index]);
-                        } else throw new InvalidParameterNumberException;
+                        } else
+                            throw new InvalidParameterNumberException;
                     }
-                    elseif(preg_match('#^:[a-z][a-z0-9]*$#i', $elem['base_expr'])) {
-                        if(empty($params)) throw new InvalidParameterNumberException;
+                    elseif (preg_match('#^:[a-z][a-z0-9]*$#i', $elem['base_expr'])) {
+                        if (empty($params))
+                            throw new InvalidParameterNumberException;
                         $tag = $elem['base_expr'];
-                        if(isset($params[$tag])) {
+                        if (isset($params[$tag])) {
                             $param = $params[$tag];
                             $elem = array(
                                 'expr_type' => 'const',
-                                'base_expr' => $this->param2Value($param['param'], $param['type'])
+                                'base_expr' => $this->connection->quote($param['param'], $param['type'])
                             );
                             unset($params[$tag]);
-                        } else throw new InvalidParameterNumberException;
+                        } else
+                            throw new InvalidParameterNumberException;
                     }
                 }
-            } else $this->walk($elem);
+            } else
+                $this->walk($elem);
         }
     }
 
+    /**
+     * Binds parameters into statement to create a new statement ready to execute
+     * @return string final statement
+     */
     protected function doBind() {
         $parsed = self::$parser->parse($this->statement);
         $index = 0;
         $params = $this->getParameters();
         $this->walk($parsed, $index, $params);
-        $this->actualStatement = self::$creator->create($parsed);
+        return self::$creator->create($parsed);
     }
 
     public function execute() {
-        $this->doBind();
-        $this->result = $this->connection->query($this->actualStatement);
-        $this->affRows = $this->connection->countLastAffectedRows();
-        return true;
+        $this->result = $this->connection->query($this->doBind());
+        if($this->result === false) {
+            $this->result = null;
+            $this->affRows = 0;
+            return false;
+        } else {
+            $this->affRows = $this->connection->countLastAffectedRows();
+            return true;
+        }
     }
 
-    public function getResult() {
+    public function getResultset() {
         return $this->result;
     }
 
     protected function getAffectedRows() {
         return $this->affRows;
     }
+
 }

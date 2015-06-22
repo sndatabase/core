@@ -1,9 +1,8 @@
 <?php
-
-/*
+/* 
  * The MIT License
  *
- * Copyright 2015 Samy Naamani.
+ * Copyright 2015 Samy Naamani <samy@namani.net>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -62,54 +61,25 @@ abstract class Statement extends Object implements ParameterTypes {
     }
 
     /**
-     * Returns number of rows affected by INSERT, UPDATE or DELETE.
-     * @see Statement::$affectedRows
-     * @return int
+     * Binds value to statement, according to type and tag
+     * @param int|string $tag Value tag. Integer for '?' marks, otherwise marked label started by ':'
+     * @param mixed $value Value to bind
+     * @param int $type Type to use to bind the value. Constant DB::PARAM_*. Defaults to DB::PARAM_AUTO, which automatically checks the type of the value
      */
-    abstract protected function getAffectedRows();
-
-    /**
-     * Binds value to statement
-     * @param string|int $tag Parameter marker in the statement. If marker is '?', use integer value here.
-     * @param mixed $value Parameter to bind, as value
-     * @param int $type Parameter type, defaults to string.
-     * @return boolean
-     */
-    abstract public function bindValue($tag, $value, $type = self::PARAM_STR);
-
-    /**
-     * Get all bound parameters, in order to bind them to inner components
-     * @see doBind()
-     * @return array
-     */
-    final protected function getParameters() {
-        return $this->parameters;
-    }
-
-    /**
-     * Binds parameters to statement before execution
-     */
-    abstract protected function doBind();
-
+    abstract public function bindValue($tag, $value, $type = DB::PARAM_AUTO);
     /**
      * Executes statement
-     * @return boolean
+     * @return boolean Execution success
      */
     abstract public function execute();
-
     /**
-     * Recover resultset. Null if never executed.
-     * @return Result|null
+     * Get result set after execution
+     * @return Result|null Result set. Null if N/A
      */
-    abstract public function getResult();
-
+    abstract public function getResultset();
     /**
-     * Converts bound parameter into value, according to type
-     * @param mixed $param Parameter to convert
-     * @param int $type Parameter type
-     * @return mixed Converted value ready to put into statement
+     * Number of rows affected by last INSERT, UPDATE or DELETE statement
+     * @return int Number of rows
      */
-    protected function param2Value($param, $type) {
-        return $this->connection->quote($param, $type);
-    }
+    abstract protected function getAffectedRows();
 }

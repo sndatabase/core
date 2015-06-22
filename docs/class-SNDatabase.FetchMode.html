@@ -33,6 +33,8 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-SNDatabase.Connection.html">Connection</a></li>
+				<li><a href="class-SNDatabase.ConnectionString.html">ConnectionString</a></li>
+				<li><a href="class-SNDatabase.DB.html">DB</a></li>
 				<li><a href="class-SNDatabase.Factory.html">Factory</a></li>
 				<li class="active"><a href="class-SNDatabase.FetchMode.html">FetchMode</a></li>
 				<li><a href="class-SNDatabase.ParameterizedStatement.html">ParameterizedStatement</a></li>
@@ -43,19 +45,8 @@
 				<li><a href="class-SNDatabase.Transaction.html">Transaction</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ParameterTypes.html">ParameterTypes</a></li>
-			</ul>
 
 
-			<h3>Exceptions</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
-				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
-				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
-				<li><a href="class-SNDatabase.InvalidParameterNumberException.html">InvalidParameterNumberException</a></li>
-			</ul>
 
 
 		</div>
@@ -136,7 +127,7 @@ SNTools\Object
 				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-			<b>Located at</b> <a href="source-class-SNDatabase.FetchMode.html#30-92" title="Go to source code">FetchMode.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.FetchMode.html#31-103" title="Go to source code">FetchMode.php</a>
 		<br>
 	</div>
 
@@ -156,7 +147,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-SNDatabase.FetchMode.html#49-67" title="Go to source code">__construct</a>( <span>integer <var>$mode</var></span>, <span>mixed <var>&amp; $param</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-SNDatabase.FetchMode.html#51-71" title="Go to source code">__construct</a>( <span>integer <var>$mode</var></span>, <span>mixed <var>&amp; $param</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			<p>Fetch mode constructor</p>
@@ -195,7 +186,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-SNDatabase.FetchMode.html#69-82" title="Go to source code">__get</a>( <span> <var>$name</var></span> )</code>
+		<code><a href="source-class-SNDatabase.FetchMode.html#73-86" title="Go to source code">__get</a>( <span> <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -225,7 +216,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasMode">#</a>
-		<code><a href="source-class-SNDatabase.FetchMode.html#84-91" title="Go to source code">hasMode</a>( <span>integer <var>$mode</var></span> )</code>
+		<code><a href="source-class-SNDatabase.FetchMode.html#88-95" title="Go to source code">hasMode</a>( <span>integer <var>$mode</var></span> )</code>
 
 		<div class="description short">
 			<p>Checks if flag mode is within fetch mode</p>
@@ -245,6 +236,36 @@ SNTools\Object
 				<div class="list">
 					boolean
 				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__sleep" id="___sleep">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___sleep">#</a>
+		<code><a href="source-class-SNDatabase.FetchMode.html#97-102" title="Go to source code">__sleep</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
 
 
 
@@ -277,7 +298,7 @@ SNTools\Object
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-SNDatabase.FetchMode.html#35" title="Go to source code"><var>$classname</var></a>
+				<a href="source-class-SNDatabase.FetchMode.html#36" title="Go to source code"><var>$classname</var></a>
 
 			<div class="description short">
 				<p>For FETCH_CLASS  mode : class name to use</p>
@@ -296,7 +317,7 @@ SNTools\Object
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-SNDatabase.FetchMode.html#36" title="Go to source code"><var>$ctor_args</var></a>
+				<a href="source-class-SNDatabase.FetchMode.html#37" title="Go to source code"><var>$ctor_args</var></a>
 
 			<div class="description short">
 				<p>For FETCH_CLASS mode : constructor arguments</p>
@@ -315,7 +336,7 @@ SNTools\Object
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-SNDatabase.FetchMode.html#37" title="Go to source code"><var>$obj</var></a>
+				<a href="source-class-SNDatabase.FetchMode.html#38" title="Go to source code"><var>$obj</var></a>
 
 			<div class="description short">
 				<p>For FETCH_INTO mode : object to fetch data into</p>
@@ -334,7 +355,7 @@ SNTools\Object
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-SNDatabase.FetchMode.html#38" title="Go to source code"><var>$col</var></a>
+				<a href="source-class-SNDatabase.FetchMode.html#39" title="Go to source code"><var>$col</var></a>
 
 			<div class="description short">
 				<p>For FETCH_COLUMN mode : numeric index to fetch</p>
@@ -353,7 +374,7 @@ SNTools\Object
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-SNDatabase.FetchMode.html#39" title="Go to source code"><var>$callback</var></a>
+				<a href="source-class-SNDatabase.FetchMode.html#40" title="Go to source code"><var>$callback</var></a>
 
 			<div class="description short">
 				<p>for FETCH_CALLBACK mode : callable to use</p>

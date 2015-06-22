@@ -33,6 +33,8 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-SNDatabase.Connection.html">Connection</a></li>
+				<li><a href="class-SNDatabase.ConnectionString.html">ConnectionString</a></li>
+				<li><a href="class-SNDatabase.DB.html">DB</a></li>
 				<li><a href="class-SNDatabase.Factory.html">Factory</a></li>
 				<li><a href="class-SNDatabase.FetchMode.html">FetchMode</a></li>
 				<li><a href="class-SNDatabase.ParameterizedStatement.html">ParameterizedStatement</a></li>
@@ -43,19 +45,8 @@
 				<li><a href="class-SNDatabase.Transaction.html">Transaction</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ParameterTypes.html">ParameterTypes</a></li>
-			</ul>
 
 
-			<h3>Exceptions</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
-				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
-				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
-				<li><a href="class-SNDatabase.InvalidParameterNumberException.html">InvalidParameterNumberException</a></li>
-			</ul>
 
 
 		</div>
@@ -115,9 +106,9 @@ SNTools\Object
 			<img src="resources/inherit.png" alt="Extended by">
 <b><span>SNDatabase\Result</span></b>			
 			 implements 
-<span>IteratorAggregate</span>, 
+<span>Countable</span>, 
 			
-				<a href="class-SNDatabase.ParameterTypes.html"><span>SNDatabase\ParameterTypes</span></a>
+<span>IteratorAggregate</span>
 			
 			
 		</dd>
@@ -142,7 +133,7 @@ SNTools\Object
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
 				<b>Todo:</b>
 				self::FETCH_NAMED : similar as self::FETCH_ASSOC + confict resolution<br>
-			<b>Located at</b> <a href="source-class-SNDatabase.Result.html#30-375" title="Go to source code">Result.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.Result.html#31-271" title="Go to source code">Result.php</a>
 		<br>
 	</div>
 
@@ -162,20 +153,20 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#108-115" title="Go to source code">__construct</a>( <span><code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var></span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#71-80" title="Go to source code">__construct</a>( <span><code><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></code> <var>$cnx</var></span> )</code>
 
 		<div class="description short">
-			<p>Constructor</p>
+			<p>Result set constructor</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Constructor</p>
+			<p>Result set constructor</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$mode</var></dt>
-					<dd>Default fetch mode for the result set</dd>
+					<dt><var>$cnx</var></dt>
+					<dd>Parent connection</dd>
 				</dl></div>
 
 
@@ -185,33 +176,29 @@ SNTools\Object
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="doFetch" id="_doFetch">
+	<tr data-order="__get" id="___get">
 
 		<td class="attributes"><code>
-			abstract protected 
+			 public 
 
-			array|boolean
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_doFetch">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#117-121" title="Go to source code">doFetch</a>( )</code>
+		<a class="anchor" href="#___get">#</a>
+		<code><a href="source-class-SNDatabase.Result.html#82-91" title="Go to source code">__get</a>( <span> <var>$name</var></span> )</code>
 
 		<div class="description short">
-			<p>Real fetch done by inner components</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Real fetch done by inner components</p>
+			
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					array|boolean<br>Associative array, or false if nothing to fetch
-				</div>
 
 
 
@@ -231,26 +218,103 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFetchMode">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#123-132" title="Go to source code">setFetchMode</a>( <span>integer|<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#93-102" title="Go to source code">setFetchMode</a>( <span>integer <var>$mode</var></span>, <span>mixed <var>$complement_info</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
-			<p>Changes default fetch mode for this result set</p>
+			<p>Sets fetch mode for this result set</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Changes default fetch mode for this result set</p>
+			<p>Sets fetch mode for this result set</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$mode</var></dt>
-					<dd>New mode. Either a proper FetchMode, or a FETCH_* flag combinaison</dd>
-					<dt><var>$param</var></dt>
-					<dd>For some fetch modes, complementary parameter. See examples</dd>
+					<dd>Fetch mode : combinaison of constants DB::FETCH_*</dd>
+					<dt><var>$complement_info</var></dt>
+					<dd>For some modes : additionnal information</dd>
 					<dt><var>$ctor_args</var></dt>
-					<dd>For FETCH_CLASS only, array of constructor arguments.</dd>
+					<dd>For DB::FETCH_CLASS : constructor argument list</dd>
 				</dl></div>
 
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code><br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setCursorMode" id="_setCursorMode">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setCursorMode">#</a>
+		<code><a href="source-class-SNDatabase.Result.html#104-120" title="Go to source code">setCursorMode</a>( <span>integer <var>$mode</var></span> )</code>
+
+		<div class="description short">
+			<p>Sets cursor fetching mode for next fetch</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Sets cursor fetching mode for next fetch</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$mode</var></dt>
+					<dd>Constant DB::CURSOR_*</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="doFetch" id="_doFetch">
+
+		<td class="attributes"><code>
+			abstract protected 
+
+			array|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_doFetch">#</a>
+		<code><a href="source-class-SNDatabase.Result.html#122-126" title="Go to source code">doFetch</a>( )</code>
+
+		<div class="description short">
+			<p>Driver-specific fetch. Fetch mode is expected to be array_assoc only.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Driver-specific fetch. Fetch mode is expected to be array_assoc only.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array|boolean<br>fetched row, as associative array. If no row left, returns false.
+				</div>
 
 
 
@@ -263,14 +327,14 @@ SNTools\Object
 		<td class="attributes"><code>
 			 public 
 
-			mixed
+			mixed|boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fetch">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#134-151" title="Go to source code">fetch</a>( <span>integer|<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#187-214" title="Go to source code">fetch</a>( <span>integer|null <var>$mode</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$complement_info</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			<p>Fetches next row</p>
@@ -283,19 +347,23 @@ SNTools\Object
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$mode</var></dt>
-					<dd>New mode, if needed. Either a proper FetchMode, or a FETCH_* flag combinaison</dd>
-					<dt><var>$param</var></dt>
-					<dd>For some fetch modes, complementary parameter. See examples</dd>
+					<dd>New fetch mode. If null, the result set default fetch mode is used.</dd>
+					<dt><var>$complement_info</var></dt>
+					<dd>For some fetch modes, additionnal information</dd>
 					<dt><var>$ctor_args</var></dt>
-					<dd>For FETCH_CLASS only, array of constructor arguments.</dd>
+					<dd>For DB::FETCH_CLASS : list of constructor arguments</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					mixed<br>Fetched row
+					mixed|boolean<br>Fetched row, false if none left.
 				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><a href="class-SNDatabase.Result.html#_setFetchMode">SNDatabase\Result::setFetchMode()</a></code><br>
+				</div>
 
 
 		</div>
@@ -313,174 +381,36 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fetchAll">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#174-206" title="Go to source code">fetchAll</a>( <span>integer|<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$mode</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$param</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-SNDatabase.Result.html#216-238" title="Go to source code">fetchAll</a>( <span>integer|null <var>$mode</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$complement_info</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$ctor_args</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
-			<p>Fetches all row, as a global array</p>
+			<p>Fetches all found rows as an array</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Fetches all row, as a global array</p>
+			<p>Fetches all found rows as an array</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$mode</var></dt>
-					<dd>New mode, if needed. Either a proper FetchMode, or a FETCH_* flag combinaison</dd>
-					<dt><var>$param</var></dt>
-					<dd>For some fetch modes, complementary parameter. See examples</dd>
+					<dd>Fetch mode to use. If null, will use the result set default fetch mode</dd>
+					<dt><var>$complement_info</var></dt>
+					<dd>For some fetch modes, additionnal information</dd>
 					<dt><var>$ctor_args</var></dt>
-					<dd>For FETCH_CLASS only, array of constructor arguments.</dd>
+					<dd>For DB::FETCH_CLASS : list of constructor arguments</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					array<br>List of all rows found
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="bindColumn" id="_bindColumn">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_bindColumn">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#207-218" title="Go to source code">bindColumn</a>( <span>integer|string <var>$col</var></span>, <span>&amp;mixed <var>&amp; $param</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.ParameterTypes.html#PARAM_STR">SNDatabase\ParameterTypes::<b>PARAM_STR</b></a></code></span> )</code>
-
-		<div class="description short">
-			<p>Bind a column from the result to a parameter</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Bind a column from the result to a parameter</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$col</var></dt>
-					<dd>Column to bind</dd>
-					<dt><var>$param</var></dt>
-					<dd>Parameter to bind</dd>
-					<dt><var>$type</var></dt>
-					<dd>Parameter type</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="doBindParams" id="_doBindParams">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_doBindParams">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#220-260" title="Go to source code">doBindParams</a>( <span>array <var>$values</var></span> )</code>
-
-		<div class="description short">
-			<p>Populates bound parameters with column values</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Populates bound parameters with column values</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$values</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="numRows" id="_numRows">
-
-		<td class="attributes"><code>
-			abstract protected 
-
-			integer
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_numRows">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#262-267" title="Go to source code">numRows</a>( )</code>
-
-		<div class="description short">
-			<p>Returns number of found rows</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Returns number of found rows</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					integer
+					array<br>list of fetched rows
 				</div>
 
 
 				<h4>See</h4>
 				<div class="list">
-						<code><a href="class-SNDatabase.Result.html#_numRows">SNDatabase\Result::numRows()</a></code><br>
+						<code><a href="class-SNDatabase.Result.html#_setFetchMode">SNDatabase\Result::setFetchMode()</a></code><br>
 				</div>
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="__get" id="___get">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#269-276" title="Go to source code">__get</a>( <span> <var>$name</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
 
 
 		</div>
@@ -498,7 +428,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getIterator">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#278-280" title="Go to source code">getIterator</a>( )</code>
+		<code><a href="source-class-SNDatabase.Result.html#240-242" title="Go to source code">getIterator</a>( )</code>
 
 		<div class="description short">
 			
@@ -518,42 +448,35 @@ SNTools\Object
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="fetchColumn" id="_fetchColumn">
+	<tr data-order="count" id="_count">
 
 		<td class="attributes"><code>
-			final public 
+			 public 
 
-			boolean|mixed|null
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_fetchColumn">#</a>
-		<code><a href="source-class-SNDatabase.Result.html#365-374" title="Go to source code">fetchColumn</a>( <span>integer <var>$index</var> = <span class="php-num">0</span></span> )</code>
+		<a class="anchor" href="#_count">#</a>
+		<code><a href="source-class-SNDatabase.Result.html#268-270" title="Go to source code">count</a>( <span> <var>$mode</var> = <span class="php-quote">'COUNT_NORMAL'</span></span> )</code>
 
 		<div class="description short">
-			<p>Fetches row, then returns element of row based on numerical index</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Fetches row, then returns element of row based on numerical index</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$index</var></dt>
-					<dd>Numerical index to use</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					boolean|mixed|null<br>Found element. Null if invalid index. False if nothing to fetch.
-				</div>
+			
 
 
 
 
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code>Countable::count()</code></div>
 		</div>
 		</div></td>
 	</tr>
@@ -566,362 +489,7 @@ SNTools\Object
 
 
 
-	<table class="summary constants" id="constants">
-	<caption>Constants summary</caption>
-	<tr data-order="FETCH_ASSOC" id="FETCH_ASSOC">
 
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#39-42" title="Go to source code"><b>FETCH_ASSOC</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Fetches are as associative arrays. Default mode if not changed.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Fetches are as associative arrays. Default mode if not changed.</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCH_ASSOC" class="anchor">#</a>
-				<code><span class="php-num">0x1</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCH_NUM" id="FETCH_NUM">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#43-46" title="Go to source code"><b>FETCH_NUM</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Fetches are as numerical arrays</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Fetches are as numerical arrays</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCH_NUM" class="anchor">#</a>
-				<code><span class="php-num">0x2</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCH_BOTH" id="FETCH_BOTH">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#47-50" title="Go to source code"><b>FETCH_BOTH</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Fetches are combinaisons of associative and numerical arrays</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Fetches are combinaisons of associative and numerical arrays</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCH_BOTH" class="anchor">#</a>
-				<code><span class="php-num">0x3</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCH_OBJ" id="FETCH_OBJ">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#51-54" title="Go to source code"><b>FETCH_OBJ</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Feches are as stdClass objects</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Feches are as stdClass objects</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCH_OBJ" class="anchor">#</a>
-				<code><span class="php-num">0xc</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCH_CLASS" id="FETCH_CLASS">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#55-58" title="Go to source code"><b>FETCH_CLASS</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Fetches are as objects. You must specity class name, and optionnally an array of constructor args</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Fetches are as objects. You must specity class name, and optionnally an array of constructor args</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCH_CLASS" class="anchor">#</a>
-				<code><span class="php-num">0x4</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCH_CLASSTYPE" id="FETCH_CLASSTYPE">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#59-62" title="Go to source code"><b>FETCH_CLASSTYPE</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Fetches are as objects. Class name is shifted from result</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Fetches are as objects. Class name is shifted from result</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCH_CLASSTYPE" class="anchor">#</a>
-				<code><span class="php-num">0x14</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCH_PROPS_EARLY" id="FETCH_PROPS_EARLY">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#63-66" title="Go to source code"><b>FETCH_PROPS_EARLY</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Add this flag to the fetch mode to fetch properties into new object before constructor call</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Add this flag to the fetch mode to fetch properties into new object before constructor call</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCH_PROPS_EARLY" class="anchor">#</a>
-				<code><span class="php-num">0x20</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCH_INTO" id="FETCH_INTO">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#67-70" title="Go to source code"><b>FETCH_INTO</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Fetches are put into pre-existing object</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Fetches are put into pre-existing object</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCH_INTO" class="anchor">#</a>
-				<code><span class="php-num">0x40</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCH_BOUND" id="FETCH_BOUND">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#71-74" title="Go to source code"><b>FETCH_BOUND</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Fetches returns true or false. Usually combined with bindColumn().</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Fetches returns true or false. Usually combined with bindColumn().</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCH_BOUND" class="anchor">#</a>
-				<code><span class="php-num">0x80</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCH_COLUMN" id="FETCH_COLUMN">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#75-78" title="Go to source code"><b>FETCH_COLUMN</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Feches a specific column from result row. Specify numerical index value (defaults to 0)</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Feches a specific column from result row. Specify numerical index value (defaults to 0)</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCH_COLUMN" class="anchor">#</a>
-				<code><span class="php-num">0x100</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCHALL_KEY_PAIR" id="FETCHALL_KEY_PAIR">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#79-82" title="Go to source code"><b>FETCHALL_KEY_PAIR</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Fetches all rows of a 2-columns result as key/value pairs</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Fetches all rows of a 2-columns result as key/value pairs</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCHALL_KEY_PAIR" class="anchor">#</a>
-				<code><span class="php-num">0x200</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCH_CALLBACK" id="FETCH_CALLBACK">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#83-86" title="Go to source code"><b>FETCH_CALLBACK</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Fetches returns what given callback returns</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Fetches returns what given callback returns</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCH_CALLBACK" class="anchor">#</a>
-				<code><span class="php-num">0x400</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCHALL_UNIQUE" id="FETCHALL_UNIQUE">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#87-90" title="Go to source code"><b>FETCHALL_UNIQUE</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Add this flag to fetch all rows, shifting first column to be used as key in the all-rows array</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Add this flag to fetch all rows, shifting first column to be used as key in the all-rows array</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCHALL_UNIQUE" class="anchor">#</a>
-				<code><span class="php-num">0x800</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="FETCHALL_GROUP" id="FETCHALL_GROUP">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Result.html#91-94" title="Go to source code"><b>FETCHALL_GROUP</b></a>
-			</code>
-
-			<div class="description short">
-				<p>Similar to FETCHALL_UNIQUE, except resoves naming conflicts</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Similar to FETCHALL_UNIQUE, except resoves naming conflicts</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#FETCHALL_GROUP" class="anchor">#</a>
-				<code><span class="php-num">0x1000</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
-
-	<table class="summary inherited">
-	<caption>Constants inherited from <a href="class-SNDatabase.ParameterTypes.html#constants">SNDatabase\ParameterTypes</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_BOOL"><b>PARAM_BOOL</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_DATE"><b>PARAM_DATE</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_DATETIME"><b>PARAM_DATETIME</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_FLOAT"><b>PARAM_FLOAT</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_INT"><b>PARAM_INT</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_LOB"><b>PARAM_LOB</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_NULL"><b>PARAM_NULL</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_STR"><b>PARAM_STR</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_TIME"><b>PARAM_TIME</b></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 
@@ -930,6 +498,25 @@ SNTools\Object
 
 	<table class="summary properties" id="magicProperties">
 	<caption>Magic properties summary</caption>
+	<tr data-order="connection" id="m$connection">
+		<td class="attributes"><code>
+			public  read-only
+			<code><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-SNDatabase.Result.html#36" title="Go to source code"><var>$connection</var></a>
+
+			<div class="description short">
+				<p>Parent connection</p>
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+	</tr>
 	<tr data-order="numRows" id="m$numRows">
 		<td class="attributes"><code>
 			public  read-only
@@ -937,7 +524,7 @@ SNTools\Object
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-SNDatabase.Result.html#35" title="Go to source code"><var>$numRows</var></a>
+				<a href="source-class-SNDatabase.Result.html#37" title="Go to source code"><var>$numRows</var></a>
 
 			<div class="description short">
 				<p>Number of found rows for SELECT statements</p>

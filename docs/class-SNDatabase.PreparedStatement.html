@@ -33,6 +33,8 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-SNDatabase.Connection.html">Connection</a></li>
+				<li><a href="class-SNDatabase.ConnectionString.html">ConnectionString</a></li>
+				<li><a href="class-SNDatabase.DB.html">DB</a></li>
 				<li><a href="class-SNDatabase.Factory.html">Factory</a></li>
 				<li><a href="class-SNDatabase.FetchMode.html">FetchMode</a></li>
 				<li><a href="class-SNDatabase.ParameterizedStatement.html">ParameterizedStatement</a></li>
@@ -43,19 +45,8 @@
 				<li><a href="class-SNDatabase.Transaction.html">Transaction</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ParameterTypes.html">ParameterTypes</a></li>
-			</ul>
 
 
-			<h3>Exceptions</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
-				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
-				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
-				<li><a href="class-SNDatabase.InvalidParameterNumberException.html">InvalidParameterNumberException</a></li>
-			</ul>
 
 
 		</div>
@@ -117,7 +108,7 @@ SNTools\Object
 			<a href="class-SNDatabase.Statement.html"><span>SNDatabase\Statement</span></a>
 			
 			 implements 
-				<a href="class-SNDatabase.ParameterTypes.html"><span>SNDatabase\ParameterTypes</span></a>
+<span>SNDatabase\ParameterTypes</span>
 			
 			
 		</dd>
@@ -146,7 +137,7 @@ SNTools\Object
 				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-			<b>Located at</b> <a href="source-class-SNDatabase.PreparedStatement.html#29-63" title="Go to source code">PreparedStatement.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.PreparedStatement.html#29-90" title="Go to source code">PreparedStatement.php</a>
 		<br>
 	</div>
 
@@ -166,7 +157,7 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bindParam">#</a>
-		<code><a href="source-class-SNDatabase.PreparedStatement.html#44-58" title="Go to source code">bindParam</a>( <span>string|integer <var>$tag</var></span>, <span>&amp;mixed <var>&amp; $param</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.ParameterTypes.html#PARAM_STR">SNDatabase\ParameterTypes::<b>PARAM_STR</b></a></code></span> )</code>
+		<code><a href="source-class-SNDatabase.PreparedStatement.html#44-61" title="Go to source code">bindParam</a>( <span>string|integer <var>$tag</var></span>, <span>&amp;mixed <var>&amp; $param</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.DB.html#PARAM_AUTO">SNDatabase\DB::<b>PARAM_AUTO</b></a></code></span> )</code>
 
 		<div class="description short">
 			<p>Binds parameter to statement</p>
@@ -202,36 +193,166 @@ SNTools\Object
 		<td class="attributes"><code>
 			 public 
 
-			boolean
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_bindValue">#</a>
-		<code><a href="source-class-SNDatabase.PreparedStatement.html#60-62" title="Go to source code">bindValue</a>( <span>string|integer <var>$tag</var></span>, <span>mixed <var>$value</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.ParameterTypes.html#PARAM_STR">SNDatabase\ParameterTypes::<b>PARAM_STR</b></a></code></span> )</code>
+		<code><a href="source-class-SNDatabase.PreparedStatement.html#63-65" title="Go to source code">bindValue</a>( <span>integer|string <var>$tag</var></span>, <span>mixed <var>$value</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.DB.html#PARAM_AUTO">SNDatabase\DB::<b>PARAM_AUTO</b></a></code></span> )</code>
 
 		<div class="description short">
-			<p>Binds value to statement</p>
+			<p>Binds value to statement, according to type and tag</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Binds value to statement</p>
+			<p>Binds value to statement, according to type and tag</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$tag</var></dt>
-					<dd>Parameter marker in the statement. If marker is '?', use integer value here.</dd>
+					<dd>Value tag. Integer for '?' marks, otherwise marked label started by ':'</dd>
 					<dt><var>$value</var></dt>
-					<dd>Parameter to bind, as value</dd>
+					<dd>Value to bind</dd>
 					<dt><var>$type</var></dt>
-					<dd>Parameter type, defaults to string.</dd>
+					<dd>Type to use to bind the value. Constant DB::PARAM_*. Defaults to DB::PARAM_AUTO, which automatically checks the type of the value</dd>
 				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getParameters" id="_getParameters">
+
+		<td class="attributes"><code>
+			final protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getParameters">#</a>
+		<code><a href="source-class-SNDatabase.PreparedStatement.html#67-74" title="Go to source code">getParameters</a>( )</code>
+
+		<div class="description short">
+			<p>List of bound parameters, as associative array tag => param.
+Each parameter is itself an array of 2 elements : 'param' => parameter value, and 'type' => parameter type</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>List of bound parameters, as associative array tag => param.
+Each parameter is itself an array of 2 elements : 'param' => parameter value, and 'type' => parameter type</p>
+
+
 
 				<h4>Returns</h4>
 				<div class="list">
-					boolean
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="doBind" id="_doBind">
+
+		<td class="attributes"><code>
+			abstract protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_doBind">#</a>
+		<code><a href="source-class-SNDatabase.PreparedStatement.html#76-79" title="Go to source code">doBind</a>( )</code>
+
+		<div class="description short">
+			<p>Driver-specific parameter rebinding. Called upon execution.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Driver-specific parameter rebinding. Called upon execution.</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="doExecute" id="_doExecute">
+
+		<td class="attributes"><code>
+			abstract protected 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_doExecute">#</a>
+		<code><a href="source-class-SNDatabase.PreparedStatement.html#80-84" title="Go to source code">doExecute</a>( )</code>
+
+		<div class="description short">
+			<p>Driver-specific execution, called upon execution and after parameter rebinding</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Driver-specific execution, called upon execution and after parameter rebinding</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>Success
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="execute" id="_execute">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_execute">#</a>
+		<code><a href="source-class-SNDatabase.PreparedStatement.html#85-88" title="Go to source code">execute</a>( )</code>
+
+		<div class="description short">
+			<p>Executes statement</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Executes statement</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>Execution success
 				</div>
 
 
@@ -248,12 +369,8 @@ SNTools\Object
 		<td><code>
 			<a href="class-SNDatabase.Statement.html#___construct">__construct()</a>, 
 			<a href="class-SNDatabase.Statement.html#___get">__get()</a>, 
-			<a href="class-SNDatabase.Statement.html#_doBind">doBind()</a>, 
-			<a href="class-SNDatabase.Statement.html#_execute">execute()</a>, 
 			<a href="class-SNDatabase.Statement.html#_getAffectedRows">getAffectedRows()</a>, 
-			<a href="class-SNDatabase.Statement.html#_getParameters">getParameters()</a>, 
-			<a href="class-SNDatabase.Statement.html#_getResult">getResult()</a>, 
-			<a href="class-SNDatabase.Statement.html#_param2Value">param2Value()</a>
+			<a href="class-SNDatabase.Statement.html#_getResultset">getResultset()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -265,22 +382,6 @@ SNTools\Object
 
 
 
-	<table class="summary inherited">
-	<caption>Constants inherited from <a href="class-SNDatabase.ParameterTypes.html#constants">SNDatabase\ParameterTypes</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_BOOL"><b>PARAM_BOOL</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_DATE"><b>PARAM_DATE</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_DATETIME"><b>PARAM_DATETIME</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_FLOAT"><b>PARAM_FLOAT</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_INT"><b>PARAM_INT</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_LOB"><b>PARAM_LOB</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_NULL"><b>PARAM_NULL</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_STR"><b>PARAM_STR</b></a>, 
-			<a href="class-SNDatabase.ParameterTypes.html#PARAM_TIME"><b>PARAM_TIME</b></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 

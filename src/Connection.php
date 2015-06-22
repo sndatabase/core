@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Samy Naamani.
+ * Copyright 2015 Samy Naamani <samy@namani.net>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@
  */
 
 namespace SNDatabase;
+
 use SNTools\Object;
 
 /**
@@ -34,185 +35,180 @@ use SNTools\Object;
  * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
  */
 abstract class Connection extends Object {
-    const ATTR_ERRMODE = 0;
-    const ATTR_DEFAULT_FETCH_MODE = 1;
 
     /**
-     * This error mode will throw exceptions as DBException at each SQL error
+     * Default fetch mode
+     * @var FetchMode
      */
-    const ERRMODE_EXCEPTION = 100;
-    /**
-     * This error mode will cause a fatal error when encountering a SQL error
-     */
-    const ERRMODE_ERROR = 101;
-    /**
-     * This error mode will cause a warning when encountering a SQL error
-     */
-    const ERRMODE_WARNING = 102;
-    /**
-     * This error mode will cause a notice when encountering a SQL error
-     */
-    const ERRMODE_NOTICE = 104;
-    /**
-     * This error mode will remain silent when encountering a SQL error
-     */
-    const ERRMODE_SILENT = 105;
-
-    private $attributes = array();
+    private $defaultFetchMode;
 
     /**
-     * Connection constructor. Sets up default attributes
+     * Public getter for default fetch mode
+     * @return FetchMode
      */
-    public function __construct() {
-        parent::__construct();
-        $this->setAttribute (self::ATTR_DEFAULT_FETCH_MODE, Result::FETCH_ASSOC);
-        $this->setAttribute(self::ATTR_ERRMODE, self::ERRMODE_EXCEPTION);
+    final public function getDefaultFetchMode() {
+        return $this->defaultFetchMode;
     }
 
     /**
-     * Executes quick statement and returns a result set
-     * @param string $statement Statement to execute
-     * @return Result|boolean Result set, or false on failure
+     * Non-public setter for default fetch mode
+     * @param FetchMode $defaultFetchMode
      */
-    abstract public function query($statement);
-
-    /**
-     * Error handler, depends on error mode attribute
-     * @param DBException $ex Exception with the SQL error
-     * @throws DBException
-     */
-    public function handleError(DBException $ex) {
-        if($this->getAttribute(self::ATTR_ERRMODE) == self::ERRMODE_EXCEPTION) throw $ex;
-        elseif($this->getAttribute(self::ATTR_ERRMODE) != self::ERRMODE_SILENT) {
-            switch($this->getAttribute(self::ATTR_ERRMODE)) {
-                case self::ERRMODE_ERROR:
-                    $level = E_USER_ERROR;
-                    break;
-                case self::ERRMODE_WARNING:
-                    $level = E_USER_WARNING;
-                    break;
-                case self::ERRMODE_NOTICE:
-                    $level = E_USER_NOTICE;
-                    break;
-            }
-            trigger_error($ex->getMessage(), $level);
-        }
+    final protected function setDefaultFetchMode(FetchMode $defaultFetchMode) {
+        $this->defaultFetchMode = $defaultFetchMode;
     }
 
-    /**
-     * Quick execution of a statement, and returns number of affected rows
-     * @param string $statement Statement to execute
-     * @return int|boolean Affected rows, or false on failure
-     */
-    public function exec($statement) {
-        $stmt = $this->query($statement);
-        return ($stmt instanceof Result) ? $this->countLastAffectedRows() : false;
-    }
 
     /**
-     * Creates a Parameterized statement
-     * @param string $statement Initial statement
-     * @return ParameterizedStatement Statement, ready to be parametered
+     * Starts a new transaction
+     * @param string|null $name Transaction name. Null if none.
+     * @return Transaction Transaction object
      */
-    public function queryWithParam($statement) {
-        return new ParameterizedStatement($this, $statement);
-    }
+    abstract public function startTransaction($name = null);
 
     /**
-     * Creates a Prepared statement
-     * @param string $statement Statement to prepare
-     * @return PreparedStatement|boolean Prepared statement, false on failure
+     * Creates a prepared statement
+     * @param string $statement Statement
+     * @return PreparedStatement
      */
     abstract public function prepare($statement);
 
     /**
-     * Starts a transaction
-     * @return Transaction Object representing started transaction
+     * Creates a statement with parameters
+     * @param string $statement Statement
+     * @return ParameterizedStatement
      */
-    abstract public function startTransaction();
-
-    /**
-     * Sets connection attribute
-     * @param int $attribute
-     * @param mixed $value
-     */
-    public function setAttribute($attribute, $value) {
-        $this->attributes[$attribute] = $value;
+    public function perform($statement) {
+        return new ParameterizedStatement($this, $statement);
     }
 
     /**
-     * Reads connection attribute
-     * @param int $attribute
-     * @return mixed
+     * Executes a simple query and returns its result set
+     * @param string $statement Statement
+     * @return Result
      */
-    public function getAttribute($attribute) {
-        return isset($this->attributes[$attribute]) ? $this->attributes[$attribute] : null;
+    abstract public function query($statement);
+
+    /**
+     * Executes a write-only statement and returns how many rows it affected.
+     * @param string $statement Statement
+     * @return int Number of affected rows
+     */
+    public function exec($statement) {
+        return $this->query($statement) ? $this->countLastAffectedRows() : false;
     }
 
     /**
-     * String protection against SQL injection.
-     * Driver-specific.
-     * @param string $string
-     * @return string
-     */
-    abstract protected function stringQuote($string);
-
-    /**
-     * Quotes value, according to type
-     * @param mixed $value Value to quote
-     * @param int $type Parameter type
-     * @return string Quoted value
-     */
-    public function quote($value, $type = ParameterType::STR) {
-        if($type & self::PARAM_STR) {
-            if($type == self::PARAM_FLOAT) $value = floatval($value);
-            elseif($type & self::PARAM_DATETIME) {
-                switch($type) {
-                    case self::PARAM_DATE:
-                        $format = 'Y-m-d';
-                        break;
-                    case self::PARAM_TIME:
-                        $format = 'H:i:s';
-                        break;
-                    default:
-                        $format = 'Y-m-d H:i:s';
-                }
-                if(interface_exists('\\DateTimeInterface')
-                        and $value instanceof \DateTimeInterface
-                        or $value instanceof \DateTime)
-                    $value = $value->format($format);
-                elseif(is_string($value)) {
-                    $temp = new \DateTime($value);
-                    $value = $temp->format($format);
-                }
-                elseif(is_int($value)) $value = date($format, $value);
-                else $value = 0;
-            }
-            elseif($type == self::PARAM_LOB) {
-                rewind($value);
-                $value = '';
-                while(!feof($value)) $value .= fgets ($value);
-            }
-            else $value = $this->stringQuote ($value);
-            return "'$value'";
-        }
-        elseif($type & self::PARAM_INT) {
-            if($type == self::PARAM_BOOL) return $value ? 1 : 0;
-            else return intval($value);
-        }
-        elseif($type == self::PARAM_NULL) return 'NULL';
-    }
-
-    /**
-     * Counts number of last affected rows. Used by some drivers, ineffective and overriden for others.
-     * @see Statement::$affectedRows
+     * Number of rows affected by last statement
      * @return int
      */
     abstract public function countLastAffectedRows();
 
     /**
-     * Fetches last inserted ID
+     * Last inserted ID
      * @return int
      */
     abstract public function lastInsertId();
+
+    /**
+     * For text and string values to quote, protects against injection.
+     * Driver-dependant.
+     * @param string $string Text to quote
+     * @return string Quoted text
+     */
+    abstract protected function escapeString($string);
+
+    /**
+     * Quote parameter according to type, to protect against injections
+     * @param mixed $value Value to protect
+     * @param int $type Type : constant DB::PARAM_*. Defaults to DB::PARAM_AUTO to autodetect type.
+     */
+    public function quote($value, $type = DB::PARAM_AUTO) {
+        if (is_array($value))
+            return sprintf('(%s)', implode(', ', array_map(function($v) use($this, $type) {
+                                return $this->quote($v, $type);
+                            }, $value)));
+        if ($type == DB::PARAM_AUTO) {
+            switch (gettype($value)) {
+                case 'NULL':
+                    $type = DB::PARAM_NULL;
+                    break;
+                case 'boolean':
+                    $type = DB::PARAM_BOOL;
+                    break;
+                case 'integer':
+                    $type = DB::PARAM_INT;
+                    break;
+                case 'double':
+                    $type = DB::PARAM_FLOAT;
+                    break;
+                case 'string':
+                    $type = DB::PARAM_STR;
+                    break;
+                case 'object':
+                    if (interface_exists('\\DateTimeInterface') and $value instanceof \DateTimeInterface or $value instanceof \DateTime)
+                        $type = DB::PARAM_DATETIME;
+                    elseif ($value instanceof \DateInterval)
+                        $type = DB::PARAM_INTERVAL;
+                    else
+                        throw new \RuntimeException('Parameter type not recognized');
+                    break;
+                default:
+                    throw new \RuntimeException('Parameter type not recognized');
+            }
+        }
+        switch ($type) {
+            case DB::PARAM_STR:
+                $value = $this->escapeString($value);
+                break;
+            case DB::PARAM_DATE:
+            case DB::PARAM_TIME:
+            case DB::PARAM_DATETIME:
+                switch ($type) {
+                    case DB::PARAM_DATE:
+                        $format = 'Y-m-d';
+                        break;
+                    case DB::PARAM_TIME:
+                        $format = 'H:i:s';
+                        break;
+                    default:
+                        $format = 'Y-m-d H:i:s';
+                }
+                if (interface_exists('\\DateTimeInterface') and $value instanceof \DateTimeInterface or $value instanceof \DateTime)
+                    $value = $value->format($format);
+                else {
+                    $dt = date_create($value);
+                    if ($dt === false)
+                        $dt = new \DateTime;
+                    if (is_int($value))
+                        $dt->setTimestamp($value);
+                    $value = $dt->format($format);
+                }
+                break;
+            case DB::PARAM_INTERVAL:
+                if ($value instanceof \DateInterval)
+                    $value = $value->format('%y YEAR %m MONTH %d DAY %h HOUR %i MINUTE %s SECOND');
+                elseif (is_int($value))
+                    $value = "$value SECOND";
+                else
+                    throw new \UnexpectedValueException('Invalid interval value');
+                break;
+            case DB::PARAM_INT:
+                $value = intval($value);
+                break;
+            case DB::PARAM_BOOL:
+                $value = $value ? 1 : 0;
+                break;
+            case DB::PARAM_FLOAT:
+                $value = floatval($value);
+                break;
+            case DB::PARAM_NULL:
+                $value = 'NULL';
+                break;
+            default:
+                throw new \UnexpectedValueException('Invalid parameter value');
+        }
+        return ($type & DB::PARAM_STR) ? "'$value'" : $value;
+    }
+
 }

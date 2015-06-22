@@ -1,9 +1,8 @@
 <?php
-
-/*
+/* 
  * The MIT License
  *
- * Copyright 2015 Samy Naamani.
+ * Copyright 2015 Samy Naamani <samy@namani.net>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,60 +28,43 @@ use SNTools\Object;
 
 /**
  * Factory superclass
- * This class provides access to real factories via its static method.
- * Real factories are subclasses of this class
- * @see Factory::getFactory
+ * Driver factories assist into building database connections
  *
  * @author Samy Naamani <samy@namani.net>
  * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
+ * @property-read string $driver Driver name
  */
 abstract class Factory extends Object {
     /**
-     * Factory parameters
-     * @var array
+     * Driver name (real attribute)
+     * @var string
      */
-    private $parameters = array();
-    
+    private static $_driver = '';
+
     /**
-     * Private constructor, public creation is forbidden
+     * Sets up driver name. Subclass shall call this method once before anything else.
+     * For instance, subclass can call this method from its static constructor overriden from Object.
+     * @param string $driver Driver name
      */
-    private function __construct() {
-        parent::__construct();
+    final protected static function setDriver($driver) {
+        if(empty(static::$_driver)) static::$_driver = $driver;
     }
-    /**
-     * Factory creation.
-     * For instance, if database type asked for is "MySQL", then
-     * Factory is exception to be \SNDatabase\Impl\MySQLFactory
-     * @param string $dbtype Database type.
-     * @return self New factory
-     * @throws DriverException
-     */
-    final public static function getFactory($dbtype) {
-        parent::__construct();
-        $class = sprintf('%s\\Impl\\%sFactory', __NAMESPACE__, $dbtype);
-        if(class_exists($class) and is_subclass_of($class, self)) {
-            return new $class();
-        } else throw new DriverException("Driver $dbtype not found");
+
+    public function __get($name) {
+        switch($name) {
+            case 'driver':
+                return static::$_driver;
+            default:
+                return parent::__get($name);
+        }
     }
+
     /**
-     * Sets a parameter for connection creation
-     * @param string $parameter
-     * @param mixed $value
+     * Get connection from connection string
+     * @param string $cnxString Connection string
+     * @return Connection Connection instance
+     * @throws \RuntimeException
+     * @todo Change exception list
      */
-    public function setParameter($parameter, $value) {
-        $this->parameters[$parameter] = $value;
-    }
-    /**
-     * Gather a parameter for connection creation
-     * @param string $parameter
-     * @return mixed|null Null if not found
-     */
-    public function getParameter($parameter) {
-        return isset($this->parameters[$parameter]) ? $this->parameters[$parameter] : null;
-    }
-    /**
-     * Creates connection
-     * @return Connection
-     */
-    abstract public function getConnection();
+    abstract public function getConnection($cnxString);
 }

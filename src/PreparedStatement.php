@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Samy Naamani.
+ * Copyright 2015 Samy Naamani <samy@namani.net>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,12 +34,12 @@ namespace SNDatabase;
  * @license https://github.com/sndatabase/core/blob/master/LICENSE MIT
  */
 abstract class PreparedStatement extends Statement {
+
     /**
      * Parameters list
      * @var array
      */
     private $parameters = array();
-    
 
     /**
      * Binds parameter to statement
@@ -48,16 +48,43 @@ abstract class PreparedStatement extends Statement {
      * @param int $type Parameter type, defaults to string.
      * @return boolean
      */
-    public function bindParam($tag, &$param, $type = self::PARAM_STR) {
-        if(!is_int($tag) and ctype_digit($tag)) $tag = intval($tag);
-        elseif(is_string($tag)) {
-            if(':' != substr($tag, 0, 1)) $tag = ":$tag";
-        } else return false;
+    public function bindParam($tag, &$param, $type = DB::PARAM_AUTO) {
+        if (!is_int($tag) and ctype_digit($tag))
+            $tag = intval($tag);
+        elseif (is_string($tag)) {
+            if (':' != substr($tag, 0, 1))
+                $tag = ":$tag";
+        } else
+            return false;
         $this->parameters[$tag] = array('param' => &$param, 'type' => $type);
         return true;
     }
 
-    public function bindValue($tag, $value, $type = self::PARAM_STR) {
+    public function bindValue($tag, $value, $type = DB::PARAM_AUTO) {
         return $this->bindParam($tag, $value, $type);
     }
+
+    /**
+     * List of bound parameters, as associative array tag => param.
+     * Each parameter is itself an array of 2 elements : 'param' => parameter value, and 'type' => parameter type
+     * @return array
+     */
+    final protected function getParameters() {
+        return $this->parameters;
+    }
+
+    /**
+     * Driver-specific parameter rebinding. Called upon execution.
+     */
+    abstract protected function doBind();
+    /**
+     * Driver-specific execution, called upon execution and after parameter rebinding
+     * @return boolean Success
+     */
+    abstract protected function doExecute();
+    public function execute() {
+        $this->doBind();
+        return $this->doExecute();
+    }
+
 }

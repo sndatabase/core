@@ -33,6 +33,8 @@
 			<h3>Classes</h3>
 			<ul>
 				<li class="active"><a href="class-SNDatabase.Connection.html">Connection</a></li>
+				<li><a href="class-SNDatabase.ConnectionString.html">ConnectionString</a></li>
+				<li><a href="class-SNDatabase.DB.html">DB</a></li>
 				<li><a href="class-SNDatabase.Factory.html">Factory</a></li>
 				<li><a href="class-SNDatabase.FetchMode.html">FetchMode</a></li>
 				<li><a href="class-SNDatabase.ParameterizedStatement.html">ParameterizedStatement</a></li>
@@ -43,19 +45,8 @@
 				<li><a href="class-SNDatabase.Transaction.html">Transaction</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ParameterTypes.html">ParameterTypes</a></li>
-			</ul>
 
 
-			<h3>Exceptions</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
-				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
-				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
-				<li><a href="class-SNDatabase.InvalidParameterNumberException.html">InvalidParameterNumberException</a></li>
-			</ul>
 
 
 		</div>
@@ -136,7 +127,7 @@ SNTools\Object
 				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-			<b>Located at</b> <a href="source-class-SNDatabase.Connection.html#30-218" title="Go to source code">Connection.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.Connection.html#31-214" title="Go to source code">Connection.php</a>
 		<br>
 	</div>
 
@@ -144,67 +135,32 @@ SNTools\Object
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
+	<tr data-order="getDefaultFetchMode" id="_getDefaultFetchMode">
 
 		<td class="attributes"><code>
-			 public 
+			final public 
 
-			
+			<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#63-70" title="Go to source code">__construct</a>( )</code>
+		<a class="anchor" href="#_getDefaultFetchMode">#</a>
+		<code><a href="source-class-SNDatabase.Connection.html#45-51" title="Go to source code">getDefaultFetchMode</a>( )</code>
 
 		<div class="description short">
-			<p>Connection constructor. Sets up default attributes</p>
+			<p>Public getter for default fetch mode</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Connection constructor. Sets up default attributes</p>
+			<p>Public getter for default fetch mode</p>
 
 
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="query" id="_query">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			<code><a href="class-SNDatabase.Result.html">SNDatabase\Result</a></code>|boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_query">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#72-77" title="Go to source code">query</a>( <span>string <var>$statement</var></span> )</code>
-
-		<div class="description short">
-			<p>Executes quick statement and returns a result set</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Executes quick statement and returns a result set</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$statement</var></dt>
-					<dd>Statement to execute</dd>
-				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-SNDatabase.Result.html">SNDatabase\Result</a></code>|boolean<br>Result set, or false on failure
+					<code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code>
 				</div>
 
 
@@ -213,10 +169,10 @@ SNTools\Object
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="handleError" id="_handleError">
+	<tr data-order="setDefaultFetchMode" id="_setDefaultFetchMode">
 
 		<td class="attributes"><code>
-			 public 
+			final protected 
 
 			
 			
@@ -224,144 +180,23 @@ SNTools\Object
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_handleError">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#79-100" title="Go to source code">handleError</a>( <span><code><a href="class-SNDatabase.DBException.html">SNDatabase\DBException</a></code> <var>$ex</var></span> )</code>
+		<a class="anchor" href="#_setDefaultFetchMode">#</a>
+		<code><a href="source-class-SNDatabase.Connection.html#53-59" title="Go to source code">setDefaultFetchMode</a>( <span><code><a href="class-SNDatabase.FetchMode.html">SNDatabase\FetchMode</a></code> <var>$defaultFetchMode</var></span> )</code>
 
 		<div class="description short">
-			<p>Error handler, depends on error mode attribute</p>
+			<p>Non-public setter for default fetch mode</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Error handler, depends on error mode attribute</p>
+			<p>Non-public setter for default fetch mode</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$ex</var></dt>
-					<dd>Exception with the SQL error</dd>
+					<dt><var>$defaultFetchMode</var></dt>
+					<dd></dd>
 				</dl></div>
 
-
-				<h4>Throws</h4>
-				<div class="list">
-					<code><a href="class-SNDatabase.DBException.html">SNDatabase\DBException</a></code>
-				</div>
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="exec" id="_exec">
-
-		<td class="attributes"><code>
-			 public 
-
-			integer|boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_exec">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#102-110" title="Go to source code">exec</a>( <span>string <var>$statement</var></span> )</code>
-
-		<div class="description short">
-			<p>Quick execution of a statement, and returns number of affected rows</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Quick execution of a statement, and returns number of affected rows</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$statement</var></dt>
-					<dd>Statement to execute</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					integer|boolean<br>Affected rows, or false on failure
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="queryWithParam" id="_queryWithParam">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-SNDatabase.ParameterizedStatement.html">SNDatabase\ParameterizedStatement</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_queryWithParam">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#112-119" title="Go to source code">queryWithParam</a>( <span>string <var>$statement</var></span> )</code>
-
-		<div class="description short">
-			<p>Creates a Parameterized statement</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Creates a Parameterized statement</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$statement</var></dt>
-					<dd>Initial statement</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-SNDatabase.ParameterizedStatement.html">SNDatabase\ParameterizedStatement</a></code><br>Statement, ready to be parametered
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="prepare" id="_prepare">
-
-		<td class="attributes"><code>
-			abstract public 
-
-			<code><a href="class-SNDatabase.PreparedStatement.html">SNDatabase\PreparedStatement</a></code>|boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_prepare">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#121-126" title="Go to source code">prepare</a>( <span>string <var>$statement</var></span> )</code>
-
-		<div class="description short">
-			<p>Creates a Prepared statement</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Creates a Prepared statement</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$statement</var></dt>
-					<dd>Statement to prepare</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-SNDatabase.PreparedStatement.html">SNDatabase\PreparedStatement</a></code>|boolean<br>Prepared statement, false on failure
-				</div>
 
 
 
@@ -381,20 +216,25 @@ SNTools\Object
 
 		<td class="name"><div>
 		<a class="anchor" href="#_startTransaction">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#128-132" title="Go to source code">startTransaction</a>( )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#62-67" title="Go to source code">startTransaction</a>( <span>string|null <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>Starts a transaction</p>
+			<p>Starts a new transaction</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Starts a transaction</p>
+			<p>Starts a new transaction</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd>Transaction name. Null if none.</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-SNDatabase.Transaction.html">SNDatabase\Transaction</a></code><br>Object representing started transaction
+					<code><a href="class-SNDatabase.Transaction.html">SNDatabase\Transaction</a></code><br>Transaction object
 				</div>
 
 
@@ -403,74 +243,37 @@ SNTools\Object
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="setAttribute" id="_setAttribute">
+	<tr data-order="prepare" id="_prepare">
 
 		<td class="attributes"><code>
-			 public 
+			abstract public 
 
-			
+			<code><a href="class-SNDatabase.PreparedStatement.html">SNDatabase\PreparedStatement</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_setAttribute">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#134-141" title="Go to source code">setAttribute</a>( <span>integer <var>$attribute</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<a class="anchor" href="#_prepare">#</a>
+		<code><a href="source-class-SNDatabase.Connection.html#69-74" title="Go to source code">prepare</a>( <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
-			<p>Sets connection attribute</p>
+			<p>Creates a prepared statement</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Sets connection attribute</p>
+			<p>Creates a prepared statement</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$attribute</var></dt>
-					<dd></dd>
-					<dt><var>$value</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getAttribute" id="_getAttribute">
-
-		<td class="attributes"><code>
-			 public 
-
-			mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getAttribute">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#143-150" title="Go to source code">getAttribute</a>( <span>integer <var>$attribute</var></span> )</code>
-
-		<div class="description short">
-			<p>Reads connection attribute</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Reads connection attribute</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$attribute</var></dt>
-					<dd></dd>
+					<dt><var>$statement</var></dt>
+					<dd>Statement</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					mixed
+					<code><a href="class-SNDatabase.PreparedStatement.html">SNDatabase\PreparedStatement</a></code>
 				</div>
 
 
@@ -479,39 +282,37 @@ SNTools\Object
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="stringQuote" id="_stringQuote">
+	<tr data-order="perform" id="_perform">
 
 		<td class="attributes"><code>
-			abstract protected 
+			 public 
 
-			string
+			<code><a href="class-SNDatabase.ParameterizedStatement.html">SNDatabase\ParameterizedStatement</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_stringQuote">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#152-158" title="Go to source code">stringQuote</a>( <span>string <var>$string</var></span> )</code>
+		<a class="anchor" href="#_perform">#</a>
+		<code><a href="source-class-SNDatabase.Connection.html#76-83" title="Go to source code">perform</a>( <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
-			<p>String protection against SQL injection.
-Driver-specific.</p>
+			<p>Creates a statement with parameters</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>String protection against SQL injection.
-Driver-specific.</p>
+			<p>Creates a statement with parameters</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$string</var></dt>
-					<dd></dd>
+					<dt><var>$statement</var></dt>
+					<dd>Statement</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string
+					<code><a href="class-SNDatabase.ParameterizedStatement.html">SNDatabase\ParameterizedStatement</a></code>
 				</div>
 
 
@@ -520,39 +321,76 @@ Driver-specific.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="quote" id="_quote">
+	<tr data-order="query" id="_query">
 
 		<td class="attributes"><code>
-			 public 
+			abstract public 
 
-			string
+			<code><a href="class-SNDatabase.Result.html">SNDatabase\Result</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_quote">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#160-204" title="Go to source code">quote</a>( <span>mixed <var>$value</var></span>, <span>integer <var>$type</var> = ParameterType::STR</span> )</code>
+		<a class="anchor" href="#_query">#</a>
+		<code><a href="source-class-SNDatabase.Connection.html#85-90" title="Go to source code">query</a>( <span>string <var>$statement</var></span> )</code>
 
 		<div class="description short">
-			<p>Quotes value, according to type</p>
+			<p>Executes a simple query and returns its result set</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Quotes value, according to type</p>
+			<p>Executes a simple query and returns its result set</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$value</var></dt>
-					<dd>Value to quote</dd>
-					<dt><var>$type</var></dt>
-					<dd>Parameter type</dd>
+					<dt><var>$statement</var></dt>
+					<dd>Statement</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string<br>Quoted value
+					<code><a href="class-SNDatabase.Result.html">SNDatabase\Result</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="exec" id="_exec">
+
+		<td class="attributes"><code>
+			 public 
+
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_exec">#</a>
+		<code><a href="source-class-SNDatabase.Connection.html#92-99" title="Go to source code">exec</a>( <span>string <var>$statement</var></span> )</code>
+
+		<div class="description short">
+			<p>Executes a write-only statement and returns how many rows it affected.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Executes a write-only statement and returns how many rows it affected.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$statement</var></dt>
+					<dd>Statement</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					integer<br>Number of affected rows
 				</div>
 
 
@@ -573,14 +411,14 @@ Driver-specific.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_countLastAffectedRows">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#206-211" title="Go to source code">countLastAffectedRows</a>( )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#101-105" title="Go to source code">countLastAffectedRows</a>( )</code>
 
 		<div class="description short">
-			<p>Counts number of last affected rows. Used by some drivers, ineffective and overriden for others.</p>
+			<p>Number of rows affected by last statement</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Counts number of last affected rows. Used by some drivers, ineffective and overriden for others.</p>
+			<p>Number of rows affected by last statement</p>
 
 
 
@@ -590,10 +428,6 @@ Driver-specific.</p>
 				</div>
 
 
-				<h4>See</h4>
-				<div class="list">
-						Statement::$affectedRows<br>
-				</div>
 
 
 		</div>
@@ -611,14 +445,14 @@ Driver-specific.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastInsertId">#</a>
-		<code><a href="source-class-SNDatabase.Connection.html#213-217" title="Go to source code">lastInsertId</a>( )</code>
+		<code><a href="source-class-SNDatabase.Connection.html#107-111" title="Go to source code">lastInsertId</a>( )</code>
 
 		<div class="description short">
-			<p>Fetches last inserted ID</p>
+			<p>Last inserted ID</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Fetches last inserted ID</p>
+			<p>Last inserted ID</p>
 
 
 
@@ -626,6 +460,84 @@ Driver-specific.</p>
 				<div class="list">
 					integer
 				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="escapeString" id="_escapeString">
+
+		<td class="attributes"><code>
+			abstract protected 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_escapeString">#</a>
+		<code><a href="source-class-SNDatabase.Connection.html#113-119" title="Go to source code">escapeString</a>( <span>string <var>$string</var></span> )</code>
+
+		<div class="description short">
+			<p>For text and string values to quote, protects against injection.
+Driver-dependant.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>For text and string values to quote, protects against injection.
+Driver-dependant.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$string</var></dt>
+					<dd>Text to quote</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>Quoted text
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="quote" id="_quote">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_quote">#</a>
+		<code><a href="source-class-SNDatabase.Connection.html#121-212" title="Go to source code">quote</a>( <span>mixed <var>$value</var></span>, <span>integer <var>$type</var> = <code><a href="class-SNDatabase.DB.html#PARAM_AUTO">SNDatabase\DB::<b>PARAM_AUTO</b></a></code></span> )</code>
+
+		<div class="description short">
+			<p>Quote parameter according to type, to protect against injections</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Quote parameter according to type, to protect against injections</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd>Value to protect</dd>
+					<dt><var>$type</var></dt>
+					<dd>Type : constant DB::PARAM_*. Defaults to DB::PARAM_AUTO to autodetect type.</dd>
+				</dl></div>
+
 
 
 
@@ -642,177 +554,6 @@ Driver-specific.</p>
 
 
 
-	<table class="summary constants" id="constants">
-	<caption>Constants summary</caption>
-	<tr data-order="ATTR_ERRMODE" id="ATTR_ERRMODE">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Connection.html#37" title="Go to source code"><b>ATTR_ERRMODE</b></a>
-			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#ATTR_ERRMODE" class="anchor">#</a>
-				<code><span class="php-num">0</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="ATTR_DEFAULT_FETCH_MODE" id="ATTR_DEFAULT_FETCH_MODE">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Connection.html#38" title="Go to source code"><b>ATTR_DEFAULT_FETCH_MODE</b></a>
-			</code>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#ATTR_DEFAULT_FETCH_MODE" class="anchor">#</a>
-				<code><span class="php-num">1</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="ERRMODE_EXCEPTION" id="ERRMODE_EXCEPTION">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Connection.html#40-43" title="Go to source code"><b>ERRMODE_EXCEPTION</b></a>
-			</code>
-
-			<div class="description short">
-				<p>This error mode will throw exceptions as DBException at each SQL error</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>This error mode will throw exceptions as DBException at each SQL error</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#ERRMODE_EXCEPTION" class="anchor">#</a>
-				<code><span class="php-num">100</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="ERRMODE_ERROR" id="ERRMODE_ERROR">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Connection.html#44-47" title="Go to source code"><b>ERRMODE_ERROR</b></a>
-			</code>
-
-			<div class="description short">
-				<p>This error mode will cause a fatal error when encountering a SQL error</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>This error mode will cause a fatal error when encountering a SQL error</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#ERRMODE_ERROR" class="anchor">#</a>
-				<code><span class="php-num">101</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="ERRMODE_WARNING" id="ERRMODE_WARNING">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Connection.html#48-51" title="Go to source code"><b>ERRMODE_WARNING</b></a>
-			</code>
-
-			<div class="description short">
-				<p>This error mode will cause a warning when encountering a SQL error</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>This error mode will cause a warning when encountering a SQL error</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#ERRMODE_WARNING" class="anchor">#</a>
-				<code><span class="php-num">102</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="ERRMODE_NOTICE" id="ERRMODE_NOTICE">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Connection.html#52-55" title="Go to source code"><b>ERRMODE_NOTICE</b></a>
-			</code>
-
-			<div class="description short">
-				<p>This error mode will cause a notice when encountering a SQL error</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>This error mode will cause a notice when encountering a SQL error</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#ERRMODE_NOTICE" class="anchor">#</a>
-				<code><span class="php-num">104</span></code>
-			</div>
-		</td>
-	</tr>
-	<tr data-order="ERRMODE_SILENT" id="ERRMODE_SILENT">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name">
-			<code>
-				<a href="source-class-SNDatabase.Connection.html#56-59" title="Go to source code"><b>ERRMODE_SILENT</b></a>
-			</code>
-
-			<div class="description short">
-				<p>This error mode will remain silent when encountering a SQL error</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>This error mode will remain silent when encountering a SQL error</p>
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#ERRMODE_SILENT" class="anchor">#</a>
-				<code><span class="php-num">105</span></code>
-			</div>
-		</td>
-	</tr>
-	</table>
 
 
 

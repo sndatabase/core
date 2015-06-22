@@ -33,6 +33,8 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-SNDatabase.Connection.html">Connection</a></li>
+				<li><a href="class-SNDatabase.ConnectionString.html">ConnectionString</a></li>
+				<li><a href="class-SNDatabase.DB.html">DB</a></li>
 				<li class="active"><a href="class-SNDatabase.Factory.html">Factory</a></li>
 				<li><a href="class-SNDatabase.FetchMode.html">FetchMode</a></li>
 				<li><a href="class-SNDatabase.ParameterizedStatement.html">ParameterizedStatement</a></li>
@@ -43,19 +45,8 @@
 				<li><a href="class-SNDatabase.Transaction.html">Transaction</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ParameterTypes.html">ParameterTypes</a></li>
-			</ul>
 
 
-			<h3>Exceptions</h3>
-			<ul>
-				<li><a href="class-SNDatabase.ConnectionFailedException.html">ConnectionFailedException</a></li>
-				<li><a href="class-SNDatabase.DBException.html">DBException</a></li>
-				<li><a href="class-SNDatabase.DriverException.html">DriverException</a></li>
-				<li><a href="class-SNDatabase.InvalidParameterNumberException.html">InvalidParameterNumberException</a></li>
-			</ul>
 
 
 		</div>
@@ -103,8 +94,7 @@
 
 	<div class="description">
 	<p>Factory superclass
-This class provides access to real factories via its static method.
-Real factories are subclasses of this class</p>
+Driver factories assist into building database connections</p>
 	</div>
 
 	<dl class="tree">
@@ -138,9 +128,7 @@ SNTools\Object
 				<a href="https://github.com/sndatabase/core/blob/master/LICENSE">MIT</a><br>
 				<b>Author:</b>
 				Samy Naamani <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;">&#115;&#x61;&#109;y&#x40;&#110;&#x61;&#109;&#x61;&#110;&#x69;&#46;&#x6e;&#101;&#116;</a><br>
-				<b>See:</b>
-				<code><a href="class-SNDatabase.Factory.html#_getFactory">SNDatabase\Factory::getFactory()</a></code><br>
-			<b>Located at</b> <a href="source-class-SNDatabase.Factory.html#30-88" title="Go to source code">Factory.php</a>
+			<b>Located at</b> <a href="source-class-SNDatabase.Factory.html#29-70" title="Go to source code">Factory.php</a>
 		<br>
 	</div>
 
@@ -148,54 +136,44 @@ SNTools\Object
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="getFactory" id="_getFactory">
+	<tr data-order="setDriver" id="_setDriver">
 
 		<td class="attributes"><code>
-			final public static
+			final protected static
 
-			<code><a href="class-SNDatabase.Factory.html">SNDatabase\Factory</a></code>
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getFactory">#</a>
-		<code><a href="source-class-SNDatabase.Factory.html#52-66" title="Go to source code">getFactory</a>( <span>string <var>$dbtype</var></span> )</code>
+		<a class="anchor" href="#_setDriver">#</a>
+		<code><a href="source-class-SNDatabase.Factory.html#44-51" title="Go to source code">setDriver</a>( <span>string <var>$driver</var></span> )</code>
 
 		<div class="description short">
-			<p>Factory creation.
-For instance, if database type asked for is "MySQL", then
-Factory is exception to be \SNDatabase\Impl\MySQLFactory</p>
+			<p>Sets up driver name. Subclass shall call this method once before anything else.
+For instance, subclass can call this method from its static constructor overriden from Object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Factory creation.
-For instance, if database type asked for is "MySQL", then
-Factory is exception to be \SNDatabase\Impl\MySQLFactory</p>
+			<p>Sets up driver name. Subclass shall call this method once before anything else.
+For instance, subclass can call this method from its static constructor overriden from Object.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$dbtype</var></dt>
-					<dd>Database type.</dd>
+					<dt><var>$driver</var></dt>
+					<dd>Driver name</dd>
 				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-SNDatabase.Factory.html">SNDatabase\Factory</a></code><br>New factory
-				</div>
 
-				<h4>Throws</h4>
-				<div class="list">
-					<code><a href="class-SNDatabase.DriverException.html">SNDatabase\DriverException</a></code>
-				</div>
 
 
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="setParameter" id="_setParameter">
+	<tr data-order="__get" id="___get">
 
 		<td class="attributes"><code>
 			 public 
@@ -206,64 +184,18 @@ Factory is exception to be \SNDatabase\Impl\MySQLFactory</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_setParameter">#</a>
-		<code><a href="source-class-SNDatabase.Factory.html#67-74" title="Go to source code">setParameter</a>( <span>string <var>$parameter</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<a class="anchor" href="#___get">#</a>
+		<code><a href="source-class-SNDatabase.Factory.html#53-60" title="Go to source code">__get</a>( <span> <var>$name</var></span> )</code>
 
 		<div class="description short">
-			<p>Sets a parameter for connection creation</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Sets a parameter for connection creation</p>
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$parameter</var></dt>
-					<dd></dd>
-					<dt><var>$value</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getParameter" id="_getParameter">
-
-		<td class="attributes"><code>
-			 public 
-
-			mixed|null
 			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getParameter">#</a>
-		<code><a href="source-class-SNDatabase.Factory.html#75-82" title="Go to source code">getParameter</a>( <span>string <var>$parameter</var></span> )</code>
-
-		<div class="description short">
-			<p>Gather a parameter for connection creation</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Gather a parameter for connection creation</p>
+			
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$parameter</var></dt>
-					<dd></dd>
-				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					mixed|null<br>Null if not found
-				</div>
 
 
 
@@ -283,23 +215,36 @@ Factory is exception to be \SNDatabase\Impl\MySQLFactory</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getConnection">#</a>
-		<code><a href="source-class-SNDatabase.Factory.html#83-87" title="Go to source code">getConnection</a>( )</code>
+		<code><a href="source-class-SNDatabase.Factory.html#62-69" title="Go to source code">getConnection</a>( <span>string <var>$cnxString</var></span> )</code>
 
 		<div class="description short">
-			<p>Creates connection</p>
+			<p>Get connection from connection string</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Creates connection</p>
+			<p>Get connection from connection string</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cnxString</var></dt>
+					<dd>Connection string</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></code>
+					<code><a href="class-SNDatabase.Connection.html">SNDatabase\Connection</a></code><br>Connection instance
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					RuntimeException
+				</div>
 
+				<h4>Todo</h4>
+				<div class="list">
+						Change exception list<br>
+				</div>
 
 
 		</div>
@@ -321,6 +266,28 @@ Factory is exception to be \SNDatabase\Impl\MySQLFactory</p>
 
 
 
+	<table class="summary properties" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="driver" id="m$driver">
+		<td class="attributes"><code>
+			public  read-only
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-SNDatabase.Factory.html#35" title="Go to source code"><var>$driver</var></a>
+
+			<div class="description short">
+				<p>Driver name</p>
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+	</tr>
+	</table>
 
 
 
