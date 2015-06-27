@@ -36,10 +36,31 @@ use SNTools\Object;
  */
 abstract class Statement extends Object implements ParameterTypes {
     /**
+     * Statement parser
+     * @var \PHPSQLParser
+     */
+    protected static $parser;
+
+    /**
+     * Statement builder
+     * @var \PHPSQLCreator
+     */
+    protected static $creator;
+    /**
      * Parent connection
      * @var Connection
      */
     private $cnx;
+
+    protected static function __constructStatic() {
+        if (parent::__constructStatic()) {
+            return true;
+        } else {
+            self::$parser = new \PHPSQLParser();
+            self::$creator = new \PHPSQLCreator();
+        }
+    }
+
     /**
      * Statement constructor
      * @param Connection $cnx Parent connection

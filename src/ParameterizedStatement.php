@@ -36,18 +36,6 @@ namespace SNDatabase;
 class ParameterizedStatement extends Statement {
 
     /**
-     * Statement parser
-     * @var \PHPSQLParser
-     */
-    private static $parser;
-
-    /**
-     * Statement builder
-     * @var \PHPSQLCreator
-     */
-    private static $creator;
-
-    /**
      * Input statement
      * @var string
      */
@@ -64,15 +52,6 @@ class ParameterizedStatement extends Statement {
      * @var int
      */
     private $affRows = 0;
-
-    protected static function __constructStatic() {
-        if (parent::__constructStatic()) {
-            return true;
-        } else {
-            self::$parser = new \PHPSQLParser();
-            self::$creator = new \PHPSQLCreator();
-        }
-    }
 
     /**
      * Constructor
