@@ -61,7 +61,7 @@ abstract class Transaction extends Object {
         parent::__construct();
         $this->cnx = $cnx;
         $this->name = $name;
-        $this->doStart($this->name);
+        $this->in = $this->doStart($this->name);
     }
     public function __get($name) {
         switch($name) {
@@ -77,6 +77,7 @@ abstract class Transaction extends Object {
      * Starts transaction (driver-dependant implementation).
      * Called by constructor.
      * @param string|null $name Transaction name. Null if none.
+     * @return boolean Success
      * @throws DBException
      */
     abstract protected function doStart($name = null);
@@ -101,7 +102,7 @@ abstract class Transaction extends Object {
      * @throws DBException
      */
     public function commit() {
-        return $this->inTransaction ? $this->doCommit($this->name) : false;
+        return $this->inTransaction ? ($this->in = $this->doCommit($this->name)) : false;
     }
 
     /**
@@ -110,7 +111,7 @@ abstract class Transaction extends Object {
      * @throws DBException
      */
     public function rollBack() {
-        return $this->inTransaction ? $this->doRollBack($this->name) : false;
+        return $this->inTransaction ? ($this->in = $this->doRollBack($this->name)) : false;
     }
 
     public function __destruct() {
