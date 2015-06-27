@@ -237,6 +237,15 @@ abstract class Result extends Object implements \Countable, \IteratorAggregate {
         return $rows;
     }
 
+    /**
+     * Fetch one column of next row
+     * @param int $index
+     * @return mixed|boolean
+     */
+    public function fetchColumn($index = 0) {
+        return $this->fetch(DB::FETCH_COLUMN, $index);
+    }
+
     public function getIterator() {
         return new ResultIterator($this);
     }
