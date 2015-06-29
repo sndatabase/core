@@ -39,7 +39,7 @@ abstract class Factory extends Object {
      * Driver name (real attribute)
      * @var string
      */
-    private static $_driver = '';
+    protected static $_driver = '';
 
     /**
      * Sets up driver name. Subclass shall call this method once before anything else.
